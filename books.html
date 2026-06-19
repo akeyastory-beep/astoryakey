@@ -71,7 +71,7 @@
 
     /* ── Page header ── */
     .page-header {
-      padding: 9rem 2rem 3.5rem;
+      padding: 9rem 2rem 2.5rem;
       max-width: 1100px;
       margin: 0 auto;
     }
@@ -91,26 +91,55 @@
       color: var(--ink);
     }
     .page-title em { font-style: italic; color: var(--accent); }
+    .page-meta {
+      margin-top: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
     .page-count {
-      margin-top: 0.8rem;
       font-size: 0.88rem;
       color: var(--ink3);
     }
-    .page-count span {
-      color: var(--accent);
-      font-weight: 500;
+    .page-count span { color: var(--accent); font-weight: 500; }
+    .last-updated {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      font-style: italic;
     }
+    .random-btn {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(92,61,46,0.25);
+      border-radius: 2px;
+      background: transparent;
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .random-btn:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
 
     /* ── Filter bar ── */
     .filter-bar {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2rem 2.5rem;
+      padding: 0 2rem 2rem;
+    }
+    .filter-row {
       display: flex;
       flex-wrap: wrap;
       gap: 1.5rem;
       align-items: flex-start;
+      margin-bottom: 1rem;
     }
+    .filter-row:last-child { margin-bottom: 0; }
     .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
     .filter-label {
       font-size: 0.68rem;
@@ -143,11 +172,34 @@
       border-color: var(--accent);
     }
 
-    /* Search */
-    .search-wrap {
-      margin-left: auto;
-      position: relative;
+    /* Sort & Search row */
+    .controls-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
     }
+    .sort-select {
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(92,61,46,0.22);
+      border-radius: 2px;
+      background: var(--white);
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      color: var(--ink);
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      appearance: none;
+      padding-right: 2rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a8680'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+    }
+    .sort-select:focus { border-color: var(--accent); }
+
+    .search-wrap { position: relative; }
     .search-input {
       padding: 0.45rem 1rem 0.45rem 2.2rem;
       border: 1px solid rgba(92,61,46,0.22);
@@ -156,7 +208,7 @@
       font-family: var(--ff-body);
       font-size: 0.85rem;
       color: var(--ink);
-      width: 220px;
+      width: 240px;
       outline: none;
       transition: border-color 0.2s;
     }
@@ -189,7 +241,7 @@
     }
     .books-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 1.5rem;
     }
     .book-card {
@@ -198,29 +250,55 @@
       border-radius: 2px;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
       cursor: pointer;
       overflow: hidden;
+      position: relative;
     }
     .book-card:hover {
       border-color: rgba(92,61,46,0.35);
       transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(92,61,46,0.08);
     }
 
-    /* Colour spine — the signature design element */
-    .book-spine {
-      height: 4px;
-      background: var(--accent);
-      flex-shrink: 0;
+    /* Quote reveal on hover */
+    .book-quote-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(92,61,46,0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
     }
-    .book-spine.mood-lonely     { background: #7b8fa1; }
-    .book-spine.mood-lost       { background: #9b7e6a; }
-    .book-spine.mood-nostalgic  { background: #b8956a; }
-    .book-spine.mood-existential{ background: #5c6b5c; }
-    .book-spine.mood-hopeful    { background: #7a9e7e; }
-    .book-spine.mood-inlove     { background: #c08080; }
-    .book-spine.mood-angry      { background: #a05050; }
-    .book-spine.mood-empty      { background: #9090a0; }
+    .book-card:hover .book-quote-overlay { opacity: 1; }
+    .book-quote-text {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--paper);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .book-quote-text::before { content: '\201C'; }
+    .book-quote-text::after  { content: '\201D'; }
+
+    /* Colour spine */
+    .book-spine { height: 4px; flex-shrink: 0; background: var(--accent); }
+    .mood-lost        { background: #7b8fa1; }
+    .mood-heartbroken { background: #c08080; }
+    .mood-lonely      { background: #9090a0; }
+    .mood-regret      { background: #9b7e6a; }
+    .mood-overthinking{ background: #5c6b5c; }
+    .mood-hope        { background: #7a9e7e; }
+    .mood-understand  { background: #8b7fa8; }
+    .mood-angry       { background: #a05050; }
+    .mood-haunting    { background: #4a5568; }
+    .mood-thriller    { background: #2d3748; }
+    .mood-wonder      { background: #b8956a; }
 
     .book-card-body {
       padding: 1.3rem 1.4rem 1.4rem;
@@ -234,11 +312,29 @@
       justify-content: space-between;
       margin-bottom: 0.75rem;
     }
+    .book-badges { display: flex; align-items: center; gap: 0.4rem; }
     .book-country {
       font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ink3);
+    }
+    .badge-popular {
+      font-size: 0.65rem;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .badge-new {
+      font-size: 0.65rem;
+      background: #d1fae5;
+      color: #065f46;
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      font-weight: 500;
     }
     .book-rating {
       font-size: 0.78rem;
@@ -247,7 +343,7 @@
     }
     .book-title {
       font-family: var(--ff-display);
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       font-style: italic;
       font-weight: 400;
       color: var(--ink);
@@ -271,14 +367,30 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .book-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+    .genre-tag {
+      font-size: 0.66rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      background: var(--paper2);
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
     .book-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 1.1rem;
+      margin-top: 1rem;
       padding-top: 0.85rem;
       border-top: 1px solid rgba(92,61,46,0.08);
     }
+    .book-footer-left { display: flex; flex-direction: column; gap: 0.15rem; }
     .book-mood-tag {
       font-size: 0.7rem;
       padding: 0.25rem 0.7rem;
@@ -287,6 +399,12 @@
       color: var(--ink3);
       font-style: italic;
       font-family: var(--ff-display);
+      display: inline-block;
+    }
+    .book-meta-bottom {
+      font-size: 0.67rem;
+      color: var(--ink3);
+      letter-spacing: 0.04em;
     }
     .book-read-link {
       font-size: 0.75rem;
@@ -295,6 +413,7 @@
       color: var(--accent);
       font-weight: 500;
       transition: opacity 0.15s;
+      flex-shrink: 0;
     }
     .book-read-link:hover { opacity: 0.7; }
 
@@ -346,11 +465,18 @@
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
       .page-header { padding: 7rem 1.25rem 2rem; }
-      .filter-bar { padding: 0 1.25rem 2rem; gap: 1rem; }
-      .search-wrap { margin-left: 0; }
+      .filter-bar { padding: 0 1.25rem 1.5rem; }
       .search-input { width: 100%; }
       .books-section { padding: 0 1.25rem 4rem; }
       .divider { margin: 0 1.25rem 1.5rem; padding: 0; }
+      .random-btn { margin-left: 0; }
+      .controls-row { flex-direction: column; align-items: stretch; }
+      .search-input { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .book-card { transition: none; }
+      .book-quote-overlay { transition: none; }
     }
   </style>
 </head>
@@ -371,44 +497,90 @@
   <div class="page-header">
     <p class="eyebrow">The archive</p>
     <h1 class="page-title">47 books.<br><em>Every one a key.</em></h1>
-    <p class="page-count">Showing <span id="count-display">47</span> reviews</p>
+    <div class="page-meta">
+      <p class="page-count">Showing <span id="count-display">47</span> reviews</p>
+      <p class="last-updated">47 reviews and growing…</p>
+      <button class="random-btn" id="random-btn">🎲 Surprise me</button>
+    </div>
   </div>
 
   <!-- Filter bar -->
   <div class="filter-bar">
-    <div class="filter-group">
-      <span class="filter-label">Mood</span>
-      <div class="filter-pills" id="mood-filters">
-        <button class="pill active" data-filter="mood" data-value="all">All</button>
-        <button class="pill" data-filter="mood" data-value="lonely">Lonely</button>
-        <button class="pill" data-filter="mood" data-value="lost">Lost</button>
-        <button class="pill" data-filter="mood" data-value="nostalgic">Nostalgic</button>
-        <button class="pill" data-filter="mood" data-value="existential">Existential</button>
-        <button class="pill" data-filter="mood" data-value="hopeful">Hopeful</button>
-        <button class="pill" data-filter="mood" data-value="inlove">In love</button>
-        <button class="pill" data-filter="mood" data-value="angry">Angry</button>
-        <button class="pill" data-filter="mood" data-value="empty">Empty</button>
+    <div class="filter-row">
+      <div class="filter-group">
+        <span class="filter-label">Mood</span>
+        <div class="filter-pills" id="mood-filters">
+          <button class="pill active" data-filter="mood" data-value="all">All</button>
+          <button class="pill" data-filter="mood" data-value="lost">🌧 Feeling Lost</button>
+          <button class="pill" data-filter="mood" data-value="heartbroken">💔 Heartbroken</button>
+          <button class="pill" data-filter="mood" data-value="lonely">😔 Lonely</button>
+          <button class="pill" data-filter="mood" data-value="regret">⏳ Regret</button>
+          <button class="pill" data-filter="mood" data-value="overthinking">🤯 Overthinking Life</button>
+          <button class="pill" data-filter="mood" data-value="hope">🌱 Hope</button>
+          <button class="pill" data-filter="mood" data-value="understand">🧠 Understand Yourself</button>
+          <button class="pill" data-filter="mood" data-value="angry">🔥 Angry at the World</button>
+          <button class="pill" data-filter="mood" data-value="haunting">👻 Haunting</button>
+          <button class="pill" data-filter="mood" data-value="thriller">🕵 Thriller</button>
+          <button class="pill" data-filter="mood" data-value="wonder">✨ Wonder & Curiosity</button>
+        </div>
       </div>
     </div>
 
-    <div class="filter-group">
-      <span class="filter-label">Country</span>
-      <div class="filter-pills" id="country-filters">
-        <button class="pill active" data-filter="country" data-value="all">All</button>
-        <button class="pill" data-filter="country" data-value="Japan">Japan</button>
-        <button class="pill" data-filter="country" data-value="France">France</button>
-        <button class="pill" data-filter="country" data-value="India">India</button>
-        <button class="pill" data-filter="country" data-value="USA">USA</button>
-        <button class="pill" data-filter="country" data-value="UK">UK</button>
-        <button class="pill" data-filter="country" data-value="Russia">Russia</button>
+    <div class="filter-row">
+      <div class="filter-group">
+        <span class="filter-label">Country</span>
+        <div class="filter-pills" id="country-filters">
+          <button class="pill active" data-filter="country" data-value="all">All</button>
+          <button class="pill" data-filter="country" data-value="USA">United States</button>
+          <button class="pill" data-filter="country" data-value="UK">United Kingdom</button>
+          <button class="pill" data-filter="country" data-value="Japan">Japan</button>
+          <button class="pill" data-filter="country" data-value="South Korea">South Korea</button>
+          <button class="pill" data-filter="country" data-value="India">India</button>
+          <button class="pill" data-filter="country" data-value="Russia">Russia</button>
+          <button class="pill" data-filter="country" data-value="Ireland">Ireland</button>
+          <button class="pill" data-filter="country" data-value="Nigeria">Nigeria</button>
+          <button class="pill" data-filter="country" data-value="Ukraine">Ukraine</button>
+          <button class="pill" data-filter="country" data-value="Iran">Iran</button>
+          <button class="pill" data-filter="country" data-value="Afghanistan">Afghanistan</button>
+        </div>
       </div>
     </div>
 
-    <div class="search-wrap filter-group">
-      <span class="filter-label">Search</span>
-      <div style="position:relative;">
-        <span class="search-icon">⌕</span>
-        <input class="search-input" type="search" id="search-input" placeholder="Title or author…" />
+    <div class="filter-row">
+      <div class="filter-group">
+        <span class="filter-label">Genre</span>
+        <div class="filter-pills" id="genre-filters">
+          <button class="pill active" data-filter="genre" data-value="all">All</button>
+          <button class="pill" data-filter="genre" data-value="Literary Fiction">Literary Fiction</button>
+          <button class="pill" data-filter="genre" data-value="Classic">Classic</button>
+          <button class="pill" data-filter="genre" data-value="Thriller">Thriller</button>
+          <button class="pill" data-filter="genre" data-value="Sci-Fi">Sci-Fi</button>
+          <button class="pill" data-filter="genre" data-value="Memoir">Memoir</button>
+          <button class="pill" data-filter="genre" data-value="Graphic Novel">Graphic Novel</button>
+          <button class="pill" data-filter="genre" data-value="Dystopia">Dystopia</button>
+          <button class="pill" data-filter="genre" data-value="Short Stories">Short Stories</button>
+        </div>
+      </div>
+
+      <div class="controls-row" style="margin-left:auto; align-self:flex-end;">
+        <div class="filter-group">
+          <span class="filter-label">Sort</span>
+          <select class="sort-select" id="sort-select">
+            <option value="default">Default</option>
+            <option value="rating-desc">Highest Rated</option>
+            <option value="title-asc">A – Z</option>
+            <option value="title-desc">Z – A</option>
+            <option value="year-asc">Oldest First</option>
+            <option value="year-desc">Newest First</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Search</span>
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input class="search-input" type="search" id="search-input" placeholder="Title, author, theme…" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -437,74 +609,410 @@
 
   <script>
   // ── BOOK DATA ──────────────────────────────────────────────────────────────
-  // TO ADD YOUR OWN BOOK: copy one object below, paste at the top of the array,
-  // and fill in your real title, author, country, mood, rating, and excerpt.
-  // slug = the filename for that book's page (e.g. "norwegian-wood" → books/norwegian-wood.html)
+  // mood values: lost | heartbroken | lonely | regret | overthinking | hope | understand | angry | haunting | thriller | wonder
   // ──────────────────────────────────────────────────────────────────────────
   const BOOKS = [
-    { title: "No Longer Human", author: "Osamu Dazai", country: "Japan", mood: "empty", rating: 5, excerpt: "Dazai's confessional masterpiece about a man who cannot understand how to be human. Every page feels like a secret.", slug: "no-longer-human" },
-    { title: "Norwegian Wood", author: "Haruki Murakami", country: "Japan", mood: "lonely", rating: 5, excerpt: "Loss, memory, and the unbearable tenderness of being young. Murakami at his most emotionally direct.", slug: "norwegian-wood" },
-    { title: "Kafka on the Shore", author: "Haruki Murakami", country: "Japan", mood: "lost", rating: 5, excerpt: "Fish rain from the sky. A boy runs away. A man who can't remember. Magic realism that burrows under your skin.", slug: "kafka-on-the-shore" },
-    { title: "The Stranger", author: "Albert Camus", country: "France", mood: "existential", rating: 5, excerpt: "A man kills someone on a beach and feels nothing. Camus makes you understand him anyway. Terrifying.", slug: "the-stranger" },
-    { title: "The God of Small Things", author: "Arundhati Roy", country: "India", mood: "nostalgic", rating: 5, excerpt: "Kerala, childhood, and the things love is not allowed to do. Roy's prose is almost unbearably beautiful.", slug: "god-of-small-things" },
-    { title: "The Remains of the Day", author: "Kazuo Ishiguro", country: "UK", mood: "lonely", rating: 5, excerpt: "A butler's life, told in careful understatement. The things he cannot say are louder than the things he does.", slug: "remains-of-the-day" },
-    { title: "Never Let Me Go", author: "Kazuo Ishiguro", country: "UK", mood: "lonely", rating: 5, excerpt: "Dystopia so quiet it sneaks up on you. About memory, mortality, and the smallness of the life we're given.", slug: "never-let-me-go" },
-    { title: "Nausea", author: "Jean-Paul Sartre", country: "France", mood: "existential", rating: 4, excerpt: "Existence makes Roquentin physically sick. If you've ever felt alienated from reality, Sartre has already written you.", slug: "nausea" },
-    { title: "Crime and Punishment", author: "Fyodor Dostoevsky", country: "Russia", mood: "existential", rating: 5, excerpt: "A man commits a murder to prove a philosophy. Then spends 500 pages being destroyed by his own conscience.", slug: "crime-and-punishment" },
-    { title: "The Bell Jar", author: "Sylvia Plath", country: "USA", mood: "empty", rating: 5, excerpt: "Depression from the inside. Plath's prose is precise and devastating — like reading your own darkest thoughts.", slug: "the-bell-jar" },
-    { title: "Pride and Prejudice", author: "Jane Austen", country: "UK", mood: "inlove", rating: 5, excerpt: "Still the blueprint for slow-burn romance. Elizabeth Bennet remains the best character in English literature.", slug: "pride-and-prejudice" },
-    { title: "Pachinko", author: "Min Jin Lee", country: "Japan", mood: "nostalgic", rating: 5, excerpt: "Four generations of a Korean family in Japan. Epic in scope, devastating in detail. You will think about this for years.", slug: "pachinko" },
-    { title: "The Handmaid's Tale", author: "Margaret Atwood", country: "USA", mood: "angry", rating: 5, excerpt: "Atwood's controlled rage, set in a theocracy that took women's rights away. More relevant every year.", slug: "the-handmaids-tale" },
-    { title: "Beloved", author: "Toni Morrison", country: "USA", mood: "angry", rating: 5, excerpt: "A ghost story about slavery. Morrison's prose operates at a frequency that is almost beyond language.", slug: "beloved" },
-    { title: "Siddhartha", author: "Hermann Hesse", country: "India", mood: "lost", rating: 4, excerpt: "A man walks away from everything — religion, love, wealth — to find himself. Simple sentences, enormous questions.", slug: "siddhartha" },
-    { title: "Convenience Store Woman", author: "Sayaka Murata", country: "Japan", mood: "inlove", rating: 4, excerpt: "A woman who finds meaning in a convenience store. Quietly radical — about fitting in, or choosing not to.", slug: "convenience-store-woman" },
-    { title: "Giovanni's Room", author: "James Baldwin", country: "USA", mood: "angry", rating: 5, excerpt: "Paris, shame, desire, and the violence of not accepting yourself. One of the most honest books ever written.", slug: "giovannis-room" },
-    { title: "A Little Life", author: "Hanya Yanagihara", country: "USA", mood: "empty", rating: 5, excerpt: "This book warns you first. Then it breaks you anyway. Then it builds you back. Not for the faint-hearted.", slug: "a-little-life" },
-    { title: "The Kite Runner", author: "Khaled Hosseini", country: "USA", mood: "hopeful", rating: 4, excerpt: "Guilt, Afghanistan, and the impossibility of going back. Hosseini makes redemption feel hard-earned.", slug: "the-kite-runner" },
-    { title: "Educated", author: "Tara Westover", country: "USA", mood: "hopeful", rating: 5, excerpt: "A woman who rewrites herself from scratch — no birth certificate, no school, no version of herself she was given. Astonishing.", slug: "educated" },
-    { title: "Call Me By Your Name", author: "André Aciman", country: "USA", mood: "inlove", rating: 4, excerpt: "An Italian summer, peaches, and the violence of feeling too much. Aciman writes longing like no one else.", slug: "call-me-by-your-name" },
-    { title: "The House on Mango Street", author: "Sandra Cisneros", country: "USA", mood: "hopeful", rating: 4, excerpt: "A girl who already knows she will outgrow her world. Short chapters, enormous feeling.", slug: "house-on-mango-street" },
-    { title: "In Search of Lost Time", author: "Marcel Proust", country: "France", mood: "nostalgic", rating: 5, excerpt: "Memory as architecture. A madeleine dipped in tea unravels seven volumes of lost time. The ultimate reading challenge.", slug: "in-search-of-lost-time" },
-    { title: "The Alchemist", author: "Paulo Coelho", country: "India", mood: "lost", rating: 4, excerpt: "Overread for a reason — it finds you when you need it. Purpose disguised as a simple fable.", slug: "the-alchemist" },
-    { title: "Frankenstein", author: "Mary Shelley", country: "UK", mood: "existential", rating: 5, excerpt: "Who is the real monster? Shelley asks this at 18, in 1818. Nobody has answered it better since.", slug: "frankenstein" },
-    { title: "Anna Karenina", author: "Leo Tolstoy", country: "Russia", mood: "inlove", rating: 5, excerpt: "A woman trapped by society who dares to love freely. Tolstoy's masterpiece is a study in how the world punishes feeling.", slug: "anna-karenina" },
-    { title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", country: "Russia", mood: "existential", rating: 5, excerpt: "Three brothers, one murder, one God. Dostoevsky's final and greatest novel — every major question humanity has ever asked.", slug: "brothers-karamazov" },
-    { title: "And Then There Were None", author: "Agatha Christie", country: "UK", mood: "angry", rating: 4, excerpt: "Ten strangers. An island. A killer among them. Christie's plotting is so perfect it feels like a magic trick.", slug: "and-then-there-were-none" },
-    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", country: "USA", mood: "nostalgic", rating: 4, excerpt: "The green light across the bay. America's most elegant novel about wanting what you cannot have.", slug: "the-great-gatsby" },
-    { title: "1984", author: "George Orwell", country: "UK", mood: "angry", rating: 5, excerpt: "Big Brother, doublethink, and the destruction of truth. Orwell predicted surveillance capitalism in 1949.", slug: "1984" },
-    { title: "Kafka on the Shore", author: "Haruki Murakami", country: "Japan", mood: "lost", rating: 5, excerpt: "Two parallel stories that never quite meet but are somehow the same story. Murakami's most ambitious novel.", slug: "kafka-on-the-shore-2" },
-    { title: "Tuesdays with Morrie", author: "Mitch Albom", country: "USA", mood: "hopeful", rating: 4, excerpt: "A dying professor, his former student, and fourteen Tuesday conversations about how to live. Quietly life-changing.", slug: "tuesdays-with-morrie" },
-    { title: "The Metamorphosis", author: "Franz Kafka", country: "France", mood: "existential", rating: 5, excerpt: "A man wakes up as a giant insect. His family's reaction is the point. Kafka in one devastating short story.", slug: "the-metamorphosis" },
-    { title: "Interpreter of Maladies", author: "Jhumpa Lahiri", country: "India", mood: "lonely", rating: 5, excerpt: "Short stories about the distance between people — between cultures, generations, lovers. Lahiri is quietly devastating.", slug: "interpreter-of-maladies" },
-    { title: "The White Tiger", author: "Aravind Adiga", country: "India", mood: "angry", rating: 4, excerpt: "A servant becomes an entrepreneur by any means necessary. Dark, funny, furious — a Booker winner about modern India.", slug: "the-white-tiger" },
-    { title: "A Thousand Splendid Suns", author: "Khaled Hosseini", country: "USA", mood: "hopeful", rating: 5, excerpt: "Two Afghan women whose lives collide across decades of war. The most quietly devastating book about endurance.", slug: "thousand-splendid-suns" },
-    { title: "The Picture of Dorian Gray", author: "Oscar Wilde", country: "UK", mood: "existential", rating: 5, excerpt: "A beautiful man who never ages while his portrait grows monstrous. Wilde on vanity, art, and moral corruption.", slug: "dorian-gray" },
-    { title: "Kokoro", author: "Natsume Soseki", country: "Japan", mood: "lonely", rating: 5, excerpt: "A young man, an older professor, and a secret that destroys them both. Japan's most beloved novel about guilt.", slug: "kokoro" },
-    { title: "The Vegetarian", author: "Han Kang", country: "Japan", mood: "empty", rating: 4, excerpt: "A woman stops eating meat and her family falls apart. Han Kang on bodily autonomy, silence, and slow erasure.", slug: "the-vegetarian" },
-    { title: "Flowers for Algernon", author: "Daniel Keyes", country: "USA", mood: "lost", rating: 5, excerpt: "A man with low intelligence is made a genius. Then watches himself become someone unrecognisable. Utterly heartbreaking.", slug: "flowers-for-algernon" },
-    { title: "The Idiot", author: "Fyodor Dostoevsky", country: "Russia", mood: "lost", rating: 4, excerpt: "A good man in a corrupt world. What happens to goodness when society has no place for it.", slug: "the-idiot" },
-    { title: "Solaris", author: "Stanislaw Lem", country: "Russia", mood: "existential", rating: 4, excerpt: "Astronauts orbit a planet that manifests their memories. Lem asks if we could ever truly understand something alien.", slug: "solaris" },
-    { title: "Giovanni's Room", author: "James Baldwin", country: "France", mood: "lonely", rating: 5, excerpt: "A second reading finds even more devastation. The shame David carries is so specifically rendered it becomes universal.", slug: "giovannis-room-2" },
-    { title: "The Shadow of the Wind", author: "Carlos Ruiz Zafón", country: "France", mood: "nostalgic", rating: 4, excerpt: "Barcelona, a mysterious book, a boy who becomes a man searching for its author. Gothic and romantic and gripping.", slug: "shadow-of-the-wind" },
-    { title: "Steppenwolf", author: "Hermann Hesse", country: "France", mood: "empty", rating: 4, excerpt: "A man who lives between two natures — human and wolf. Hesse's most personal and strange novel.", slug: "steppenwolf" },
-    { title: "The Secret History", author: "Donna Tartt", country: "USA", mood: "lost", rating: 5, excerpt: "A group of classics students commit murder. Told backwards, so you know what happens before you understand why.", slug: "the-secret-history" },
-    { title: "Demon Copperhead", author: "Barbara Kingsolver", country: "USA", mood: "hopeful", rating: 4, excerpt: "David Copperfield retold in Appalachia during the opioid crisis. Kingsolver won the Pulitzer. Deservedly.", slug: "demon-copperhead" },
+    // ── UNITED STATES ──
+    {
+      title: "To Kill a Mockingbird", author: "Harper Lee", country: "USA",
+      mood: "hope", rating: 5, year: 1960, readTime: "6 min",
+      genre: ["Literary Fiction", "Classic"],
+      excerpt: "Compassion, justice, and the courage to do what's right even when the world refuses.",
+      quote: "You never really understand a person until you climb into their skin and walk around in it.",
+      slug: "to-kill-a-mockingbird", popular: true
+    },
+    {
+      title: "Beloved", author: "Toni Morrison", country: "USA",
+      mood: "angry", rating: 5, year: 1987, readTime: "7 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Morrison transforms history into something hauntingly alive. A ghost story about slavery.",
+      quote: "Freeing yourself was one thing; claiming ownership of that freed self was another.",
+      slug: "beloved", popular: true
+    },
+    {
+      title: "The Bluest Eye", author: "Toni Morrison", country: "USA",
+      mood: "angry", rating: 5, year: 1970, readTime: "5 min",
+      genre: ["Literary Fiction"],
+      excerpt: "A heartbreaking portrait of beauty, race and childhood. Morrison's most devastating early work.",
+      quote: "Love is never any better than the lover.",
+      slug: "the-bluest-eye"
+    },
+    {
+      title: "The Perks of Being a Wallflower", author: "Stephen Chbosky", country: "USA",
+      mood: "lonely", rating: 5, year: 1999, readTime: "5 min",
+      genre: ["Literary Fiction"],
+      excerpt: "For anyone who's ever watched life happen from the sidelines. Charlie sees everything.",
+      quote: "We accept the love we think we deserve.",
+      slug: "perks-of-being-a-wallflower", popular: true
+    },
+    {
+      title: "The Seven Husbands of Evelyn Hugo", author: "Taylor Jenkins Reid", country: "USA",
+      mood: "heartbroken", rating: 5, year: 2017, readTime: "6 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Fame shines brightly. Love leaves the deeper scars. Evelyn Hugo will not leave you.",
+      quote: "I think you have to love something deeply to write about it.",
+      slug: "seven-husbands-of-evelyn-hugo", popular: true, isNew: true
+    },
+    {
+      title: "The Interpretation of Murder", author: "Jed Rubenfeld", country: "USA",
+      mood: "thriller", rating: 5, year: 2006, readTime: "6 min",
+      genre: ["Thriller"],
+      excerpt: "Freud meets murder in one of fiction's smartest mysteries. Psychoanalysis on the stand.",
+      quote: "The unconscious does not lie.",
+      slug: "interpretation-of-murder"
+    },
+    {
+      title: "Room", author: "Emma Donoghue", country: "USA",
+      mood: "hope", rating: 5, year: 2010, readTime: "5 min",
+      genre: ["Literary Fiction"],
+      excerpt: "A story of survival, resilience and rediscovering the world through a child's eyes.",
+      quote: "Everything is happening all the time, but if you don't put yourself in the way of it, you miss it.",
+      slug: "room"
+    },
+    {
+      title: "Kindred", author: "Octavia Butler", country: "USA",
+      mood: "angry", rating: 5, year: 1979, readTime: "6 min",
+      genre: ["Sci-Fi", "Literary Fiction"],
+      excerpt: "Time travel becomes an unforgettable lesson about history. A Black woman in antebellum slavery.",
+      quote: "I lost an arm on my last trip home.",
+      slug: "kindred"
+    },
+    {
+      title: "Emotional Intelligence", author: "Daniel Goleman", country: "USA",
+      mood: "understand", rating: 5, year: 1995, readTime: "8 min",
+      genre: ["Memoir"],
+      excerpt: "The science behind understanding yourself and others. Changed how we talk about human ability.",
+      quote: "In a very real sense we have two minds, one that thinks and one that feels.",
+      slug: "emotional-intelligence"
+    },
+    {
+      title: "Gone Girl", author: "Gillian Flynn", country: "USA",
+      mood: "thriller", rating: 4, year: 2012, readTime: "5 min",
+      genre: ["Thriller"],
+      excerpt: "Marriage becomes the most dangerous game imaginable. Flynn's prose cuts like a blade.",
+      quote: "I'm so much better than that.",
+      slug: "gone-girl"
+    },
+    {
+      title: "The Silent Patient", author: "Alex Michaelides", country: "USA",
+      mood: "haunting", rating: 4, year: 2019, readTime: "5 min",
+      genre: ["Thriller"],
+      excerpt: "Silence has never sounded so terrifying. A woman who won't speak. A therapist who won't stop listening.",
+      quote: "That's the thing about pain. It demands to be felt.",
+      slug: "the-silent-patient", isNew: true
+    },
+    {
+      title: "They Both Die at the End", author: "Adam Silvera", country: "USA",
+      mood: "hope", rating: 4, year: 2017, readTime: "4 min",
+      genre: ["Literary Fiction"],
+      excerpt: "A reminder to live before time runs out. What would you do with your last day?",
+      quote: "We're all the main character of our own story.",
+      slug: "they-both-die-at-the-end"
+    },
+    {
+      title: "We Were Liars", author: "E. Lockhart", country: "USA",
+      mood: "thriller", rating: 4, year: 2014, readTime: "4 min",
+      genre: ["Thriller", "Literary Fiction"],
+      excerpt: "One twist changes everything. A summer family and a secret that rewrites their history.",
+      quote: "Be a little kinder than you have to.",
+      slug: "we-were-liars"
+    },
+    {
+      title: "On Earth We're Briefly Gorgeous", author: "Ocean Vuong", country: "USA",
+      mood: "lonely", rating: 5, year: 2019, readTime: "7 min",
+      genre: ["Literary Fiction"],
+      excerpt: "A letter from a son to a mother who cannot read. Poetry turned into the most tender prose.",
+      quote: "Let me begin again.",
+      slug: "on-earth-were-briefly-gorgeous", isNew: true
+    },
+    {
+      title: "Detransition, Baby", author: "Torrey Peters", country: "USA",
+      mood: "understand", rating: 4, year: 2021, readTime: "5 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Identity, motherhood and the messy edges of womanhood. Peters writes with wit and radical honesty.",
+      quote: "All women are women first.",
+      slug: "detransition-baby", isNew: true
+    },
+    {
+      title: "Passing", author: "Nella Larsen", country: "USA",
+      mood: "haunting", rating: 5, year: 1929, readTime: "4 min",
+      genre: ["Classic", "Literary Fiction"],
+      excerpt: "Two Black women. One who passes as white. A story of identity, desire and what we hide.",
+      quote: "She was caught between two allegiances, different, yet the same.",
+      slug: "passing"
+    },
+    {
+      title: "The Illustrated Man", author: "Ray Bradbury", country: "USA",
+      mood: "wonder", rating: 4, year: 1951, readTime: "5 min",
+      genre: ["Sci-Fi", "Short Stories"],
+      excerpt: "Tattoos that tell stories. Bradbury's imagination is a universe that never stops expanding.",
+      quote: "We are all, in the end, the stories we tell about ourselves.",
+      slug: "the-illustrated-man"
+    },
+
+    // ── UNITED KINGDOM ──
+    {
+      title: "1984", author: "George Orwell", country: "UK",
+      mood: "overthinking", rating: 5, year: 1949, readTime: "7 min",
+      genre: ["Dystopia", "Classic"],
+      excerpt: "Orwell makes paranoia feel completely rational. Big Brother, doublethink, the destruction of truth.",
+      quote: "Big Brother is watching you.",
+      slug: "1984", popular: true
+    },
+    {
+      title: "Brave New World", author: "Aldous Huxley", country: "UK",
+      mood: "overthinking", rating: 5, year: 1932, readTime: "6 min",
+      genre: ["Dystopia", "Classic"],
+      excerpt: "Happiness isn't always freedom. Huxley's vision of a comfortable, controlled world feels closer every year.",
+      quote: "But I don't want comfort. I want God, I want poetry.",
+      slug: "brave-new-world"
+    },
+    {
+      title: "Jane Eyre", author: "Charlotte Brontë", country: "UK",
+      mood: "hope", rating: 5, year: 1847, readTime: "6 min",
+      genre: ["Classic", "Literary Fiction"],
+      excerpt: "Love matters — but never more than self-respect. Jane Eyre remains a standard no hero has surpassed.",
+      quote: "I am no bird; and no net ensnares me.",
+      slug: "jane-eyre", popular: true
+    },
+    {
+      title: "Rebecca", author: "Daphne du Maurier", country: "UK",
+      mood: "haunting", rating: 5, year: 1938, readTime: "6 min",
+      genre: ["Classic", "Thriller"],
+      excerpt: "Some ghosts never need to appear. Last night I dreamt I went to Manderley again.",
+      quote: "Last night I dreamt I went to Manderley again.",
+      slug: "rebecca"
+    },
+    {
+      title: "The Remains of the Day", author: "Kazuo Ishiguro", country: "UK",
+      mood: "regret", rating: 5, year: 1989, readTime: "6 min",
+      genre: ["Literary Fiction"],
+      excerpt: "A lifetime of duty. A lifetime of 'what if?' Ishiguro's quiet devastation is unmatched.",
+      quote: "What is the point of worrying oneself too much about what one could or could not have done?",
+      slug: "remains-of-the-day"
+    },
+    {
+      title: "Pride and Prejudice", author: "Jane Austen", country: "UK",
+      mood: "heartbroken", rating: 4, year: 1813, readTime: "5 min",
+      genre: ["Classic", "Literary Fiction"],
+      excerpt: "The slowest burn in literature. Elizabeth Bennet remains the best character in English letters.",
+      quote: "It is a truth universally acknowledged…",
+      slug: "pride-and-prejudice"
+    },
+    {
+      title: "The Diary of a Young Girl", author: "Anne Frank", country: "UK",
+      mood: "hope", rating: 5, year: 1947, readTime: "5 min",
+      genre: ["Memoir"],
+      excerpt: "Hope survives where almost nothing else can. Anne Frank writes herself into immortality.",
+      quote: "Despite everything, I believe that people are really good at heart.",
+      slug: "diary-of-a-young-girl", popular: true
+    },
+    {
+      title: "Everything I Know About Love", author: "Dolly Alderton", country: "UK",
+      mood: "lonely", rating: 4, year: 2018, readTime: "5 min",
+      genre: ["Memoir"],
+      excerpt: "Female friendship, chaos, and becoming yourself in your twenties. Alderton writes with precision and warmth.",
+      quote: "Friendship is love with a thousand faces.",
+      slug: "everything-i-know-about-love", isNew: true
+    },
+
+    // ── JAPAN ──
+    {
+      title: "Kafka on the Shore", author: "Haruki Murakami", country: "Japan",
+      mood: "lost", rating: 5, year: 2002, readTime: "7 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Dreams, fate and identity blur into one unforgettable journey. Fish rain from the sky.",
+      quote: "Sometimes fate is like a small sandstorm that keeps changing directions.",
+      slug: "kafka-on-the-shore", popular: true
+    },
+    {
+      title: "Convenience Store Woman", author: "Sayaka Murata", country: "Japan",
+      mood: "lost", rating: 5, year: 2016, readTime: "4 min",
+      genre: ["Literary Fiction"],
+      excerpt: "What if being 'normal' isn't worth chasing? Murata's quietly radical novel about belonging.",
+      quote: "I was normal as long as I was in the convenience store.",
+      slug: "convenience-store-woman"
+    },
+    {
+      title: "Never Let Me Go", author: "Kazuo Ishiguro", country: "Japan",
+      mood: "heartbroken", rating: 5, year: 2005, readTime: "6 min",
+      genre: ["Literary Fiction", "Sci-Fi"],
+      excerpt: "Love feels fragile when time itself is borrowed. A dystopia so quiet it sneaks up on you.",
+      quote: "We all complete. Maybe none of us really understand what we've lived through.",
+      slug: "never-let-me-go", popular: true
+    },
+    {
+      title: "Klara and the Sun", author: "Kazuo Ishiguro", country: "Japan",
+      mood: "lonely", rating: 5, year: 2021, readTime: "5 min",
+      genre: ["Literary Fiction", "Sci-Fi"],
+      excerpt: "An artificial friend understands humanity better than humans do. Ishiguro's most tender novel.",
+      quote: "I've always thought the humans I've been lucky enough to observe are remarkable.",
+      slug: "klara-and-the-sun", isNew: true
+    },
+    {
+      title: "A Pale View of Hills", author: "Kazuo Ishiguro", country: "Japan",
+      mood: "regret", rating: 5, year: 1982, readTime: "5 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Memory quietly rewrites itself. Ishiguro's debut is an act of controlled devastation.",
+      quote: "Perhaps it's just that feeling — something you can't quite shake.",
+      slug: "a-pale-view-of-hills"
+    },
+    {
+      title: "The Left Hand of Darkness", author: "Ursula K. Le Guin", country: "Japan",
+      mood: "overthinking", rating: 5, year: 1969, readTime: "6 min",
+      genre: ["Sci-Fi", "Literary Fiction"],
+      excerpt: "A novel that changes how you think about people forever. Gender, politics and what makes us human.",
+      quote: "The only thing that makes life possible is permanent, intolerable uncertainty.",
+      slug: "the-left-hand-of-darkness"
+    },
+
+    // ── SOUTH KOREA ──
+    {
+      title: "The Hen Who Dreamed She Could Fly", author: "Sun-mi Hwang", country: "South Korea",
+      mood: "hope", rating: 5, year: 2000, readTime: "3 min",
+      genre: ["Literary Fiction"],
+      excerpt: "A fable about courage and impossible dreams. Small in size. Enormous in feeling.",
+      quote: "She had a dream that no one else believed in.",
+      slug: "the-hen-who-dreamed-she-could-fly"
+    },
+    {
+      title: "A Love in the Big City", author: "Sang Young Park", country: "South Korea",
+      mood: "lonely", rating: 5, year: 2019, readTime: "4 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Modern relationships inside a city that never slows down. Queer loneliness rendered with clarity and wit.",
+      quote: "Love in the city is harder than it looks from the outside.",
+      slug: "a-love-in-the-big-city", isNew: true
+    },
+
+    // ── INDIA ──
+    {
+      title: "The Namesake", author: "Jhumpa Lahiri", country: "India",
+      mood: "lost", rating: 5, year: 2003, readTime: "5 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Home isn't always a place. Gogol carries a name he hates and a heritage he doesn't know how to hold.",
+      quote: "You are still young. Free. Do yourself a favor. Before it's too late, without thinking too much about it, do what you love.",
+      slug: "the-namesake", popular: true
+    },
+    {
+      title: "Interpreter of Maladies", author: "Jhumpa Lahiri", country: "India",
+      mood: "lonely", rating: 5, year: 1999, readTime: "5 min",
+      genre: ["Short Stories", "Literary Fiction"],
+      excerpt: "The hardest conversations are often the silent ones. Lahiri is quietly devastating across eight stories.",
+      quote: "That's the thing about living in a foreign country. There are days when you feel perfectly at home and days when you don't.",
+      slug: "interpreter-of-maladies"
+    },
+    {
+      title: "Tiny Bakula", author: "Shanta Shelke", country: "India",
+      mood: "regret", rating: 5, year: 1980, readTime: "4 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Success often demands a painful price. Shelke distils an entire life into a wound you can feel.",
+      quote: "What we gain is never worth what we lose.",
+      slug: "tiny-bakula"
+    },
+
+    // ── RUSSIA ──
+    {
+      title: "Crime and Punishment", author: "Fyodor Dostoevsky", country: "Russia",
+      mood: "regret", rating: 5, year: 1866, readTime: "8 min",
+      genre: ["Classic", "Literary Fiction"],
+      excerpt: "No punishment is worse than guilt. Raskolnikov commits a murder to prove a philosophy — then collapses under it.",
+      quote: "Pain and suffering are always inevitable for a large intelligence.",
+      slug: "crime-and-punishment"
+    },
+
+    // ── IRELAND ──
+    {
+      title: "Dubliners", author: "James Joyce", country: "Ireland",
+      mood: "wonder", rating: 5, year: 1914, readTime: "6 min",
+      genre: ["Short Stories", "Classic"],
+      excerpt: "Extraordinary moments hidden inside ordinary lives. Joyce's epiphanies will stay with you.",
+      quote: "His soul swooned slowly as he heard the snow falling faintly through the universe.",
+      slug: "dubliners"
+    },
+
+    // ── NIGERIA ──
+    {
+      title: "Freshwater", author: "Akwaeke Emezi", country: "Nigeria",
+      mood: "understand", rating: 5, year: 2018, readTime: "5 min",
+      genre: ["Literary Fiction", "Memoir"],
+      excerpt: "Identity becomes something mystical and deeply personal. Emezi writes the self as something plural.",
+      quote: "I was not made to be singular.",
+      slug: "freshwater", isNew: true
+    },
+
+    // ── UKRAINE ──
+    {
+      title: "Vita Nostra", author: "Marina & Sergey Dyachenko", country: "Ukraine",
+      mood: "overthinking", rating: 5, year: 2007, readTime: "5 min",
+      genre: ["Literary Fiction", "Sci-Fi"],
+      excerpt: "A school unlike anything you've ever imagined. Learning itself becomes a terrifying transformation.",
+      quote: "You are not who you think you are.",
+      slug: "vita-nostra", isNew: true
+    },
+
+    // ── IRAN ──
+    {
+      title: "Persepolis", author: "Marjane Satrapi", country: "Iran",
+      mood: "wonder", rating: 5, year: 2000, readTime: "4 min",
+      genre: ["Graphic Novel", "Memoir"],
+      excerpt: "History becomes deeply personal through one girl's eyes. A revolution, a childhood, a life.",
+      quote: "I was born with religion.",
+      slug: "persepolis", popular: true
+    },
+
+    // ── AFGHANISTAN ──
+    {
+      title: "The Kite Runner", author: "Khaled Hosseini", country: "Afghanistan",
+      mood: "heartbroken", rating: 5, year: 2003, readTime: "6 min",
+      genre: ["Literary Fiction"],
+      excerpt: "Guilt, forgiveness and friendship across decades. Hosseini makes redemption feel hard-earned.",
+      quote: "For you, a thousand times over.",
+      slug: "the-kite-runner", popular: true
+    },
   ];
 
   // ── STATE ─────────────────────────────────────────────────
   let activeMood    = 'all';
   let activeCountry = 'all';
+  let activeGenre   = 'all';
   let searchQuery   = '';
+  let sortOrder     = 'default';
+
+  // ── HELPERS ───────────────────────────────────────────────
+  const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+
+  const moodLabels = {
+    lost: '🌧 Feeling Lost', heartbroken: '💔 Heartbroken', lonely: '😔 Lonely',
+    regret: '⏳ Regret', overthinking: '🤯 Overthinking Life', hope: '🌱 Hope',
+    understand: '🧠 Understand Yourself', angry: '🔥 Angry at the World',
+    haunting: '👻 Haunting', thriller: '🕵 Thriller', wonder: '✨ Wonder'
+  };
+
+  function sortBooks(arr) {
+    const a = [...arr];
+    if (sortOrder === 'rating-desc') return a.sort((x, y) => y.rating - x.rating);
+    if (sortOrder === 'title-asc')   return a.sort((x, y) => x.title.localeCompare(y.title));
+    if (sortOrder === 'title-desc')  return a.sort((x, y) => y.title.localeCompare(x.title));
+    if (sortOrder === 'year-asc')    return a.sort((x, y) => x.year - y.year);
+    if (sortOrder === 'year-desc')   return a.sort((x, y) => y.year - x.year);
+    return a;
+  }
 
   // ── RENDER ────────────────────────────────────────────────
   function renderBooks() {
-    const filtered = BOOKS.filter(b => {
+    const q = searchQuery.toLowerCase();
+    let filtered = BOOKS.filter(b => {
       const matchMood    = activeMood    === 'all' || b.mood    === activeMood;
       const matchCountry = activeCountry === 'all' || b.country === activeCountry;
-      const q = searchQuery.toLowerCase();
-      const matchSearch  = !q || b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q);
-      return matchMood && matchCountry && matchSearch;
+      const matchGenre   = activeGenre   === 'all' || b.genre.includes(activeGenre);
+      const matchSearch  = !q ||
+        b.title.toLowerCase().includes(q) ||
+        b.author.toLowerCase().includes(q) ||
+        (b.excerpt && b.excerpt.toLowerCase().includes(q));
+      return matchMood && matchCountry && matchGenre && matchSearch;
     });
+
+    filtered = sortBooks(filtered);
 
     const grid  = document.getElementById('books-grid');
     const empty = document.getElementById('empty-state');
@@ -519,26 +1027,41 @@
     }
     empty.classList.remove('visible');
 
-    const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
-
-    grid.innerHTML = filtered.map(b => `
-      <article class="book-card" onclick="location.href='books/${b.slug}.html'">
-        <div class="book-spine mood-${b.mood}"></div>
-        <div class="book-card-body">
-          <div class="book-meta-top">
-            <span class="book-country">${b.country}</span>
-            <span class="book-rating">${stars(b.rating)}</span>
+    grid.innerHTML = filtered.map(b => {
+      const genreTags = b.genre.map(g => `<span class="genre-tag">${g}</span>`).join('');
+      const badges = [
+        b.popular ? '<span class="badge-popular">🔥 Popular</span>' : '',
+        b.isNew   ? '<span class="badge-new">New</span>' : ''
+      ].join('');
+      return `
+        <article class="book-card" onclick="location.href='books/${b.slug}.html'">
+          <div class="book-spine mood-${b.mood}"></div>
+          <div class="book-quote-overlay">
+            <p class="book-quote-text">${b.quote}</p>
           </div>
-          <h2 class="book-title">${b.title}</h2>
-          <p class="book-author">${b.author}</p>
-          <p class="book-excerpt">${b.excerpt}</p>
-          <div class="book-footer">
-            <span class="book-mood-tag">${b.mood}</span>
-            <span class="book-read-link">Read review →</span>
+          <div class="book-card-body">
+            <div class="book-meta-top">
+              <div class="book-badges">
+                <span class="book-country">${b.country}</span>
+                ${badges}
+              </div>
+              <span class="book-rating">${stars(b.rating)}</span>
+            </div>
+            <h2 class="book-title">${b.title}</h2>
+            <p class="book-author">${b.author} · ${b.year}</p>
+            <p class="book-excerpt">${b.excerpt}</p>
+            <div class="book-tags">${genreTags}</div>
+            <div class="book-footer">
+              <div class="book-footer-left">
+                <span class="book-mood-tag">${moodLabels[b.mood] || b.mood}</span>
+                <span class="book-meta-bottom">${b.readTime} review</span>
+              </div>
+              <span class="book-read-link">Read →</span>
+            </div>
           </div>
-        </div>
-      </article>
-    `).join('');
+        </article>
+      `;
+    }).join('');
   }
 
   // ── FILTER PILLS ──────────────────────────────────────────
@@ -546,22 +1069,31 @@
     pill.addEventListener('click', () => {
       const filterType = pill.dataset.filter;
       const value      = pill.dataset.value;
-
-      // deactivate siblings
       pill.closest('.filter-pills').querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-
       if (filterType === 'mood')    activeMood    = value;
       if (filterType === 'country') activeCountry = value;
-
+      if (filterType === 'genre')   activeGenre   = value;
       renderBooks();
     });
+  });
+
+  // ── SORT ──────────────────────────────────────────────────
+  document.getElementById('sort-select').addEventListener('change', e => {
+    sortOrder = e.target.value;
+    renderBooks();
   });
 
   // ── SEARCH ────────────────────────────────────────────────
   document.getElementById('search-input').addEventListener('input', e => {
     searchQuery = e.target.value;
     renderBooks();
+  });
+
+  // ── RANDOM ────────────────────────────────────────────────
+  document.getElementById('random-btn').addEventListener('click', () => {
+    const pick = BOOKS[Math.floor(Math.random() * BOOKS.length)];
+    location.href = `books/${pick.slug}.html`;
   });
 
   // ── INIT ──────────────────────────────────────────────────
