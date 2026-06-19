@@ -98,18 +98,40 @@
       z-index: 1;
     }
     /* Spine-style book cover */
-    div class="book-cover">
-  <div class="cover-title">No Longer Human</div>
-  <div class="cover-line"></div>
-  <div class="cover-author">Osamu Dazai</div>
-</div>
+   <!-- 1. FIRST: the CSS in your <style> tag — update .book-cover -->
+<style>
+  .book-cover {
+    width: 160px;
+    aspect-ratio: 2/3;
+    background: var(--accent);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 8px 8px 32px rgba(0,0,0,0.5);
+    padding: 0;
+  }
+</style>
 
-<!-- INSERT THE NEW IMAGE TAG HERE INSTEAD -->
-<img 
-  src="https://covers.openlibrary.org/b/isbn/9780811204811-L.jpg"
-  alt="No Longer Human by Osamu Dazai"
-  style="width:100%; max-width:260px; border-radius:2px; box-shadow: 8px 8px 30px rgba(0,0,0,0.2);"
-  onerror="this.style.display='none'"
+<!-- 2. THEN: in your HTML body, inside .book-hero-inner -->
+<div class="book-hero-inner">
+
+  <!-- this is the book cover div -->
+  <div class="book-cover">
+    <img 
+      src="https://covers.openlibrary.org/b/isbn/9780811204811-L.jpg"
+      alt="No Longer Human by Osamu Dazai"
+      style="width:100%; height:100%; object-fit:cover; display:block;"
+      onerror="this.style.display='none'"
+    />
+  </div>
+
+  <!-- this is the text next to the cover -->
+  <div class="book-hero-text">
+    ...your title, author, meta, tags...
+  </div>
+
+</div>
 
     .book-hero-text {}
     .hero-eyebrow {
