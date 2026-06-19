@@ -98,58 +98,18 @@
       z-index: 1;
     }
     /* Spine-style book cover */
-    .book-cover {
-      width: 160px;
-      aspect-ratio: 2/3;
-      background: var(--accent);
-      border-radius: 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem 1rem;
-      box-shadow: 8px 8px 32px rgba(0,0,0,0.5);
-      position: relative;
-      flex-shrink: 0;
-    }
-    .book-cover::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 6px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 2px 0 0 2px;
-    }
-    .book-cover::after {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(201,169,110,0.25);
-      border-radius: 1px;
-    }
-    .cover-title {
-      font-family: var(--ff-display);
-      font-size: 0.95rem;
-      font-style: italic;
-      font-weight: 400;
-      color: rgba(255,255,255,0.9);
-      text-align: center;
-      line-height: 1.4;
-    }
-    .cover-line {
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.6;
-      margin: 0.75rem auto;
-    }
-    .cover-author {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.7);
-      text-align: center;
-    }
+    div class="book-cover">
+  <div class="cover-title">No Longer Human</div>
+  <div class="cover-line"></div>
+  <div class="cover-author">Osamu Dazai</div>
+</div>
+
+<!-- INSERT THE NEW IMAGE TAG HERE INSTEAD -->
+<img 
+  src="https://covers.openlibrary.org/b/isbn/9780811204811-L.jpg"
+  alt="No Longer Human by Osamu Dazai"
+  style="width:100%; max-width:260px; border-radius:2px; box-shadow: 8px 8px 30px rgba(0,0,0,0.2);"
+  onerror="this.style.display='none'"
 
     .book-hero-text {}
     .hero-eyebrow {
