@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Literary DNA — A Story, A Key</title>
+  <meta name="description" content="Discover your Literary DNA. 10 questions. Are you Dostoevsky, Kafka, Dazai, or Camus?" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1a1814;
+      --ink2:    #4a4740;
+      --ink3:    #8a8680;
+      --paper:   #f7f4ef;
+      --paper2:  #efeae2;
+      --accent:  #5c3d2e;
+      --accent2: #8b5e3c;
+      --gold:    #c9a96e;
+      --white:   #ffffff;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+
+      /* author accent colours */
+      --dosto: #7b3f3f;
+      --kafka: #3d5a4a;
+      --dazai: #3a3a5c;
+      --camus: #7a5c2e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+    .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
+    .nav-links .active-link { color: var(--accent); font-weight: 500; }
+
+    /* ── Screens ── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ── INTRO screen ── */
+    #screen-intro {
+      min-height: 100vh;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+    #screen-intro.active { display: flex; }
+    .intro-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 1.5rem;
+    }
+    .intro-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .intro-title em { font-style: italic; color: var(--accent); }
+    .intro-sub {
+      font-size: 1rem; color: var(--ink2); max-width: 460px;
+      margin: 0 auto 2.5rem; line-height: 1.8;
+    }
+    .author-chips {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      justify-content: center; margin-bottom: 3rem;
+    }
+    .chip {
+      padding: 0.45rem 1.1rem;
+      border-radius: 2px;
+      font-family: var(--ff-display);
+      font-style: italic; font-size: 1rem;
+      border: 1px solid;
+    }
+    .chip-dosto { border-color: var(--dosto); color: var(--dosto); }
+    .chip-kafka { border-color: var(--kafka); color: var(--kafka); }
+    .chip-dazai { border-color: var(--dazai); color: var(--dazai); }
+    .chip-camus { border-color: var(--camus); color: var(--camus); }
+    .btn-start {
+      display: inline-block; padding: 0.9rem 2.5rem;
+      background: var(--accent); color: var(--white);
+      border-radius: 2px; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; cursor: pointer; border: none;
+      font-family: var(--ff-body);
+      transition: background 0.2s;
+    }
+    .btn-start:hover { background: var(--accent2); }
+
+    /* ── QUIZ screen ── */
+    #screen-quiz {
+      min-height: 100vh;
+      padding: 8rem 2rem 5rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* progress */
+    .progress-row {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .progress-track {
+      flex: 1; height: 2px; background: rgba(92,61,46,0.12); border-radius: 1px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; background: var(--gold);
+      border-radius: 1px;
+      transition: width 0.4s ease;
+    }
+    .progress-label {
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink3);
+      white-space: nowrap;
+    }
+
+    /* question card */
+    .question-wrap {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .question-wrap.visible { opacity: 1; transform: translateY(0); }
+    .q-number {
+      font-family: var(--ff-display); font-style: italic;
+      font-size: 0.85rem; color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .q-text {
+      font-family: var(--ff-display);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--ink); margin-bottom: 2.5rem;
+    }
+    .options-grid {
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+    .option-btn {
+      display: block; width: 100%;
+      padding: 1.1rem 1.4rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.14);
+      border-radius: 2px;
+      text-align: left;
+      font-family: var(--ff-body); font-size: 0.92rem;
+      color: var(--ink2); cursor: pointer; line-height: 1.55;
+      transition: all 0.18s;
+      position: relative; overflow: hidden;
+    }
+    .option-btn:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+      background: rgba(92,61,46,0.03);
+    }
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--white);
+    }
+    .option-btn .option-letter {
+      display: inline-block; width: 1.4rem;
+      font-size: 0.75rem; letter-spacing: 0.08em;
+      text-transform: uppercase; opacity: 0.5;
+      margin-right: 0.5rem; font-weight: 500;
+    }
+
+    /* nav buttons */
+    .quiz-nav {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-top: 2.5rem;
+    }
+    .btn-nav {
+      padding: 0.65rem 1.6rem;
+      border-radius: 2px; font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; cursor: pointer;
+      font-family: var(--ff-body); transition: all 0.2s;
+    }
+    .btn-back {
+      background: transparent; color: var(--ink3);
+      border: 1px solid rgba(92,61,46,0.15);
+    }
+    .btn-back:hover { color: var(--ink2); border-color: rgba(92,61,46,0.3); }
+    .btn-next {
+      background: var(--accent); color: var(--white); border: none;
+    }
+    .btn-next:hover { background: var(--accent2); }
+    .btn-next:disabled {
+      background: rgba(92,61,46,0.18); color: var(--ink3); cursor: default;
+    }
+    .dots-row {
+      display: flex; gap: 5px;
+    }
+    .dot-q {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(92,61,46,0.15); transition: background 0.2s;
+    }
+    .dot-q.answered { background: var(--gold); }
+    .dot-q.current { background: var(--accent); }
+
+    /* ── RESULT screen ── */
+    #screen-result {
+      min-height: 100vh;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 8rem 2rem 5rem;
+    }
+    #screen-result.active { display: flex; }
+
+    .result-card {
+      max-width: 620px; width: 100%;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(26,24,20,0.08);
+    }
+    .result-banner {
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+    }
+    .result-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin-bottom: 0.75rem;
+    }
+    .result-name {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 300; font-style: italic;
+      color: var(--white); line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .result-dates {
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* bars */
+    .result-bars {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+    }
+    .bar-row {
+      display: flex; align-items: center;
+      gap: 1rem; margin-bottom: 0.85rem;
+    }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-author {
+      font-size: 0.8rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink2);
+      min-width: 110px;
+    }
+    .bar-track {
+      flex: 1; height: 4px;
+      background: rgba(92,61,46,0.1); border-radius: 2px; overflow: hidden;
+    }
+    .bar-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; }
+    .bar-pct {
+      font-size: 0.8rem; color: var(--ink3);
+      min-width: 36px; text-align: right;
+    }
+
+    /* result body */
+    .result-body { padding: 2rem 2.5rem; }
+    .result-headline {
+      font-family: var(--ff-display);
+      font-size: 1.5rem; font-style: italic;
+      font-weight: 300; color: var(--ink);
+      margin-bottom: 1rem; line-height: 1.35;
+    }
+    .result-desc {
+      font-size: 0.92rem; color: var(--ink2);
+      line-height: 1.85; margin-bottom: 1.5rem;
+    }
+    .result-books-label {
+      font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--ink3);
+      margin-bottom: 0.75rem;
+    }
+    .result-book-chips {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .result-book-chip {
+      padding: 0.3rem 0.85rem;
+      border-radius: 2px; font-size: 0.78rem;
+      font-family: var(--ff-display); font-style: italic;
+      border: 1px solid rgba(92,61,46,0.2);
+      color: var(--ink2);
+    }
+
+    /* result actions */
+    .result-actions {
+      padding: 1.5rem 2.5rem 2rem;
+      border-top: 1px solid rgba(92,61,46,0.08);
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .btn-action {
+      padding: 0.65rem 1.4rem; border-radius: 2px;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 500;
+      cursor: pointer; font-family: var(--ff-body);
+      transition: all 0.2s;
+    }
+    .btn-primary-sm { background: var(--accent); color: var(--white); border: none; }
+    .btn-primary-sm:hover { background: var(--accent2); }
+    .btn-ghost-sm {
+      background: transparent; border: 1px solid rgba(92,61,46,0.2);
+      color: var(--ink2);
+    }
+    .btn-ghost-sm:hover { border-color: var(--accent); color: var(--accent); }
+
+    .share-note {
+      max-width: 620px; width: 100%;
+      margin-top: 1.5rem;
+      font-size: 0.82rem; color: var(--ink3);
+      text-align: center; line-height: 1.7;
+    }
+
+    /* footer */
+    footer {
+      background: var(--ink); color: var(--paper);
+      padding: 3rem 2rem; text-align: center; margin-top: auto;
+    }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--gold); margin-bottom: 0.75rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; list-style: none; margin: 1rem 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.45); }
+    .footer-links a:hover { color: var(--gold); transition: color 0.2s; }
+    .footer-sub { font-size: 0.8rem; color: rgba(247,244,239,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      #screen-quiz { padding: 7rem 1.25rem 4rem; }
+      .result-banner { padding: 2rem 1.5rem; }
+      .result-bars, .result-body, .result-actions { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">A Story, A Key</a>
+    <ul class="nav-links">
+      <li><a href="index.html#feel">Feel Something</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="dna.html" class="active-link">Literary DNA</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── INTRO ── -->
+  <div id="screen-intro" class="screen active">
+    <p class="intro-eyebrow">A Story, A Key · Literary DNA</p>
+    <h1 class="intro-title">Which author<br>lives <em>inside you?</em></h1>
+    <p class="intro-sub">
+      10 questions about how you see the world.
+      No right answers — only honest ones.
+    </p>
+    <div class="author-chips">
+      <span class="chip chip-dosto">Dostoevsky</span>
+      <span class="chip chip-kafka">Kafka</span>
+      <span class="chip chip-dazai">Dazai</span>
+      <span class="chip chip-camus">Camus</span>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Begin the quiz →</button>
+  </div>
+
+  <!-- ── QUIZ ── -->
+  <div id="screen-quiz" class="screen">
+    <div class="progress-row">
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <span class="progress-label" id="progress-label">1 of 10</span>
+    </div>
+
+    <div class="question-wrap" id="question-wrap">
+      <p class="q-number" id="q-number">Question 1</p>
+      <h2 class="q-text" id="q-text"></h2>
+      <div class="options-grid" id="options-grid"></div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn-nav btn-back" id="btn-back" onclick="prevQ()">← Back</button>
+      <div class="dots-row" id="dots-row"></div>
+      <button class="btn-nav btn-next" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- ── RESULT ── -->
+  <div id="screen-result" class="screen">
+    <div class="result-card" id="result-card">
+      <div class="result-banner" id="result-banner">
+        <p class="result-eyebrow">Your Literary DNA</p>
+        <h2 class="result-name" id="result-name"></h2>
+        <p class="result-dates" id="result-dates"></p>
+      </div>
+      <div class="result-bars" id="result-bars"></div>
+      <div class="result-body">
+        <p class="result-headline" id="result-headline"></p>
+        <p class="result-desc" id="result-desc"></p>
+        <p class="result-books-label">Books to read next</p>
+        <div class="result-book-chips" id="result-books"></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-action btn-primary-sm" onclick="shareResult()">Copy result to share</button>
+        <button class="btn-action btn-ghost-sm" onclick="restartQuiz()">Retake quiz</button>
+        <a href="books.html" class="btn-action btn-ghost-sm">Browse all reviews</a>
+      </div>
+    </div>
+    <p class="share-note" id="share-note"></p>
+  </div>
+
+  <footer>
+    <p class="footer-logo">A Story, A Key</p>
+    <ul class="footer-links">
+      <li><a href="index.html#feel">Feel Something</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <p class="footer-sub">Built with curiosity by Aashima · 2025</p>
+  </footer>
+
+  <script>
+  // ── SCORING KEY ──────────────────────────────────────────────────────────
+  // Each option gives points to one or more authors.
+  // D = Dostoevsky, K = Kafka, Z = Dazai, C = Camus
+  // ─────────────────────────────────────────────────────────────────────────
+  const QUESTIONS = [
+    {
+      text: "When something goes wrong in your life, your first instinct is…",
+      options: [
+        { text: "To interrogate every choice that led here — and feel guilty about most of them.", scores: { D: 3 } },
+        { text: "To feel that some invisible system was working against you from the start.", scores: { K: 3 } },
+        { text: "To perform normalcy in front of others while quietly unravelling inside.", scores: { Z: 3 } },
+        { text: "To accept it happened, shrug, and decide what to do next.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "Your relationship with other people is best described as…",
+      options: [
+        { text: "Intense. You love deeply, argue passionately, and take betrayal very personally.", scores: { D: 3 } },
+        { text: "Alienated. You never quite feel you're operating by the same rules as everyone else.", scores: { K: 3 } },
+        { text: "Exhausting. You work hard to seem normal, but it costs you everything.", scores: { Z: 3 } },
+        { text: "Honest but detached. You care about people but resist becoming dependent on them.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "Which sentence feels closest to a truth you carry?",
+      options: [
+        { text: "Suffering is not meaningless — it is the price of conscience.", scores: { D: 3 } },
+        { text: "The world is a bureaucracy that was never designed for you to win.", scores: { K: 3 } },
+        { text: "I have always felt like a stranger wearing the costume of a person.", scores: { Z: 3 } },
+        { text: "Life has no inherent meaning. That is actually liberating, not depressing.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "When you finish a book, what feeling lingers the longest?",
+      options: [
+        { text: "A kind of moral weight — the characters' choices stay in your chest for days.", scores: { D: 3 } },
+        { text: "Unease. The feeling that something was deeply, structurally wrong and you can't name it.", scores: { K: 3 } },
+        { text: "Tenderness mixed with grief — like saying goodbye to someone who understood you.", scores: { Z: 3 } },
+        { text: "Clarity. A clean sense of 'yes, that is what it is like to be alive.'", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "Your idea of a perfect Sunday is closest to…",
+      options: [
+        { text: "A long walk, wrestling with a big ethical question, possibly arguing with someone you love.", scores: { D: 2, C: 1 } },
+        { text: "Alone, re-reading something, slightly anxious about something you cannot identify.", scores: { K: 3 } },
+        { text: "Drinking tea, watching people from a window, and feeling simultaneously at peace and devastated.", scores: { Z: 3 } },
+        { text: "Something simple and physical — sun, sea, movement. Thought comes after sensation.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "How do you feel about the concept of God or a higher moral order?",
+      options: [
+        { text: "I cannot stop thinking about it. The question feels urgent, almost personal.", scores: { D: 3 } },
+        { text: "Irrelevant to the daily machinery of suffering and absurd systems.", scores: { K: 2, C: 1 } },
+        { text: "I do not know and I have stopped trying to know. I only know how I feel.", scores: { Z: 3 } },
+        { text: "There is no God, and from that emptiness we must build something honest.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "A character you'd most want to have a long dinner with…",
+      options: [
+        { text: "Someone who has done something terrible and knows it and cannot forgive themselves.", scores: { D: 3 } },
+        { text: "Someone who was simply trying to do the right paperwork and ended up on trial for their life.", scores: { K: 3 } },
+        { text: "Someone who laughed at everything because the only other option was to collapse.", scores: { Z: 3 } },
+        { text: "Someone utterly present — not performing happiness, just alive in the room.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "When you think about your own identity, you feel…",
+      options: [
+        { text: "Like a battleground between who I want to be and who I keep proving myself to be.", scores: { D: 3 } },
+        { text: "Like I am always one wrong step from being declared an outsider in a world I don't understand.", scores: { K: 3 } },
+        { text: "Like a performance I've been giving for so long I've forgotten who wrote the script.", scores: { Z: 3 } },
+        { text: "Like the question itself doesn't interest me much — I am what I do, not what I believe about myself.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "Your honest relationship with hope is…",
+      options: [
+        { text: "Complicated. I believe in redemption fiercely but have seen too much to be naive.", scores: { D: 3 } },
+        { text: "Suspicious. Hope feels like a trap set by the same system that keeps failing you.", scores: { K: 3 } },
+        { text: "Fragile. I have it sometimes, quietly, and I don't speak about it in case it disappears.", scores: { Z: 3 } },
+        { text: "Beside the point. I do not need hope — I have the present moment, and that is enough.", scores: { C: 3 } }
+      ]
+    },
+    {
+      text: "Which best describes how you read a book?",
+      options: [
+        { text: "I argue with the characters in my head. I underline moral crises. I get personally invested.", scores: { D: 3 } },
+        { text: "I look for the logic of the nightmare — the internal rules of the wrong world.", scores: { K: 3 } },
+        { text: "I read for the moments that articulate something I had felt but never named.", scores: { Z: 2, D: 1 } },
+        { text: "I read slowly and physically — I want to feel what it is like to be in that body, in that place.", scores: { C: 3 } }
+      ]
+    }
+  ];
+
+  // ── AUTHOR PROFILES ───────────────────────────────────────────────────────
+  const AUTHORS = {
+    D: {
+      name: "Dostoevsky",
+      dates: "1821 — 1881",
+      color: "var(--dosto)",
+      headline: "You carry the weight of conscience like it's a second heartbeat.",
+      desc: "You are drawn to moral complexity the way others are drawn to simple answers. You believe suffering has meaning — that guilt, properly felt, is not weakness but the mark of a genuine human being. You argue, you love intensely, you cannot let a question rest until you have turned it over completely. Dostoevsky wrote for people who feel everything too much and cannot stop asking why.",
+      books: ["Crime and Punishment", "The Brothers Karamazov", "The Idiot", "Notes from Underground"],
+      reviewLink: "books/crime-and-punishment.html"
+    },
+    K: {
+      name: "Kafka",
+      dates: "1883 — 1924",
+      color: "var(--kafka)",
+      headline: "You have always suspected the system was never designed for you.",
+      desc: "You understand, viscerally, the feeling of being subject to rules you did not make and cannot change. You notice the absurdity of institutions — the paperwork, the hierarchy, the way power disguises itself as procedure. You are perceptive, often anxious, and you have a dark sense of humour about it all. Kafka wrote for people who know exactly what it feels like to wake up one morning and find that the world has quietly reclassified them.",
+      books: ["The Trial", "The Metamorphosis", "The Castle", "In the Penal Colony"],
+      reviewLink: "books.html"
+    },
+    Z: {
+      name: "Dazai",
+      dates: "1909 — 1948",
+      color: "var(--dazai)",
+      headline: "You have been performing being human for longer than you can remember.",
+      desc: "You are deeply observant of people — perhaps because you have spent so much energy watching how they work, trying to map the rules of a world that never came naturally to you. You are tender underneath the performance, and that tenderness is the thing you protect most fiercely. Dazai wrote for people who understand the exhaustion of social performance, the strange grief of not quite fitting, and the dark relief of being understood at last.",
+      books: ["No Longer Human", "The Setting Sun", "Schoolgirl", "Run, Melos!"],
+      reviewLink: "books/no-longer-human.html"
+    },
+    C: {
+      name: "Camus",
+      dates: "1913 — 1960",
+      color: "var(--camus)",
+      headline: "You have made peace with meaninglessness — and that took courage.",
+      desc: "You are one of the rare people who can look at a world without inherent meaning and choose to live fully in it anyway. You are present, sensory, honest. You do not need grand narratives or redemption arcs — you trust the moment, the physical fact of being alive, the sun on your face. Camus wrote for people who have stared into the void and found, somehow, that they are not afraid of it.",
+      books: ["The Stranger", "The Plague", "The Myth of Sisyphus", "The Fall"],
+      reviewLink: "books.html"
+    }
+  };
+
+  // ── STATE ─────────────────────────────────────────────────────────────────
+  let current = 0;
+  let answers = new Array(QUESTIONS.length).fill(null);
+
+  // ── SCREENS ───────────────────────────────────────────────────────────────
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // ── QUIZ ──────────────────────────────────────────────────────────────────
+  function startQuiz() {
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    showScreen('screen-quiz');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = QUESTIONS[current];
+    const wrap = document.getElementById('question-wrap');
+    const letters = ['A', 'B', 'C', 'D'];
+
+    // animate out then in
+    wrap.classList.remove('visible');
+    setTimeout(() => {
+      document.getElementById('q-number').textContent = `Question ${current + 1}`;
+      document.getElementById('q-text').textContent = q.text;
+      document.getElementById('progress-label').textContent = `${current + 1} of ${QUESTIONS.length}`;
+      document.getElementById('progress-fill').style.width = `${(current / QUESTIONS.length) * 100}%`;
+
+      const grid = document.getElementById('options-grid');
+      grid.innerHTML = q.options.map((opt, i) => `
+        <button class="option-btn ${answers[current] === i ? 'selected' : ''}"
+                onclick="selectOption(${i})">
+          <span class="option-letter">${letters[i]}.</span>${opt.text}
+        </button>
+      `).join('');
+
+      // dots
+      const dots = document.getElementById('dots-row');
+      dots.innerHTML = QUESTIONS.map((_, i) => {
+        let cls = 'dot-q';
+        if (i === current) cls += ' current';
+        else if (answers[i] !== null) cls += ' answered';
+        return `<div class="${cls}"></div>`;
+      }).join('');
+
+      document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+      document.getElementById('btn-next').disabled = answers[current] === null;
+      document.getElementById('btn-next').textContent = current === QUESTIONS.length - 1 ? 'See my DNA →' : 'Next →';
+
+      wrap.classList.add('visible');
+    }, 180);
+  }
+
+  function selectOption(i) {
+    answers[current] = i;
+    document.querySelectorAll('.option-btn').forEach((btn, idx) => {
+      btn.classList.toggle('selected', idx === i);
+    });
+    document.getElementById('btn-next').disabled = false;
+
+    // update current dot
+    document.querySelectorAll('.dot-q')[current].classList.add('answered');
+  }
+
+  function nextQ() {
+    if (answers[current] === null) return;
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function prevQ() {
+    if (current > 0) { current--; renderQuestion(); }
+  }
+
+  // ── RESULT ────────────────────────────────────────────────────────────────
+  function showResult() {
+    // tally scores
+    const totals = { D: 0, K: 0, Z: 0, C: 0 };
+    QUESTIONS.forEach((q, qi) => {
+      if (answers[qi] === null) return;
+      const scores = q.options[answers[qi]].scores;
+      Object.entries(scores).forEach(([k, v]) => totals[k] += v);
+    });
+
+    const grand = Object.values(totals).reduce((a, b) => a + b, 0) || 1;
+    const pcts = {};
+    Object.entries(totals).forEach(([k, v]) => pcts[k] = Math.round((v / grand) * 100));
+
+    // top author
+    const top = Object.entries(totals).sort((a, b) => b[1] - a[1])[0][0];
+    const author = AUTHORS[top];
+
+    // banner
+    document.getElementById('result-banner').style.background = author.color;
+    document.getElementById('result-name').textContent = author.name;
+    document.getElementById('result-dates').textContent = author.dates;
+
+    // bars
+    const barColors = { D: 'var(--dosto)', K: 'var(--kafka)', Z: 'var(--dazai)', C: 'var(--camus)' };
+    const barNames  = { D: 'Dostoevsky',   K: 'Kafka',        Z: 'Dazai',        C: 'Camus' };
+    const sorted = Object.entries(pcts).sort((a, b) => b[1] - a[1]);
+    document.getElementById('result-bars').innerHTML = sorted.map(([k, p]) => `
+      <div class="bar-row">
+        <span class="bar-author">${barNames[k]}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:0%;background:${barColors[k]}" data-pct="${p}"></div></div>
+        <span class="bar-pct">${p}%</span>
+      </div>
+    `).join('');
+
+    // animate bars after render
+    setTimeout(() => {
+      document.querySelectorAll('.bar-fill').forEach(el => {
+        el.style.width = el.dataset.pct + '%';
+      });
+    }, 100);
+
+    // body
+    document.getElementById('result-headline').textContent = author.headline;
+    document.getElementById('result-desc').textContent = author.desc;
+    document.getElementById('result-books').innerHTML = author.books.map(b =>
+      `<span class="result-book-chip">${b}</span>`
+    ).join('');
+
+    // share note
+    const second = sorted[1];
+    document.getElementById('share-note').textContent =
+      `You are primarily ${author.name} (${pcts[top]}%), with a strong ${barNames[second[0]]} undercurrent (${second[1]}%). Your literary DNA is not one author — it's a conversation between them.`;
+
+    showScreen('screen-result');
+
+    // update progress bar to 100
+    document.getElementById('progress-fill').style.width = '100%';
+  }
+
+  function shareResult() {
+    const top = document.getElementById('result-name').textContent;
+    const note = document.getElementById('share-note').textContent;
+    const text = `My Literary DNA result on A Story, A Key:\n\n${top}\n\n${note}\n\nFind yours at: astoryakey-beep.github.io/astoryakey/dna.html`;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.btn-primary-sm');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function restartQuiz() {
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    showScreen('screen-quiz');
+    renderQuestion();
+  }
+  </script>
+</body>
+</html>
