@@ -587,16 +587,19 @@
         <p class="section-sub">Pick your emotion and I'll recommend books that meet you exactly where you are.</p>
       </div>
 
-      <div class="emotions-grid reveal">
-        <button class="emotion-btn" data-mood="lonely">Lonely</button>
-        <button class="emotion-btn" data-mood="lost">Lost</button>
-        <button class="emotion-btn" data-mood="nostalgic">Nostalgic</button>
-        <button class="emotion-btn" data-mood="existential">Existential</button>
-        <button class="emotion-btn" data-mood="hopeful">Hopeful</button>
-        <button class="emotion-btn" data-mood="inlove">In love</button>
-        <button class="emotion-btn" data-mood="angry">Angry</button>
-        <button class="emotion-btn" data-mood="empty">Empty</button>
-      </div>
+     <div class="emotions-grid reveal">
+    <button class="emotion-btn" data-mood="lost">🌧 Feeling Lost</button>
+    <button class="emotion-btn" data-mood="heartbroken">💔 Heartbroken</button>
+    <button class="emotion-btn" data-mood="lonely">😔 Lonely</button>
+    <button class="emotion-btn" data-mood="regret">⏳ Full of Regret</button>
+    <button class="emotion-btn" data-mood="overthinking">🤯 Overthinking Life</button>
+    <button class="emotion-btn" data-mood="hope">🌱 Need Hope</button>
+    <button class="emotion-btn" data-mood="understandyourself">🧠 Understand Yourself</button>
+    <button class="emotion-btn" data-mood="angry">🔥 Angry at the World</button>
+    <button class="emotion-btn" data-mood="haunting">👻 Want Something Haunting</button>
+    <button class="emotion-btn" data-mood="thriller">🕵 Need a Thriller</button>
+    <button class="emotion-btn" data-mood="wonder">✨ Wonder & Curiosity</button>
+</div>
 
       <div class="recs-area">
         <div class="recs-grid" id="recs-grid"></div>
@@ -655,15 +658,15 @@
       </div>
       <div class="about-stats reveal">
         <div class="stat">
-          <div class="stat-num">40+</div>
+          <div class="stat-num">45+</div>
           <div class="stat-label">Books reviewed</div>
         </div>
         <div class="stat">
-          <div class="stat-num">12</div>
+          <div class="stat-num">14</div>
           <div class="stat-label">Countries explored</div>
         </div>
         <div class="stat">
-          <div class="stat-num">8</div>
+          <div class="stat-num">12</div>
           <div class="stat-label">Emotions mapped</div>
         </div>
         <div class="stat">
@@ -700,46 +703,73 @@
   <script>
     /* ── Recommendations data ─────────────────────────── */
     const MOODS = {
-      lonely: [
-        { title: "Norwegian Wood", author: "Haruki Murakami", why: "Loss and longing in Tokyo. For when loneliness feels like a room you can't leave." },
-        { title: "The Remains of the Day", author: "Kazuo Ishiguro", why: "A butler's quiet devastation. A masterclass in things left unsaid." },
-        { title: "Never Let Me Go", author: "Kazuo Ishiguro", why: "Being human while the world forgets you exist." }
-      ],
-      lost: [
-        { title: "Siddhartha", author: "Hermann Hesse", why: "A man walks away from everything to find himself. Somehow it works." },
-        { title: "The Alchemist", author: "Paulo Coelho", why: "Overread for a reason. Purpose disguised as a journey." },
-        { title: "No Longer Human", author: "Osamu Dazai", why: "For when you feel alien in your own life. Dazai understands." }
-      ],
-      nostalgic: [
-        { title: "In Search of Lost Time", author: "Marcel Proust", why: "Memory as architecture. A madeleine in prose form." },
-        { title: "The God of Small Things", author: "Arundhati Roy", why: "Kerala, childhood, the things we cannot undo." },
-        { title: "Pachinko", author: "Min Jin Lee", why: "Four generations of longing for a home that no longer exists." }
-      ],
-      existential: [
-        { title: "The Stranger", author: "Albert Camus", why: "Does anything matter? Camus says no, then says live anyway." },
-        { title: "No Longer Human", author: "Osamu Dazai", why: "The original 'what even is being human' novel. Still unmatched." },
-        { title: "Nausea", author: "Jean-Paul Sartre", why: "Existence is absurd and Sartre will prove it to you." }
-      ],
-      hopeful: [
-        { title: "The Kite Runner", author: "Khaled Hosseini", why: "Redemption is slow and painful and possible." },
-        { title: "Educated", author: "Tara Westover", why: "A woman rewrites herself from scratch. Astonishing." },
-        { title: "The House on Mango Street", author: "Sandra Cisneros", why: "A girl who already knows she will outgrow her world." }
-      ],
-      inlove: [
-        { title: "Call Me By Your Name", author: "André Aciman", why: "Summer, peaches, the violence of feeling too much." },
-        { title: "Pride and Prejudice", author: "Jane Austen", why: "Still the blueprint. Slow-burn done right." },
-        { title: "Convenience Store Woman", author: "Sayaka Murata", why: "Love — or its strange, quiet alternative." }
-      ],
-      angry: [
-        { title: "The Handmaid's Tale", author: "Margaret Atwood", why: "Controlled rage as literature. For the fury you can't put down." },
-        { title: "Beloved", author: "Toni Morrison", why: "Anger earned across centuries. Devastating and necessary." },
-        { title: "Giovanni's Room", author: "James Baldwin", why: "Quiet anger is still anger. Baldwin knew." }
-      ],
-      empty: [
-        { title: "No Longer Human", author: "Osamu Dazai", why: "He wrote emptiness better than anyone. You will feel seen." },
-        { title: "The Bell Jar", author: "Sylvia Plath", why: "Depression mapped from inside. Raw and precise." },
-        { title: "A Little Life", author: "Hanya Yanagihara", why: "Warns you first. Then breaks you anyway. Then builds you back." }
-      ]
+      const moods = {
+  lost: [
+    { title: "Kafka on the Shore", author: "Haruki Murakami", why: "Reality bends, dreams blur, and finding yourself means getting even more lost first." },
+    { title: "The Namesake", author: "Jhumpa Lahiri", why: "Identity isn't something you're born with. Sometimes you grow into it." },
+    { title: "Convenience Store Woman", author: "Sayaka Murata", why: "For anyone who's ever wondered if they fit into the world's idea of 'normal'." }
+  ],
+
+  heartbroken: [
+    { title: "Never Let Me Go", author: "Kazuo Ishiguro", why: "Love is precious because time never waits." },
+    { title: "On Earth We're Briefly Gorgeous", author: "Ocean Vuong", why: "A letter filled with grief, tenderness and impossible love." },
+    { title: "The Kite Runner", author: "Khaled Hosseini", why: "Some wounds never disappear—but redemption is still possible." }
+  ],
+
+  lonely: [
+    { title: "A Love in the Big City", author: "Sang Young Park", why: "A city full of people can still leave you feeling completely alone." },
+    { title: "Klara and the Sun", author: "Kazuo Ishiguro", why: "Loneliness seen through the eyes of someone learning what love means." },
+    { title: "The Perks of Being a Wallflower", author: "Stephen Chbosky", why: "Perfect for anyone who's ever felt invisible in a crowded room." }
+  ],
+
+  regret: [
+    { title: "The Remains of the Day", author: "Kazuo Ishiguro", why: "The quiet tragedy of realizing your greatest chances are already behind you." },
+    { title: "A Pale View of Hills", author: "Kazuo Ishiguro", why: "Memory can comfort us—or quietly accuse us." },
+    { title: "Crime and Punishment", author: "Fyodor Dostoevsky", why: "No prison is worse than your own conscience." }
+  ],
+
+  overthinking: [
+    { title: "Vita Nostra", author: "Marina & Sergey Dyachenko", why: "A novel that changes you while you're trying to understand it." },
+    { title: "The Left Hand of Darkness", author: "Ursula K. Le Guin", why: "Questions everything you assume about identity, gender and humanity." },
+    { title: "1984", author: "George Orwell", why: "When you start questioning reality itself." }
+  ],
+
+  hope: [
+    { title: "The Diary of a Young Girl", author: "Anne Frank", why: "Proof that hope can survive even history's darkest moments." },
+    { title: "Room", author: "Emma Donoghue", why: "Even after unimaginable hardship, life can begin again." },
+    { title: "The Hen Who Dreamed She Could Fly", author: "Sun-mi Hwang", why: "A gentle reminder that dreams are worth chasing, no matter how impossible they seem." }
+  ],
+
+  understandyourself: [
+    { title: "Emotional Intelligence", author: "Daniel Goleman", why: "Understand your emotions before they start controlling you." },
+    { title: "Freshwater", author: "Akwaeke Emezi", why: "Identity is rarely simple, and neither are we." },
+    { title: "Passing", author: "Nella Larsen", why: "How much of yourself do you hide just to belong?" }
+  ],
+
+  angry: [
+    { title: "Beloved", author: "Toni Morrison", why: "A devastating reminder that history never truly stays in the past." },
+    { title: "Kindred", author: "Octavia Butler", why: "Time travel becomes a brutal confrontation with injustice." },
+    { title: "The Bluest Eye", author: "Toni Morrison", why: "A heartbreaking look at the damage caused by impossible beauty standards." }
+  ],
+
+  haunting: [
+    { title: "Rebecca", author: "Daphne du Maurier", why: "Some ghosts never need to appear to haunt a story." },
+    { title: "Beloved", author: "Toni Morrison", why: "The past refuses to stay buried." },
+    { title: "The Silent Patient", author: "Alex Michaelides", why: "Silence can be more terrifying than any scream." }
+  ],
+
+  thriller: [
+    { title: "Gone Girl", author: "Gillian Flynn", why: "Trust nobody—not even the narrator." },
+    { title: "The Interpretation of Murder", author: "Jed Rubenfeld", why: "A murder mystery where psychology becomes the detective." },
+    { title: "We Were Liars", author: "E. Lockhart", why: "The less you know, the better." }
+  ],
+
+  wonder: [
+    { title: "Persepolis", author: "Marjane Satrapi", why: "A graphic memoir that changes how you see history and courage." },
+    { title: "Dubliners", author: "James Joyce", why: "Extraordinary revelations hidden inside ordinary lives." },
+    { title: "The Illustrated Man", author: "Ray Bradbury", why: "Imagination, science fiction and philosophy woven into unforgettable stories." }
+  ]
+};
     };
 
     /* ── Emotion buttons ──────────────────────────────── */
