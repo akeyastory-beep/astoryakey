@@ -84,7 +84,6 @@
       overflow: hidden;
     }
 
-    /* Subtle grain / texture overlay */
     .hero::before {
       content: '';
       position: absolute;
@@ -116,6 +115,14 @@
     .hero-title em {
       font-style: italic;
       color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--ink2);
+      max-width: 420px;
+      line-height: 1.7;
     }
 
     .hero-quote {
@@ -257,7 +264,10 @@
       font-style: italic;
       color: var(--ink2);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s;
+    }
+    .emotion-btn:hover {
+      transform: translateY(-2px);
     }
     .emotion-btn:hover,
     .emotion-btn.active {
@@ -272,7 +282,7 @@
     }
     .recs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.25rem;
       opacity: 0;
       transform: translateY(12px);
@@ -282,11 +292,22 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ── Rec card — all rules in one block ── */
     .rec-card {
       background: var(--white);
       border: 1px solid rgba(92, 61, 46, 0.1);
       border-radius: 2px;
       padding: 1.4rem;
+      cursor: pointer;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      animation: fadeUp 0.45s ease;
+    }
+    .rec-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+      border-color: var(--gold);
     }
     .rec-card-title {
       font-family: var(--ff-display);
@@ -307,6 +328,20 @@
       font-size: 0.88rem;
       color: var(--ink2);
       line-height: 1.65;
+    }
+    .rec-card-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to   { opacity: 1; transform: none; }
     }
 
     /* ── Featured Book ────────────────────────────────────── */
@@ -540,7 +575,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal, .recs-grid, .scroll-line { transition: none; animation: none; }
+      .reveal, .recs-grid, .scroll-line, .rec-card { transition: none; animation: none; }
     }
   </style>
 </head>
@@ -561,11 +596,11 @@
   <header class="hero">
     <p class="hero-eyebrow">A literary universe by Aashima</p>
     <h1 class="hero-title">Every story<br>unlocks <em>something</em><br>about you.</h1>
+    <p class="hero-sub">Read the book that understands exactly how you're feeling today.</p>
 
-    <blockquote class="hero-quote">
-      Mine has been a life of much shame. I can't even guess myself what it must be
-      to live the life of a human being.
-      <span class="hero-quote-attr">— Osamu Dazai, No Longer Human</span>
+    <blockquote class="hero-quote" id="hero-quote-text">
+      <!-- Filled by JS -->
+      <span class="hero-quote-attr" id="hero-quote-attr"></span>
     </blockquote>
 
     <div class="hero-cta">
@@ -574,6 +609,7 @@
     </div>
 
     <div class="scroll-hint">
+      <span>Scroll</span>
       <div class="scroll-line"></div>
     </div>
   </header>
@@ -587,19 +623,19 @@
         <p class="section-sub">Pick your emotion and I'll recommend books that meet you exactly where you are.</p>
       </div>
 
-     <div class="emotions-grid reveal">
-    <button class="emotion-btn" data-mood="lost">🌧 Feeling Lost</button>
-    <button class="emotion-btn" data-mood="heartbroken">💔 Heartbroken</button>
-    <button class="emotion-btn" data-mood="lonely">😔 Lonely</button>
-    <button class="emotion-btn" data-mood="regret">⏳ Full of Regret</button>
-    <button class="emotion-btn" data-mood="overthinking">🤯 Overthinking Life</button>
-    <button class="emotion-btn" data-mood="hope">🌱 Need Hope</button>
-    <button class="emotion-btn" data-mood="understandyourself">🧠 Understand Yourself</button>
-    <button class="emotion-btn" data-mood="angry">🔥 Angry at the World</button>
-    <button class="emotion-btn" data-mood="haunting">👻 Want Something Haunting</button>
-    <button class="emotion-btn" data-mood="thriller">🕵 Need a Thriller</button>
-    <button class="emotion-btn" data-mood="wonder">✨ Wonder & Curiosity</button>
-</div>
+      <div class="emotions-grid reveal">
+        <button class="emotion-btn" data-mood="lost">🌧 Feeling Lost</button>
+        <button class="emotion-btn" data-mood="heartbroken">💔 Heartbroken</button>
+        <button class="emotion-btn" data-mood="lonely">😔 Lonely</button>
+        <button class="emotion-btn" data-mood="regret">⏳ Full of Regret</button>
+        <button class="emotion-btn" data-mood="overthinking">🤯 Overthinking Life</button>
+        <button class="emotion-btn" data-mood="hope">🌱 Need Hope</button>
+        <button class="emotion-btn" data-mood="understandyourself">🧠 Understand Yourself</button>
+        <button class="emotion-btn" data-mood="angry">🔥 Angry at the World</button>
+        <button class="emotion-btn" data-mood="haunting">👻 Want Something Haunting</button>
+        <button class="emotion-btn" data-mood="thriller">🕵 Need a Thriller</button>
+        <button class="emotion-btn" data-mood="wonder">✨ Wonder & Curiosity</button>
+      </div>
 
       <div class="recs-area">
         <div class="recs-grid" id="recs-grid"></div>
@@ -614,7 +650,7 @@
         <div class="featured-cover-text">No Longer Human<br><br>Osamu Dazai</div>
       </div>
       <div class="reveal">
-        <p class="featured-section-label">Currently reading</p>
+        <p class="featured-section-label">This Month's Obsession</p>
         <h2 class="featured-title">No Longer Human</h2>
         <p class="featured-author">Osamu Dazai · 1948</p>
 
@@ -652,13 +688,15 @@
         <p class="about-body">
           I'm 18, based in India, and I started this site because I believe every
           book holds a key to something — a feeling, a truth, a version of yourself
-          you hadn't met yet. I built this space to share what I find.
+          you hadn't met yet. I've reviewed books from fourteen countries, across
+          classics, literary fiction, psychology, and speculative fiction — always
+          asking the same question: what does this reveal about being human?
         </p>
         <a href="about.html" class="btn btn-primary">More about me →</a>
       </div>
       <div class="about-stats reveal">
         <div class="stat">
-          <div class="stat-num">45+</div>
+          <div class="stat-num">48</div>
           <div class="stat-label">Books reviewed</div>
         </div>
         <div class="stat">
@@ -701,109 +739,80 @@
 
   <!-- ── JS ─────────────────────────────────────────────── -->
   <script>
+    /* ── Rotating hero quotes ─────────────────────────── */
+    const QUOTES = [
+      { text: "Mine has been a life of much shame. I can't even guess myself what it must be to live the life of a human being.", attr: "Osamu Dazai, No Longer Human" },
+      { text: "If you only read the books that everyone else is reading, you can only think what everyone else is thinking.", attr: "Haruki Murakami, Norwegian Wood" },
+      { text: "We accept the love we think we deserve.", attr: "Stephen Chbosky, The Perks of Being a Wallflower" },
+      { text: "I took a deep breath and listened to the old brag of my heart: I am, I am, I am.", attr: "Sylvia Plath, The Bell Jar" },
+      { text: "The most important things are the hardest to say, because words diminish them.", attr: "Stephen King" },
+    ];
+    const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+    const quoteEl = document.getElementById('hero-quote-text');
+    const attrEl  = document.getElementById('hero-quote-attr');
+    // Set the quote text as a text node before the attr span
+    quoteEl.insertBefore(document.createTextNode(q.text + ' '), attrEl);
+    attrEl.textContent = '— ' + q.attr;
+
     /* ── Recommendations data ─────────────────────────── */
     const MOODS = {
-  lost: [
-    { title: "Kafka on the Shore", author: "Haruki Murakami", why: "Reality bends, dreams blur, and finding yourself means getting even more lost first." },
-    { title: "The Namesake", author: "Jhumpa Lahiri", why: "Identity isn't something you're born with. Sometimes you grow into it." },
-    { title: "Convenience Store Woman", author: "Sayaka Murata", why: "For anyone who's ever wondered if they fit into the world's idea of 'normal'." }
-  ],
-  heartbroken: [
-    { title: "Never Let Me Go", author: "Kazuo Ishiguro", why: "Love is precious because time never waits." },
-    { title: "On Earth We're Briefly Gorgeous", author: "Ocean Vuong", why: "A letter filled with grief, tenderness and impossible love." },
-    { title: "The Kite Runner", author: "Khaled Hosseini", why: "Some wounds never disappear—but redemption is still possible." }
-  ],
-  lonely: [
-    { title: "A Love in the Big City", author: "Sang Young Park", why: "A city full of people can still leave you feeling completely alone." },
-    { title: "Klara and the Sun", author: "Kazuo Ishiguro", why: "Loneliness seen through the eyes of someone learning what love means." },
-    { title: "The Perks of Being a Wallflower", author: "Stephen Chbosky", why: "Perfect for anyone who's ever felt invisible in a crowded room." }
-  ],
-  regret: [
-    { title: "The Remains of the Day", author: "Kazuo Ishiguro", why: "The quiet tragedy of realizing your greatest chances are already behind you." },
-    { title: "A Pale View of Hills", author: "Kazuo Ishiguro", why: "Memory can comfort us—or quietly accuse us." },
-    { title: "Crime and Punishment", author: "Fyodor Dostoevsky", why: "No prison is worse than your own conscience." }
-  ],
-  overthinking: [
-    { title: "Vita Nostra", author: "Marina & Sergey Dyachenko", why: "A novel that changes you while you're trying to understand it." },
-    { title: "The Left Hand of Darkness", author: "Ursula K. Le Guin", why: "Questions everything you assume about identity, gender and humanity." },
-    { title: "1984", author: "George Orwell", why: "When you start questioning reality itself." }
-  ],
-  hope: [
-    { title: "The Diary of a Young Girl", author: "Anne Frank", why: "Proof that hope can survive even history's darkest moments." },
-    { title: "Room", author: "Emma Donoghue", why: "Even after unimaginable hardship, life can begin again." },
-    { title: "The Hen Who Dreamed She Could Fly", author: "Sun-mi Hwang", why: "A gentle reminder that dreams are worth chasing, no matter how impossible they seem." }
-  ],
-  understandyourself: [
-    { title: "Emotional Intelligence", author: "Daniel Goleman", why: "Understand your emotions before they start controlling you." },
-    { title: "Freshwater", author: "Akwaeke Emezi", why: "Identity is rarely simple, and neither are we." },
-    { title: "Passing", author: "Nella Larsen", why: "How much of yourself do you hide just to belong?" }
-  ],
-  angry: [
-    { title: "Beloved", author: "Toni Morrison", why: "A devastating reminder that history never truly stays in the past." },
-    { title: "Kindred", author: "Octavia Butler", why: "Time travel becomes a brutal confrontation with injustice." },
-    { title: "The Bluest Eye", author: "Toni Morrison", why: "A heartbreaking look at the damage caused by impossible beauty standards." }
-  ],
-  haunting: [
-    { title: "Rebecca", author: "Daphne du Maurier", why: "Some ghosts never need to appear to haunt a story." },
-    { title: "Beloved", author: "Toni Morrison", why: "The past refuses to stay buried." },
-    { title: "The Silent Patient", author: "Alex Michaelides", why: "Silence can be more terrifying than any scream." }
-  ],
-  thriller: [
-    { title: "Gone Girl", author: "Gillian Flynn", why: "Trust nobody—not even the narrator." },
-    { title: "The Interpretation of Murder", author: "Jed Rubenfeld", why: "A murder mystery where psychology becomes the detective." },
-    { title: "We Were Liars", author: "E. Lockhart", why: "The less you know, the better." }
-  ],
-  wonder: [
-    { title: "Persepolis", author: "Marjane Satrapi", why: "A graphic memoir that changes how you see history and courage." },
-    { title: "Dubliners", author: "James Joyce", why: "Extraordinary revelations hidden inside ordinary lives." },
-    { title: "The Illustrated Man", author: "Ray Bradbury", why: "Imagination, science fiction and philosophy woven into unforgettable stories." }
-  ]
-};
-    const grid = document.getElementById('recs-grid');
-let active = null;
+      lost: [
+        { title: "Kafka on the Shore", author: "Haruki Murakami", why: "Reality bends, dreams blur, and finding yourself means getting even more lost first.", link: "books/kafka-on-the-shore.html" },
+        { title: "The Namesake", author: "Jhumpa Lahiri", why: "Identity isn't something you're born with. Sometimes you grow into it.", link: "books/the-namesake.html" },
+        { title: "Convenience Store Woman", author: "Sayaka Murata", why: "For anyone who's ever wondered if they fit into the world's idea of 'normal'.", link: "books/convenience-store-woman.html" }
+      ],
+      heartbroken: [
+        { title: "Never Let Me Go", author: "Kazuo Ishiguro", why: "Love is precious because time never waits.", link: "books/never-let-me-go.html" },
+        { title: "On Earth We're Briefly Gorgeous", author: "Ocean Vuong", why: "A letter filled with grief, tenderness and impossible love.", link: "books/on-earth-were-briefly-gorgeous.html" },
+        { title: "The Kite Runner", author: "Khaled Hosseini", why: "Some wounds never disappear—but redemption is still possible.", link: "books/the-kite-runner.html" }
+      ],
+      lonely: [
+        { title: "A Love in the Big City", author: "Sang Young Park", why: "A city full of people can still leave you feeling completely alone.", link: "books/a-love-in-the-big-city.html" },
+        { title: "Klara and the Sun", author: "Kazuo Ishiguro", why: "Loneliness seen through the eyes of someone learning what love means.", link: "books/klara-and-the-sun.html" },
+        { title: "The Perks of Being a Wallflower", author: "Stephen Chbosky", why: "Perfect for anyone who's ever felt invisible in a crowded room.", link: "books/perks-of-being-a-wallflower.html" }
+      ],
+      regret: [
+        { title: "The Remains of the Day", author: "Kazuo Ishiguro", why: "The quiet tragedy of realizing your greatest chances are already behind you.", link: "books/the-remains-of-the-day.html" },
+        { title: "A Pale View of Hills", author: "Kazuo Ishiguro", why: "Memory can comfort us—or quietly accuse us.", link: "books/a-pale-view-of-hills.html" },
+        { title: "Crime and Punishment", author: "Fyodor Dostoevsky", why: "No prison is worse than your own conscience.", link: "books/crime-and-punishment.html" }
+      ],
+      overthinking: [
+        { title: "Vita Nostra", author: "Marina & Sergey Dyachenko", why: "A novel that changes you while you're trying to understand it.", link: "books/vita-nostra.html" },
+        { title: "The Left Hand of Darkness", author: "Ursula K. Le Guin", why: "Questions everything you assume about identity, gender and humanity.", link: "books/the-left-hand-of-darkness.html" },
+        { title: "1984", author: "George Orwell", why: "When you start questioning reality itself.", link: "books/1984.html" }
+      ],
+      hope: [
+        { title: "The Diary of a Young Girl", author: "Anne Frank", why: "Proof that hope can survive even history's darkest moments.", link: "books/diary-of-a-young-girl.html" },
+        { title: "Room", author: "Emma Donoghue", why: "Even after unimaginable hardship, life can begin again.", link: "books/room.html" },
+        { title: "The Hen Who Dreamed She Could Fly", author: "Sun-mi Hwang", why: "A gentle reminder that dreams are worth chasing, no matter how impossible they seem.", link: "books/the-hen-who-dreamed.html" }
+      ],
+      understandyourself: [
+        { title: "Emotional Intelligence", author: "Daniel Goleman", why: "Understand your emotions before they start controlling you.", link: "books/emotional-intelligence.html" },
+        { title: "Freshwater", author: "Akwaeke Emezi", why: "Identity is rarely simple, and neither are we.", link: "books/freshwater.html" },
+        { title: "Passing", author: "Nella Larsen", why: "How much of yourself do you hide just to belong?", link: "books/passing.html" }
+      ],
+      angry: [
+        { title: "Beloved", author: "Toni Morrison", why: "A devastating reminder that history never truly stays in the past.", link: "books/beloved.html" },
+        { title: "Kindred", author: "Octavia Butler", why: "Time travel becomes a brutal confrontation with injustice.", link: "books/kindred.html" },
+        { title: "The Bluest Eye", author: "Toni Morrison", why: "A heartbreaking look at the damage caused by impossible beauty standards.", link: "books/the-bluest-eye.html" }
+      ],
+      haunting: [
+        { title: "Rebecca", author: "Daphne du Maurier", why: "Some ghosts never need to appear to haunt a story.", link: "books/rebecca.html" },
+        { title: "Beloved", author: "Toni Morrison", why: "The past refuses to stay buried.", link: "books/beloved.html" },
+        { title: "The Silent Patient", author: "Alex Michaelides", why: "Silence can be more terrifying than any scream.", link: "books/the-silent-patient.html" }
+      ],
+      thriller: [
+        { title: "Gone Girl", author: "Gillian Flynn", why: "Trust nobody—not even the narrator.", link: "books/gone-girl.html" },
+        { title: "The Interpretation of Murder", author: "Jed Rubenfeld", why: "A murder mystery where psychology becomes the detective.", link: "books/the-interpretation-of-murder.html" },
+        { title: "We Were Liars", author: "E. Lockhart", why: "The less you know, the better.", link: "books/we-were-liars.html" }
+      ],
+      wonder: [
+        { title: "Persepolis", author: "Marjane Satrapi", why: "A graphic memoir that changes how you see history and courage.", link: "books/persepolis.html" },
+        { title: "Dubliners", author: "James Joyce", why: "Extraordinary revelations hidden inside ordinary lives.", link: "books/dubliners.html" },
+        { title: "The Illustrated Man", author: "Ray Bradbury", why: "Imagination, science fiction and philosophy woven into unforgettable stories.", link: "books/the-illustrated-man.html" }
+      ]
+    };
 
-document.querySelectorAll('.emotion-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const mood = btn.dataset.mood;
-    if (active === mood) {
-      btn.classList.remove('active');
-      grid.classList.remove('visible');
-      grid.innerHTML = '';
-      active = null;
-      return;
-    }
-    document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    active = mood;
-
-    const books = MOODS[mood] || [];
-    grid.innerHTML = books.map(b => `
-      <div class="rec-card">
-        <p class="rec-card-title">${b.title}</p>
-        <p class="rec-card-author">${b.author}</p>
-        <p class="rec-card-why">${b.why}</p>
-      </div>
-    `).join('');
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => grid.classList.add('visible'));
-    });
-
-    grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-});
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in-view');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    
     /* ── Emotion buttons ──────────────────────────────── */
     const grid = document.getElementById('recs-grid');
     let active = null;
@@ -811,6 +820,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     document.querySelectorAll('.emotion-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const mood = btn.dataset.mood;
+
         if (active === mood) {
           btn.classList.remove('active');
           grid.classList.remove('visible');
@@ -818,17 +828,20 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
           active = null;
           return;
         }
+
         document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         active = mood;
 
         const books = MOODS[mood] || [];
+        grid.classList.remove('visible');
         grid.innerHTML = books.map(b => `
-          <div class="rec-card">
+          <a href="${b.link}" class="rec-card">
             <p class="rec-card-title">${b.title}</p>
             <p class="rec-card-author">${b.author}</p>
             <p class="rec-card-why">${b.why}</p>
-          </div>
+            <span class="rec-card-link">Read review →</span>
+          </a>
         `).join('');
 
         requestAnimationFrame(() => {
