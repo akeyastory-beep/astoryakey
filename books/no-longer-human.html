@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>No Longer Human — A Story, A Key</title>
-  <meta name="description" content="Aashima's review of No Longer Human by Osamu Dazai — themes, quotes, characters, film connections." />
+  <meta name="description" content="Aashima's review of No Longer Human by Osamu Dazai." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -34,404 +34,467 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Nav ── */
+    /* Nav */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 2.5rem;
       background: rgba(247,244,239,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(92,61,46,0.1);
     }
-    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
     .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
-    .nav-back { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
-    .nav-back:hover { color: var(--accent); }
 
-    /* ── Hero ── */
+    /* Hero */
     .book-hero {
-      min-height: 70vh;
-      background: var(--ink);
-      display: flex;
-      align-items: flex-end;
       padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .book-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 20% 60%, rgba(92,61,46,0.35) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    /* Big ghost title behind everything */
-    .hero-ghost {
-      position: absolute;
-      right: -2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--ff-display);
-      font-size: clamp(6rem, 16vw, 14rem);
-      font-weight: 600;
-      font-style: italic;
-      color: rgba(255,255,255,0.03);
-      line-height: 1;
-      pointer-events: none;
-      white-space: nowrap;
-      user-select: none;
-    }
-    .book-hero-inner {
       max-width: 1100px;
       margin: 0 auto;
-      width: 100%;
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 3.5rem;
-      align-items: flex-end;
-      position: relative;
-      z-index: 1;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
     }
-    /* Spine-style book cover */
-    .book-cover {
-      width: 160px;
+    .cover-wrap {
+      position: sticky;
+      top: 6rem;
+    }
+    .cover-img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: block;
+    }
+    .cover-fallback {
+      width: 100%;
       aspect-ratio: 2/3;
       background: var(--accent);
       border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 1rem;
-      box-shadow: 8px 8px 32px rgba(0,0,0,0.5);
-      position: relative;
-      flex-shrink: 0;
-      overflow: hidden;
+      padding: 1.5rem;
     }
-    .book-cover::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 6px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 2px 0 0 2px;
-      z-index: 2;
-    }
-    .book-cover::after {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(201,169,110,0.25);
-      border-radius: 1px;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .book-cover-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 1;
-      display: block;
-    }
-    /* Fallback text — hidden behind the image by default, revealed if image fails */
-    .book-cover-fallback {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-    }
-    .cover-title {
+    .cover-fallback-text {
       font-family: var(--ff-display);
-      font-size: 0.95rem;
       font-style: italic;
-      font-weight: 400;
-      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
     }
-    .cover-line {
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.6;
-      margin: 0.75rem auto;
+    .cover-rating {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
     }
-    .cover-author {
-      font-size: 0.65rem;
+    .cover-verdict {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(201,169,110,0.7);
-      text-align: center;
+      color: var(--ink3);
     }
 
-    .book-hero-text {}
-    .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 500;
-      margin-bottom: 1rem;
+    /* Book meta */
+    .book-meta { padding-top: 1rem; }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
     }
-    .hero-title {
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .book-title-main {
       font-family: var(--ff-display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
       font-weight: 300;
       font-style: italic;
-      color: var(--paper);
       line-height: 1.05;
-      margin-bottom: 0.4rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
     }
-    .hero-author {
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
+    .book-author-main {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.8rem;
+      color: var(--ink3);
+      margin-bottom: 2rem;
     }
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
     }
-    .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
-    .meta-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,244,239,0.35); }
-    .meta-value { font-size: 0.88rem; color: rgba(247,244,239,0.8); }
-    .meta-value.stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.05em; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .hero-tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.8rem;
-      border: 1px solid rgba(201,169,110,0.3);
-      color: rgba(201,169,110,0.7);
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(92,61,46,0.2);
       border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .meta-pill.mood {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .opening-line {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+      max-width: 560px;
     }
 
-    /* ── Tabs ── */
-    .tabs-bar {
-      background: var(--white);
-      border-bottom: 1px solid rgba(92,61,46,0.1);
-      position: sticky;
-      top: 64px;
-      z-index: 50;
-    }
-    .tabs-inner {
+    /* Tabs */
+    .tabs-section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 2rem 6rem;
+    }
+    .tabs-nav {
       display: flex;
       gap: 0;
+      border-bottom: 1px solid rgba(92,61,46,0.12);
+      margin-bottom: 3rem;
       overflow-x: auto;
       scrollbar-width: none;
     }
-    .tabs-inner::-webkit-scrollbar { display: none; }
+    .tabs-nav::-webkit-scrollbar { display: none; }
     .tab-btn {
-      padding: 1.1rem 1.4rem;
+      padding: 0.85rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
       font-family: var(--ff-body);
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ink3);
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
       cursor: pointer;
       white-space: nowrap;
-      transition: color 0.15s, border-color 0.15s;
+      transition: all 0.2s;
       margin-bottom: -1px;
     }
     .tab-btn:hover { color: var(--ink2); }
-    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
-
-    /* ── Tab content ── */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .content-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3.5rem 2rem 6rem;
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
     }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
-    /* ── Review tab ── */
-    .review-grid {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 4rem;
-      align-items: start;
-    }
-    .review-body p {
-      font-size: 1.02rem;
+    /* Review tab */
+    .review-prose {
+      max-width: 680px;
+      font-size: 1rem;
       color: var(--ink2);
-      line-height: 1.9;
-      margin-bottom: 1.4rem;
+      line-height: 1.95;
     }
-    .review-pull {
-      border-left: 2px solid var(--gold);
-      padding: 0.5rem 0 0.5rem 1.5rem;
-      margin: 2rem 0;
+    .review-prose p { margin-bottom: 1.4rem; }
+    .review-prose p:last-child { margin-bottom: 0; }
+    .pull-quote {
       font-family: var(--ff-display);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-style: italic;
       font-weight: 300;
       color: var(--accent);
       line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 560px;
     }
-    .review-sidebar {}
-    .sidebar-card {
-      background: var(--paper2);
-      border: 1px solid rgba(92,61,46,0.1);
-      border-radius: 2px;
+    .who-should-read {
+      margin-top: 3rem;
       padding: 1.5rem;
-      margin-bottom: 1.25rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      max-width: 560px;
     }
-    .sidebar-card-title {
-      font-size: 0.68rem;
+    .wsr-label {
+      font-size: 0.7rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--ink3);
-      margin-bottom: 1rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
     }
-    .sidebar-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 0.5rem 0; border-bottom: 1px solid rgba(92,61,46,0.08); }
-    .sidebar-stat:last-child { border-bottom: none; }
-    .sidebar-stat-label { font-size: 0.83rem; color: var(--ink2); }
-    .sidebar-stat-value { font-family: var(--ff-display); font-size: 1.05rem; font-style: italic; color: var(--accent); }
-    .aashima-verdict {
-      font-size: 0.88rem;
+    .wsr-text {
+      font-size: 0.92rem;
       color: var(--ink2);
       line-height: 1.75;
-      font-style: italic;
     }
-    .aashima-verdict strong { font-style: normal; font-weight: 500; color: var(--ink); display: block; margin-bottom: 0.4rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--ff-body); }
 
-    /* ── Themes tab ── */
-    .themes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    /* Themes tab */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+    }
     .theme-card {
       background: var(--white);
       border: 1px solid rgba(92,61,46,0.1);
       border-radius: 2px;
-      padding: 1.75rem;
-      transition: border-color 0.2s;
+      padding: 1.5rem;
     }
-    .theme-card:hover { border-color: rgba(92,61,46,0.3); }
-    .theme-number { font-family: var(--ff-display); font-size: 2.5rem; font-weight: 300; color: rgba(92,61,46,0.12); line-height: 1; margin-bottom: 0.5rem; }
-    .theme-name { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--accent); margin-bottom: 0.75rem; }
-    .theme-body { font-size: 0.88rem; color: var(--ink2); line-height: 1.75; }
-    .theme-quote { margin-top: 1rem; padding: 0.75rem 1rem; background: var(--paper2); border-left: 2px solid var(--gold); font-family: var(--ff-display); font-size: 0.95rem; font-style: italic; color: var(--ink2); line-height: 1.6; }
-
-    /* ── Characters tab ── */
-    .char-list { display: flex; flex-direction: column; gap: 1.25rem; }
-    .char-card {
-      background: var(--white);
-      border: 1px solid rgba(92,61,46,0.1);
-      border-radius: 2px;
-      padding: 1.75rem;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-    .char-initial {
-      width: 60px; height: 60px;
-      background: var(--accent);
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
+    .theme-icon {
       font-family: var(--ff-display);
       font-size: 1.8rem;
       font-style: italic;
-      color: rgba(255,255,255,0.85);
-    }
-    .char-name { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--ink); margin-bottom: 0.2rem; }
-    .char-role { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .char-body { font-size: 0.88rem; color: var(--ink2); line-height: 1.75; }
-    .char-insight { margin-top: 0.75rem; font-size: 0.83rem; color: var(--accent); font-style: italic; }
-
-    /* ── Quotes tab ── */
-    .quotes-list { display: flex; flex-direction: column; gap: 2rem; max-width: 720px; }
-    .quote-block { position: relative; padding-left: 2rem; }
-    .quote-block::before {
-      content: '\201C';
-      position: absolute;
-      left: 0; top: -0.5rem;
-      font-family: var(--ff-display);
-      font-size: 3.5rem;
       color: var(--gold);
-      opacity: 0.4;
       line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .theme-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+
+    /* Quotes tab */
+    .quotes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 680px;
+    }
+    .quote-item {
+      position: relative;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      border-left: 3px solid var(--gold);
     }
     .quote-text {
       font-family: var(--ff-display);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-style: italic;
       font-weight: 300;
       color: var(--ink);
-      line-height: 1.7;
-      margin-bottom: 0.6rem;
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
     }
-    .quote-context { font-size: 0.8rem; color: var(--ink3); line-height: 1.6; }
-    .quote-divider { border: none; border-top: 1px solid rgba(92,61,46,0.08); margin-top: 2rem; }
+    .quote-note {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
 
-    /* ── Connections tab ── */
-    .connections-section { margin-bottom: 3rem; }
-    .conn-section-title {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+    /* Characters tab */
+    .characters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 680px;
+    }
+    .char-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+      align-items: start;
+    }
+    .char-row:first-child { border-top: 1px solid rgba(92,61,46,0.08); }
+    .char-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .char-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(92,61,46,0.1);
     }
-    .conn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .char-desc {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Connections tab */
+    .connections-section { max-width: 900px; }
+    .conn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .conn-label:first-child { margin-top: 0; }
+    .conn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
     .conn-card {
       background: var(--white);
       border: 1px solid rgba(92,61,46,0.1);
       border-radius: 2px;
-      padding: 1.25rem;
-      transition: border-color 0.2s;
+      padding: 0.85rem 1.2rem;
+      min-width: 180px;
     }
-    .conn-card:hover { border-color: rgba(92,61,46,0.3); }
-    .conn-card-type { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 0.5rem; }
-    .conn-card-title { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--ink); margin-bottom: 0.3rem; }
-    .conn-card-sub { font-size: 0.75rem; color: var(--ink3); margin-bottom: 0.6rem; }
-    .conn-card-why { font-size: 0.83rem; color: var(--ink2); line-height: 1.65; }
-
-    /* ── Easter egg ── */
-    .easter-egg-bar {
+    .conn-card-title {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .conn-card-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+    .conn-why {
+      font-size: 0.82rem;
+      color: var(--ink2);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+    .music-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
       background: var(--paper2);
-      border: 1px solid rgba(201,169,110,0.3);
       border-radius: 2px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 2.5rem;
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .music-note strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Easter egg tab */
+    .egg-intro {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+    .egg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 680px;
+    }
+    .egg-item {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .egg-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
       cursor: pointer;
-      transition: border-color 0.2s;
+      font-family: var(--ff-body);
     }
-    .easter-egg-bar:hover { border-color: var(--gold); }
-    .egg-icon { font-size: 1.2rem; flex-shrink: 0; }
-    .egg-prompt { font-size: 0.88rem; color: var(--ink2); }
-    .egg-prompt strong { color: var(--accent); font-weight: 500; }
-    .egg-reveal { display: none; margin-top: 1rem; padding: 1.25rem; background: var(--white); border: 1px solid rgba(92,61,46,0.1); border-radius: 2px; font-size: 0.9rem; color: var(--ink2); line-height: 1.75; }
-    .egg-reveal.open { display: block; }
-    .egg-reveal h4 { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--accent); margin-bottom: 0.5rem; }
+    .egg-question {
+      font-size: 0.9rem;
+      color: var(--paper);
+      line-height: 1.5;
+    }
+    .egg-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .egg-item.open .egg-icon { transform: rotate(45deg); }
+    .egg-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .egg-item.open .egg-body { max-height: 400px; }
+    .egg-answer {
+      padding: 0 1.5rem 1.4rem;
+      font-size: 0.88rem;
+      color: rgba(247,244,239,0.7);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1rem;
+      margin-top: 0;
+    }
 
-    /* ── Footer ── */
+    /* Nav between books */
+    .book-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(92,61,46,0.1);
+    }
+    .book-nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .book-nav-link:hover { opacity: 0.7; }
+    .book-nav-link.right { text-align: right; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
     footer { background: var(--ink); color: var(--paper); padding: 3rem 2rem; text-align: center; }
     .footer-logo { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--gold); margin-bottom: 0.75rem; }
     .footer-links { display: flex; gap: 1.5rem; justify-content: center; list-style: none; margin: 1rem 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.45); }
@@ -441,13 +504,12 @@
     @media (max-width: 768px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
-      .book-hero { padding: 7rem 1.25rem 2.5rem; }
-      .book-hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-      .book-cover { width: 110px; }
-      .hero-ghost { display: none; }
-      .review-grid { grid-template-columns: 1fr; }
-      .content-wrap { padding: 2rem 1.25rem 4rem; }
-      .char-card { grid-template-columns: 1fr; }
+      .book-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.25rem 3rem; }
+      .cover-wrap { position: static; max-width: 200px; }
+      .tabs-section { padding: 0 1.25rem 4rem; }
+      .tab-btn { padding: 0.75rem 1rem; font-size: 0.75rem; }
+      .char-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .book-nav { padding: 2rem 1.25rem 4rem; }
     }
   </style>
 </head>
@@ -459,410 +521,351 @@
     <ul class="nav-links">
       <li><a href="../index.html#feel">Feel Something</a></li>
       <li><a href="../books.html">Books</a></li>
+      <li><a href="../dna.html">Literary DNA</a></li>
       <li><a href="../about.html">About</a></li>
     </ul>
-    <a href="../books.html" class="nav-back">← All books</a>
   </nav>
 
   <!-- Hero -->
-  <header class="book-hero">
-    <div class="hero-ghost">Human</div>
-    <div class="book-hero-inner">
-      <div class="book-cover">
-        <img
-          class="book-cover-img"
-          src="https://covers.openlibrary.org/b/isbn/9780811204811-L.jpg"
-          alt="No Longer Human by Osamu Dazai — book cover"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        />
-        <div class="book-cover-fallback" style="display:none;">
-          <div class="cover-title">No Longer Human</div>
-          <div class="cover-line"></div>
-          <div class="cover-author">Osamu Dazai</div>
-        </div>
+  <div class="book-hero">
+
+    <!-- Cover -->
+    <div class="cover-wrap reveal">
+      <img
+        class="cover-img"
+        src="https://covers.openlibrary.org/b/isbn/9780811204811-L.jpg"
+        alt="No Longer Human by Osamu Dazai"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="cover-fallback" style="display:none;">
+        <div class="cover-fallback-text">No Longer Human<br><br>Osamu Dazai</div>
       </div>
-      <div class="book-hero-text">
-        <p class="hero-eyebrow">Book review</p>
-        <h1 class="hero-title">No Longer Human</h1>
-        <p class="hero-author">Osamu Dazai · Japan · 1948</p>
-        <div class="hero-meta">
-          <div class="meta-item">
-            <span class="meta-label">Aashima's rating</span>
-            <span class="meta-value stars">★★★★★</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Mood</span>
-            <span class="meta-value">Empty · Existential</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Read in</span>
-            <span class="meta-value">2024</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Pages</span>
-            <span class="meta-value">177</span>
-          </div>
-        </div>
-        <div class="hero-tags">
-          <span class="hero-tag">Japanese Literature</span>
-          <span class="hero-tag">Confessional</span>
-          <span class="hero-tag">Existential</span>
-          <span class="hero-tag">Semi-autobiographical</span>
-          <span class="hero-tag">Dazai</span>
-        </div>
-      </div>
+
+      <div class="cover-rating">★★★★★</div>
+      <div class="cover-verdict">Haunting</div>
     </div>
-  </header>
+
+    <!-- Meta -->
+    <div class="book-meta reveal">
+      <p class="breadcrumb">
+        <a href="../books.html">← All books</a>
+      </p>
+
+      <h1 class="book-title-main">No Longer Human</h1>
+      <p class="book-author-main">Osamu Dazai · 1948</p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">Japan</span>
+        <span class="meta-pill">Literary Fiction</span>
+        <span class="meta-pill">177 pages</span>
+        <span class="meta-pill mood">lonely</span>
+      </div>
+
+      <p class="opening-line">
+        A book about feeling like an alien in your own skin, written by someone who was one, and never finished outrunning it.
+      </p>
+    </div>
+  </div>
 
   <!-- Tabs -->
-  <div class="tabs-bar">
-    <div class="tabs-inner">
-      <button class="tab-btn active" data-tab="review">Review</button>
-      <button class="tab-btn" data-tab="themes">Themes</button>
-      <button class="tab-btn" data-tab="characters">Characters</button>
-      <button class="tab-btn" data-tab="quotes">Quotes</button>
-      <button class="tab-btn" data-tab="connections">Connections</button>
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('review', this)">Review</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Themes</button>
+      <button class="tab-btn" onclick="switchTab('quotes', this)">Quotes</button>
+      <button class="tab-btn" onclick="switchTab('characters', this)">Characters</button>
+      <button class="tab-btn" onclick="switchTab('connections', this)">Connections</button>
+      <button class="tab-btn" onclick="switchTab('easter', this)">Hidden depths</button>
     </div>
-  </div>
 
-  <!-- ══ REVIEW TAB ══════════════════════════════════════════ -->
-  <div class="tab-content active" id="tab-review">
-    <div class="content-wrap">
-      <div class="review-grid">
-        <div class="review-body">
-          <p>
-            There is a specific kind of loneliness that does not come from being alone —
-            it comes from being surrounded by people and still feeling like you are
-            performing. Like everyone else received a manual for being human and yours
-            got lost somewhere. Osamu Dazai wrote <em>No Longer Human</em> about that feeling,
-            and he did it so precisely that reading it feels less like reading and more
-            like being found out.
-          </p>
-          <p>
-            The novel follows Yozo Oba, told through three notebooks he leaves behind.
-            From childhood, Yozo has understood that he cannot understand people. He
-            compensates by becoming a performer — funny, agreeable, self-effacing —
-            while inside he experiences something closer to dread. The book is about
-            what happens to a person who spends their entire life pretending to be
-            something they don't know how to be.
-          </p>
+    <!-- TAB 1: Review -->
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-prose reveal">
 
-          <div class="review-pull">
-            "Mine has been a life of much shame. I can't even guess myself what it must be to live the life of a human being."
+        <p>
+          There is a specific kind of loneliness that does not come from being alone. It comes from being surrounded by people and still feeling like you are performing. Like everyone else received a manual for being human and yours got lost somewhere. Osamu Dazai wrote No Longer Human about that feeling, and he did it so precisely that reading it feels less like reading and more like being found out.
+        </p>
+
+        <p class="pull-quote">
+          The very intensity of his feeling is what makes him feel like an alien.
+        </p>
+
+        <p>
+          The novel follows Yozo Oba, told through three notebooks he leaves behind. From childhood, Yozo has understood that he cannot understand people. He compensates by becoming a performer: funny, agreeable, self-effacing, while inside he experiences something closer to dread. The book is about what happens to a person who spends their entire life pretending to be something they don't know how to be.
+        </p>
+
+        <p>
+          What makes Dazai so devastating is that Yozo is not unlikable. He is desperately, achingly human, which is exactly the irony the title is working with. He loves people too much and understands them too little and cannot reconcile these two things, so he drinks and he drifts and he disappears into women who temporarily make him feel less alone.
+        </p>
+
+        <p>
+          Dazai finished this novel weeks before his death. Knowing that changes everything and nothing. The book stands without biography, but knowing Yozo is Dazai gives it a weight that sits in your chest for days. This is not a comfortable book. It is the kind of book that knows your secrets. I read it in one sitting and then stared at the ceiling for a while.
+        </p>
+
+      </div>
+
+      <!-- Who should read this -->
+      <div class="who-should-read reveal">
+        <p class="wsr-label">Who should read this</p>
+        <p class="wsr-text">
+          Read this if you have ever felt like you were watching human life from slightly outside of it. Read it if you have ever been the funniest person in a room and also the most lost. Read it if you can handle a book that will not offer you a resolution, only recognition. Do not read this if you need hope at the end, or if you are going through something that has already made the world feel too small. This book does not rescue you. It just sits beside you in the dark and says: I know.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 2: Themes -->
+    <div class="tab-panel" id="tab-themes">
+      <div class="themes-grid reveal">
+
+        <div class="theme-card">
+          <div class="theme-icon">I</div>
+          <div class="theme-name">Alienation</div>
+          <div class="theme-desc">Yozo cannot locate himself within ordinary human life. He watches people from a remove he cannot close, no matter how hard he tries to perform belonging. The alienation here is not teenage angst but something closer to a structural condition, a self that cannot find its way home.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">II</div>
+          <div class="theme-name">Performance and the False Self</div>
+          <div class="theme-desc">From childhood, Yozo learns to clown his way through social situations, masking his incomprehension behind humour. The book asks what happens when the mask becomes more real than the face beneath it, and whether there was ever a true self to begin with.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">III</div>
+          <div class="theme-name">Shame</div>
+          <div class="theme-desc">The novel opens with Yozo declaring that his has been a life of much shame, and shame operates as its engine. It is shame that drives him toward self-destruction, shame that makes him unable to ask for help, shame that sits at the centre of his inability to belong to anything.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">IV</div>
+          <div class="theme-name">Self-Destruction as Surrender</div>
+          <div class="theme-desc">Alcohol, women, drugs: each of Yozo's vices is less a choice than a submission to gravity. Dazai is interested in the specific way a person can stop fighting not because they lose, but because they never quite understood what they were supposed to be fighting for.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">V</div>
+          <div class="theme-name">Complicity of the Witness</div>
+          <div class="theme-desc">The outer narrator, who finds Yozo's notebooks, functions as a mild but damning indictment of everyone who ever watched Yozo suffer and called him charming. The framing device asks how much of another person's destruction we absorb simply by being present and doing nothing.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: Quotes -->
+    <div class="tab-panel" id="tab-quotes">
+      <div class="quotes-list reveal">
+
+        <div class="quote-item">
+          <p class="quote-text">Mine has been a life of much shame. I can't even guess myself what it must be to live the life of a human being.</p>
+          <p class="quote-note">Why this line: The opening sentence of Yozo's notebooks, and probably the line that makes people feel most seen. The admission of not knowing what a normal life feels like, stated so plainly, cuts through everything.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">I have always shook with fright before human beings. Unable as I was to feel the least particle of confidence in my ability to speak and act like a human being, I kept my solitary agonies locked in my breast.</p>
+          <p class="quote-note">Why this line: This captures the specific horror of social anxiety that Dazai understood so well: the performance is not arrogance, it is terror. The locked chest is such a precise image for the thing you carry alone.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">Now I have neither happiness nor unhappiness. Everything passes.</p>
+          <p class="quote-note">Why this line: This comes near the end, and it reads less like peace than like erasure. The sentence sounds almost Buddhist until you realize he is describing the complete disappearance of the self, not its transcendence.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">It's not a question of whether it's good or bad. The fact is, I have no choice but to accept it.</p>
+          <p class="quote-note">Why this line: A quiet gut punch. Dazai returns again and again to the idea that Yozo is not a victim of bad luck but of something more structural, something he simply cannot fight. This sentence is what resignation actually sounds like.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: Characters -->
+    <div class="tab-panel" id="tab-characters">
+      <div class="characters-list reveal">
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Yozo Oba</p>
+            <p class="char-role">Protagonist</p>
           </div>
-
-          <p>
-            What makes Dazai so devastating is that Yozo is not unlikable. He is
-            desperately, achingly human — which is exactly the irony the title is
-            working with. The very intensity of his feeling is what makes him feel like
-            an alien. He loves people too much and understands them too little and cannot
-            reconcile these two things, so he drinks and he drifts and he disappears
-            into women who temporarily make him feel less alone.
-          </p>
-          <p>
-            Dazai finished this novel weeks before his death. Knowing that changes
-            everything and nothing — the book stands without biography, but knowing
-            Yozo is Dazai gives it a weight that sits in your chest for days. This is
-            not a comfortable book. It is the kind of book that knows your secrets.
-            I read it in one sitting and then stared at the ceiling for a while.
-          </p>
-          <p>
-            Read it if you have ever felt like you were watching human life from
-            slightly outside of it. Read it if you have ever been the funniest person
-            in a room and also the most lost. Read it if you can handle a book that
-            will not offer you a resolution, only recognition.
+          <p class="char-desc">
+            Yozo is a study in the person who never develops a stable sense of self because he was too busy watching others to figure out who he was supposed to be. He is not passive so much as perpetually braced for impact. His charm is real but it is also armour, and the tragedy is that the armour kept everyone out, including himself. Dazai gives him no redemption arc because that would be dishonest. Some people just don't make it.
           </p>
         </div>
 
-        <div class="review-sidebar">
-          <div class="sidebar-card">
-            <p class="sidebar-card-title">At a glance</p>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Country</span><span class="sidebar-stat-value">Japan</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Year</span><span class="sidebar-stat-value">1948</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Pages</span><span class="sidebar-stat-value">177</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Genre</span><span class="sidebar-stat-value">Confessional fiction</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Difficulty</span><span class="sidebar-stat-value">Accessible</span></div>
+        <div class="char-row">
+          <div>
+            <p class="char-name">Takeichi</p>
+            <p class="char-role">Childhood peer</p>
           </div>
+          <p class="char-desc">
+            A strange, limping boy who sees through Yozo's clowning immediately and says so. He tells Yozo that women will love him, and he is right, though not in the way either of them imagined. Takeichi functions as a mirror: the one person who looks at the performance and names it for what it is. He disappears from the narrative quickly, but his impact on Yozo is lasting.
+          </p>
+        </div>
 
-          <div class="sidebar-card">
-            <p class="sidebar-card-title">Aashima's verdict</p>
-            <p class="aashima-verdict">
-              <strong>Why I loved it</strong>
-              Dazai writes the feeling of not knowing how to be a person better than
-              any other writer I've read. This book felt uncomfortably personal
-              the entire way through.
+        <div class="char-row">
+          <div>
+            <p class="char-name">Yoshiko</p>
+            <p class="char-role">Wife</p>
+          </div>
+          <p class="char-desc">
+            Described as possessing an absolute trust in people, Yoshiko is the closest Yozo comes to something real. Her violation by another man in front of him breaks whatever was left of his ability to believe in safety. She is not a developed character in the conventional sense, but she represents the specific cruelty of the world toward people who are simply, wholly good.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Horiki</p>
+            <p class="char-role">Friend and foil</p>
+          </div>
+          <p class="char-desc">
+            The person who introduces Yozo to alcohol and a certain kind of dissolution. Horiki is a mediocre man who manages to survive the world by wanting nothing from it, and his ordinariness is its own quiet condemnation. Yozo envies him and cannot say exactly why, which is part of the point.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 5: Connections -->
+    <div class="tab-panel" id="tab-connections">
+      <div class="connections-section reveal">
+
+        <p class="conn-label">If you loved this book, watch...</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Confessions of a Mask</p>
+            <p class="conn-card-sub">Kon Ichikawa · 1985</p>
+            <p class="conn-why">Shares Dazai's obsession with the performance of a self that doesn't exist, and the specific Japanese postwar condition of having to rebuild an identity from almost nothing.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Melancholia</p>
+            <p class="conn-card-sub">Lars von Trier · 2011</p>
+            <p class="conn-why">For the same texture of depression that is not sadness exactly, but a kind of weightless certainty that the world is already over and everyone else just hasn't noticed yet.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Shame</p>
+            <p class="conn-card-sub">Steve McQueen · 2011</p>
+            <p class="conn-why">A modern portrait of addiction as self-erasure, and the specific way a person can be highly functional on the outside and completely hollow on the inside.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Read next...</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Setting Sun</p>
+            <p class="conn-card-sub">Osamu Dazai</p>
+            <p class="conn-why">Dazai's earlier masterpiece, covering similar terrain from a different angle: a family's dissolution in postwar Japan, told with the same devastatingly quiet prose.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Notes from Underground</p>
+            <p class="conn-card-sub">Fyodor Dostoevsky</p>
+            <p class="conn-why">The direct ancestor of Yozo: a man who cannot reconcile his intelligence with his inability to live among people, and who turns his self-awareness into its own kind of prison.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">The Stranger</p>
+            <p class="conn-card-sub">Albert Camus</p>
+            <p class="conn-why">For the same feeling of watching human life from outside the glass, though Meursault's detachment is colder and more defiant than Yozo's anguished version of the same condition.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Listen while you read...</p>
+        <div class="music-note">
+          <strong>Playlist mood</strong>
+          Something that sounds like 3am in a city you don't belong to. Piano that feels like it has already given up but hasn't stopped playing yet. Try Erik Satie's Gymnopedies, Ryuichi Sakamoto's solo work, or Nils Frahm's Spaces. The point is music that doesn't try to make you feel better.
+        </div>
+
+        <p class="conn-label">If this book made you think, explore...</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Donald Winnicott</p>
+            <p class="conn-card-sub">Psychology</p>
+            <p class="conn-why">His concept of the "false self" maps almost exactly onto Yozo's performance: a defensive structure built to protect a real self that eventually stops believing in its own existence.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">The Buraiha Movement</p>
+            <p class="conn-card-sub">Japanese Literature</p>
+            <p class="conn-why">The "Decadent School" of postwar Japanese writing that Dazai helped define: writers who deliberately chose dissolution as both subject and lifestyle, turning self-destruction into a form of honesty.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: Hidden depths -->
+    <div class="tab-panel" id="tab-easter">
+      <p class="egg-intro reveal">
+        Things in this book that most people miss on a first read. Click to reveal.
+      </p>
+      <div class="egg-list reveal">
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The title is a legal term, not a metaphor</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Ningen shikkaku, the Japanese title, literally translates as "disqualified from being human." In postwar Japan this phrase had a specific bureaucratic usage: it was the language used to strip someone of their civil rights, to declare them legally incompetent. Dazai is doing something more precise than metaphor. He is placing Yozo within a system that literally adjudicates who counts as a person, which makes the ending, Yozo institutionalized and declared mad, less like tragedy and more like the fulfillment of a sentence already written.
             </p>
           </div>
-
-          <div class="sidebar-card">
-            <p class="sidebar-card-title">Read if you liked</p>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">The Stranger</span><span class="sidebar-stat-value">Camus</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">The Bell Jar</span><span class="sidebar-stat-value">Plath</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Norwegian Wood</span><span class="sidebar-stat-value">Murakami</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ THEMES TAB ══════════════════════════════════════════ -->
-  <div class="tab-content" id="tab-themes">
-    <div class="content-wrap">
-      <div class="themes-grid">
-
-        <div class="theme-card">
-          <div class="theme-number">01</div>
-          <div class="theme-name">The performance of humanity</div>
-          <div class="theme-body">Yozo spends his entire life acting — performing joy, performing normalcy, performing whatever the room seems to require. Dazai is asking a brutal question: if you perform being human long enough, does it ever become real? Or are you just exhausted?</div>
-          <div class="theme-quote">"I kept performing the role of an eccentric to make them laugh."</div>
         </div>
 
-        <div class="theme-card">
-          <div class="theme-number">02</div>
-          <div class="theme-name">Shame as identity</div>
-          <div class="theme-body">The novel opens with shame and never leaves it. But Dazai's shame is not simple guilt — it is a total alienation from the self, a sense that one's own existence is an embarrassment. This is the most precise literary account of that specific feeling I have encountered.</div>
-          <div class="theme-quote">"Mine has been a life of much shame."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">03</div>
-          <div class="theme-name">The warmth of self-destruction</div>
-          <div class="theme-body">Alcohol, women, and later morphine — Yozo's addictions are not escape so much as warmth. In a world where he cannot connect, substances offer the closest thing to feeling. Dazai is not moralising. He is reporting.</div>
-          <div class="theme-quote">"Drinking was the only way I could talk to people without terror."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">04</div>
-          <div class="theme-name">Women as temporary shelter</div>
-          <div class="theme-body">Every woman in Yozo's life represents a different kind of shelter — and each one he destroys or abandons or is simply too broken to hold onto. Dazai doesn't glamorise this. The women are vivid and real and Yozo's damage ripples through all of them.</div>
-          <div class="theme-quote">"Women have always taken care of me, but I have been incapable of being saved."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">05</div>
-          <div class="theme-name">The unreliable self-narrator</div>
-          <div class="theme-body">Yozo tells his own story but cannot be trusted — not because he lies, but because he genuinely cannot see himself clearly. This is the novel's most sophisticated structural choice: we are reading a confession that confesses to the impossibility of confession.</div>
-          <div class="theme-quote">"I am not sure whether I was born a coward or whether I became one."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">06</div>
-          <div class="theme-name">Art as the only honest language</div>
-          <div class="theme-body">Yozo is a painter and cartoonist — the only spaces where he doesn't have to perform. Dazai suggests that art is where the self can be true precisely because it is not life. The notebooks themselves are Yozo's most honest act.</div>
-          <div class="theme-quote">"When I draw, I do not lie."</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ CHARACTERS TAB ══════════════════════════════════════ -->
-  <div class="tab-content" id="tab-characters">
-    <div class="content-wrap">
-      <div class="char-list">
-
-        <div class="char-card">
-          <div>
-            <div class="char-initial">Y</div>
-          </div>
-          <div>
-            <div class="char-name">Yozo Oba</div>
-            <div class="char-role">Protagonist · Narrator</div>
-            <div class="char-body">Yozo is the author of the three notebooks — and Dazai's most direct self-portrait. A man of immense sensitivity and almost no self-preservation, he moves through life performing versions of himself while the real self quietly dissolves. He is funny, charming, and utterly lost. He is the kind of person who makes everyone else feel seen while remaining invisible himself.</div>
-            <div class="char-insight">→ Aashima's note: Yozo reminded me of the way some people use humour as armour. The joke is always the wall.</div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The photographs at the start are not decorative</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              The novel opens with an unnamed narrator examining three photographs of Yozo. Most readers treat this as a framing device and move on, but the descriptions of the photographs do something careful: in each one, Yozo's face is smiling in a way that the narrator finds unreadable, almost inhuman. Dazai is preparing you to notice that Yozo's performance began so early, and became so total, that even photographs cannot capture what was underneath. By the time you finish, you realise you never actually saw his face either.
+            </p>
           </div>
         </div>
 
-        <div class="char-card">
-          <div>
-            <div class="char-initial" style="background:var(--ink3);">T</div>
-          </div>
-          <div>
-            <div class="char-name">Takeichi</div>
-            <div class="char-role">Childhood peer · Catalyst</div>
-            <div class="char-body">The boy who sees through Yozo's performance as a child and tells him so. This single moment of being truly seen — rather than performing for — haunts Yozo for the rest of his life. Takeichi understands, in his strange way, that Yozo's clowning is deliberate. This terrifies and fascinates Yozo in equal measure.</div>
-            <div class="char-insight">→ Aashima's note: Takeichi appears briefly but he changes everything. Being seen without performing for the first time is either liberation or catastrophe.</div>
-          </div>
-        </div>
-
-        <div class="char-card">
-          <div>
-            <div class="char-initial" style="background:#7b8fa1;">Y</div>
-          </div>
-          <div>
-            <div class="char-name">Yoshiko</div>
-            <div class="char-role">Wife · The innocent</div>
-            <div class="char-body">Yozo's wife — pure, trusting, and the most devastating presence in the novel. Her innocence is not naivety; it is a genuine goodness that Yozo cannot comprehend or protect. What happens to Yoshiko is the novel's moral centre, and the event from which Yozo never recovers.</div>
-            <div class="char-insight">→ Aashima's note: Yoshiko is heartbreaking because she trusts completely. In Dazai's world, that is almost a death sentence.</div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Dazai completed this novel about thirty days before his own suicide</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              No Longer Human was serialised in the summer of 1948. Dazai drowned himself in June of that year, weeks after delivering the final instalment. He had made several previous suicide attempts, and the novel draws so directly from his own life that many of Yozo's experiences are lifted almost without transformation. Knowing this doesn't make the book better or worse, but it changes the register of the ending, which reads not like fiction wrapping up but like a man setting down something he had been carrying for a long time.
+            </p>
           </div>
         </div>
 
-        <div class="char-card">
-          <div>
-            <div class="char-initial" style="background:#9b7e6a;">H</div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The women in the novel are not just victims of Yozo</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              A common reading positions the women in Yozo's life as passive figures who suffer for his self-destruction. But look more carefully: they often see him clearly and choose to stay anyway. Yoshiko's absolute trust is not naivety, it is a kind of radical acceptance that Yozo cannot receive. The bar hostesses who shelter him are not fooled by him. They know exactly what he is and they help him regardless. The novel is partly about a man who is incapable of accepting love, not because love wasn't offered.
+            </p>
           </div>
-          <div>
-            <div class="char-name">Horiki</div>
-            <div class="char-role">Companion · Corruptor</div>
-            <div class="char-body">Yozo's most consistent companion — a painter, a drinker, a man who enables every self-destructive impulse Yozo has. But Dazai is careful not to make Horiki a villain. He is simply someone who has made peace with dissipation, and Yozo has not. Their friendship is a slow-motion mirror Yozo cannot look away from.</div>
-            <div class="char-insight">→ Aashima's note: Horiki is the person you keep around because they make your worst choices feel normal.</div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The word "clown" appears strategically throughout</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Yozo's childhood strategy for surviving social situations is to play the fool, and the word Dazai returns to is dokesha: clown, or buffoon. In traditional Japanese culture, the role of the fool had specific social functions, a way of speaking uncomfortable truths through performance. Dazai is pointing to the fact that Yozo's clowning is not just a coping mechanism but a recognisable cultural role, which makes his tragedy more layered: he found a role that worked, and it destroyed him anyway.
+            </p>
           </div>
         </div>
 
       </div>
     </div>
-  </div>
 
-  <!-- ══ QUOTES TAB ═════════════════════════════════════════ -->
-  <div class="tab-content" id="tab-quotes">
-    <div class="content-wrap">
-      <div class="quotes-list">
+  </div><!-- end tabs -->
 
-        <div class="quote-block">
-          <div class="quote-text">Mine has been a life of much shame. I can't even guess myself what it must be to live the life of a human being.</div>
-          <div class="quote-context">The opening sentence. Everything that follows is the explanation of this.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">I have always shook with fright before human beings. Unable as I was to feel the least particle of confidence in my ability to speak and act like a human being, I kept my solitary agonies locked in my breast.</div>
-          <div class="quote-context">The anxiety underneath the performance — the state Yozo lives in permanently.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">Now I have neither happiness nor unhappiness. Everything passes. That is the one and only thing I have thought resembled a truth in the society of human beings where I have dwelled up till now.</div>
-          <div class="quote-context">Yozo near the end. This is either wisdom or surrender — Dazai leaves that ambiguous.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">I thought that if I could make people laugh, it would be all right even if I were different from other people.</div>
-          <div class="quote-context">Yozo's strategy, articulated simply. The joke as the social contract.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">What I felt was not grief nor loneliness, but a quiet amazement. To think that human beings could be deceived so easily.</div>
-          <div class="quote-context">Yozo watching his own performance work. The horror underneath the relief.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">He was a good boy. Please tell that to God.</div>
-          <div class="quote-context">The final lines, spoken by the woman who knew Yozo. These ten words are the entire tragedy of the novel.</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ CONNECTIONS TAB ════════════════════════════════════ -->
-  <div class="tab-content" id="tab-connections">
-    <div class="content-wrap">
-
-      <!-- Easter egg -->
-      <div class="easter-egg-bar" onclick="toggleEgg()">
-        <span class="egg-icon">🗝</span>
-        <p class="egg-prompt"><strong>Hidden discovery:</strong> Did you know Dazai finished this novel eighteen days before his death? Click to see what that changes.</p>
-      </div>
-      <div class="egg-reveal" id="egg-reveal">
-        <h4>The last notebook</h4>
-        <p>Osamu Dazai completed <em>No Longer Human</em> in May 1948. On June 13, 1948, he drowned in the Tamagawa Canal in Tokyo with his companion Tomie Yamazaki — a double suicide. The novel was published posthumously that same year.</p>
-        <p style="margin-top:0.75rem;">Knowing this does not make the book more tragic — the tragedy was already total. But it does change what the final lines mean. "He was a good boy" is no longer just Yozo's epitaph. It is Dazai's. The notebooks were always a goodbye.</p>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Films with a similar atmosphere</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Film · Japan · 1985</div>
-            <div class="conn-card-title">Ran</div>
-            <div class="conn-card-sub">Akira Kurosawa</div>
-            <div class="conn-card-why">A man undone by his own psychology — grand, tragic, and formally precise. Kurosawa's darkness shares Dazai's weight.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Film · Italy · 1960</div>
-            <div class="conn-card-title">L'Avventura</div>
-            <div class="conn-card-sub">Michelangelo Antonioni</div>
-            <div class="conn-card-why">Emotional alienation made cinematic. People who cannot connect, drifting through beautiful surfaces. Yozo would recognise everyone in this film.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Film · Japan · 2019</div>
-            <div class="conn-card-title">No Longer Human</div>
-            <div class="conn-card-sub">Mika Ninagawa</div>
-            <div class="conn-card-why">The direct adaptation — stylised and divisive, but worth watching after the book. Ninagawa's visual language is saturated where Dazai's prose is spare.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Books in the same conversation</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Novel · France · 1942</div>
-            <div class="conn-card-title">The Stranger</div>
-            <div class="conn-card-sub">Albert Camus</div>
-            <div class="conn-card-why">Both Meursault and Yozo are alienated from normal human feeling — but where Meursault is cold, Yozo is overwhelmed. Two sides of the same rupture.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Novel · USA · 1963</div>
-            <div class="conn-card-title">The Bell Jar</div>
-            <div class="conn-card-sub">Sylvia Plath</div>
-            <div class="conn-card-why">Plath and Dazai are writing from the same interior — the precise, first-person account of a mind that cannot make peace with the world outside it.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Novel · Japan · 1987</div>
-            <div class="conn-card-title">Norwegian Wood</div>
-            <div class="conn-card-sub">Haruki Murakami</div>
-            <div class="conn-card-why">Murakami acknowledged Dazai's influence extensively. Norwegian Wood is in many ways a reply to No Longer Human — grief processed differently.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Music that matches the mood</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Album · Japan · 1989</div>
-            <div class="conn-card-title">Solo</div>
-            <div class="conn-card-sub">Ryuichi Sakamoto</div>
-            <div class="conn-card-why">Solo piano, deeply interior. The sound of a brilliant mind alone in a room — which is where Yozo always was.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Album · Iceland · 2008</div>
-            <div class="conn-card-title">Með suð í eyrum</div>
-            <div class="conn-card-sub">Sigur Rós</div>
-            <div class="conn-card-why">Vast, wordless feeling. Music that sounds like the emotion Yozo can never express aloud — enormous and fragile at the same time.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Album · Japan · 1973</div>
-            <div class="conn-card-title">Natsuyasumi</div>
-            <div class="conn-card-sub">Haruomi Hosono</div>
-            <div class="conn-card-why">Japanese folk with a melancholy underneath the pleasantness — exactly the surface Yozo performs over the darkness below.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Philosophy nearby</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Philosophy · France</div>
-            <div class="conn-card-title">Existentialism</div>
-            <div class="conn-card-sub">Sartre, Camus, de Beauvoir</div>
-            <div class="conn-card-why">Dazai was writing in the same decade as the existentialists, wrestling with the same question: what do you do when existence itself feels unearned?</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Literary movement · Japan</div>
-            <div class="conn-card-title">Buraiha</div>
-            <div class="conn-card-sub">"The Decadent School"</div>
-            <div class="conn-card-why">Dazai was the central figure of the postwar Japanese literary movement that rejected social norms and embraced self-destruction as aesthetic. No Longer Human is its masterpiece.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <!-- Book nav -->
+  <div class="book-nav">
+    <!-- No previous book specified -->
+    <span></span>
+    <a href="crime-and-punishment.html" class="book-nav-link right">Crime and Punishment →</a>
   </div>
 
   <!-- Footer -->
@@ -877,23 +880,31 @@
   </footer>
 
   <script>
-    // ── Tabs ─────────────────────────────────────────────────
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-        window.scrollTo({ top: document.querySelector('.tabs-bar').offsetTop - 70, behavior: 'smooth' });
+    // Tabs
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
+        el.classList.remove('in-view');
+        setTimeout(() => el.classList.add('in-view'), 60);
       });
-    });
-
-    // ── Easter egg ───────────────────────────────────────────
-    function toggleEgg() {
-      document.getElementById('egg-reveal').classList.toggle('open');
     }
+
+    // Easter eggs
+    function toggleEgg(btn) {
+      const item = btn.closest('.egg-item');
+      item.classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
-
-  
