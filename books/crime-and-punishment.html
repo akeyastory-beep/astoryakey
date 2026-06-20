@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta property="og:title" content="A Story, A Key" />
+<meta property="og:description" content="A literary universe by Aashima." />
+<meta property="og:url" content="https://astoryakey-beep.github.io/astoryakey/" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crime and Punishment — A Story, A Key</title>
-  <meta name="description" content="Aashima's review of Crime and Punishment by Fyodor Dostoyevsky — themes, quotes, characters, film connections." />
+  <meta name="description" content="Aashima's review of Crime and Punishment by Fyodor Dostoevsky." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -36,375 +39,463 @@
 
     /* ── Nav ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 2.5rem;
       background: rgba(247,244,239,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(92,61,46,0.1);
     }
-    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
     .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
-    .nav-back { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
-    .nav-back:hover { color: var(--accent); }
 
     /* ── Hero ── */
     .book-hero {
-      min-height: 70vh;
-      background: var(--ink);
-      display: flex;
-      align-items: flex-end;
       padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .book-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 20% 60%, rgba(92,61,46,0.35) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    /* Big ghost title behind everything */
-    .hero-ghost {
-      position: absolute;
-      right: -2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--ff-display);
-      font-size: clamp(6rem, 16vw, 14rem);
-      font-weight: 600;
-      font-style: italic;
-      color: rgba(255,255,255,0.03);
-      line-height: 1;
-      pointer-events: none;
-      white-space: nowrap;
-      user-select: none;
-    }
-    .book-hero-inner {
       max-width: 1100px;
       margin: 0 auto;
-      width: 100%;
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 3.5rem;
-      align-items: flex-end;
-      position: relative;
-      z-index: 1;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
     }
-    /* Spine-style book cover */
-    .book-cover {
-      width: 160px;
+    .cover-wrap {
+      position: sticky;
+      top: 6rem;
+    }
+    .cover-img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: block;
+    }
+    .cover-fallback {
+      width: 100%;
       aspect-ratio: 2/3;
       background: var(--accent);
       border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 1rem;
-      box-shadow: 8px 8px 32px rgba(0,0,0,0.5);
-      position: relative;
-      flex-shrink: 0;
+      padding: 1.5rem;
     }
-    .book-cover::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 6px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 2px 0 0 2px;
-    }
-    .book-cover::after {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(201,169,110,0.25);
-      border-radius: 1px;
-    }
-    .cover-title {
+    .cover-fallback-text {
       font-family: var(--ff-display);
-      font-size: 0.95rem;
       font-style: italic;
-      font-weight: 400;
-      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
     }
-    .cover-line {
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.6;
-      margin: 0.75rem auto;
+    .cover-rating {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
     }
-    .cover-author {
-      font-size: 0.65rem;
+    .cover-verdict {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(201,169,110,0.7);
-      text-align: center;
+      color: var(--ink3);
     }
 
-    .book-hero-text {}
-    .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 500;
-      margin-bottom: 1rem;
+    /* book meta */
+    .book-meta { padding-top: 1rem; }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
     }
-    .hero-title {
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .book-title-main {
       font-family: var(--ff-display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
       font-weight: 300;
       font-style: italic;
-      color: var(--paper);
       line-height: 1.05;
-      margin-bottom: 0.4rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
     }
-    .hero-author {
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
+    .book-author-main {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.8rem;
+      color: var(--ink3);
+      margin-bottom: 2rem;
     }
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
     }
-    .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
-    .meta-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,244,239,0.35); }
-    .meta-value { font-size: 0.88rem; color: rgba(247,244,239,0.8); }
-    .meta-value.stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.05em; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .hero-tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.8rem;
-      border: 1px solid rgba(201,169,110,0.3);
-      color: rgba(201,169,110,0.7);
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(92,61,46,0.2);
       border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .meta-pill.mood {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .opening-line {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+      max-width: 560px;
     }
 
     /* ── Tabs ── */
-    .tabs-bar {
-      background: var(--white);
-      border-bottom: 1px solid rgba(92,61,46,0.1);
-      position: sticky;
-      top: 64px;
-      z-index: 50;
-    }
-    .tabs-inner {
+    .tabs-section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 2rem 6rem;
+    }
+    .tabs-nav {
       display: flex;
       gap: 0;
+      border-bottom: 1px solid rgba(92,61,46,0.12);
+      margin-bottom: 3rem;
       overflow-x: auto;
       scrollbar-width: none;
     }
-    .tabs-inner::-webkit-scrollbar { display: none; }
+    .tabs-nav::-webkit-scrollbar { display: none; }
     .tab-btn {
-      padding: 1.1rem 1.4rem;
+      padding: 0.85rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
       font-family: var(--ff-body);
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ink3);
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
       cursor: pointer;
       white-space: nowrap;
-      transition: color 0.15s, border-color 0.15s;
+      transition: all 0.2s;
       margin-bottom: -1px;
     }
     .tab-btn:hover { color: var(--ink2); }
-    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
-
-    /* ── Tab content ── */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .content-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3.5rem 2rem 6rem;
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
     }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     /* ── Review tab ── */
-    .review-grid {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 4rem;
-      align-items: start;
-    }
-    .review-body p {
-      font-size: 1.02rem;
+    .review-prose {
+      max-width: 680px;
+      font-size: 1rem;
       color: var(--ink2);
-      line-height: 1.9;
-      margin-bottom: 1.4rem;
+      line-height: 1.95;
     }
-    .review-pull {
-      border-left: 2px solid var(--gold);
-      padding: 0.5rem 0 0.5rem 1.5rem;
-      margin: 2rem 0;
+    .review-prose p { margin-bottom: 1.4rem; }
+    .review-prose p:last-child { margin-bottom: 0; }
+    .pull-quote {
       font-family: var(--ff-display);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-style: italic;
       font-weight: 300;
       color: var(--accent);
       line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 560px;
     }
-    .review-sidebar {}
-    .sidebar-card {
-      background: var(--paper2);
-      border: 1px solid rgba(92,61,46,0.1);
-      border-radius: 2px;
+    .who-should-read {
+      margin-top: 3rem;
       padding: 1.5rem;
-      margin-bottom: 1.25rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      max-width: 560px;
     }
-    .sidebar-card-title {
-      font-size: 0.68rem;
+    .wsr-label {
+      font-size: 0.7rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--ink3);
-      margin-bottom: 1rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
     }
-    .sidebar-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 0.5rem 0; border-bottom: 1px solid rgba(92,61,46,0.08); }
-    .sidebar-stat:last-child { border-bottom: none; }
-    .sidebar-stat-label { font-size: 0.83rem; color: var(--ink2); }
-    .sidebar-stat-value { font-family: var(--ff-display); font-size: 1.05rem; font-style: italic; color: var(--accent); }
-    .aashima-verdict {
-      font-size: 0.88rem;
+    .wsr-text {
+      font-size: 0.92rem;
       color: var(--ink2);
       line-height: 1.75;
-      font-style: italic;
     }
-    .aashima-verdict strong { font-style: normal; font-weight: 500; color: var(--ink); display: block; margin-bottom: 0.4rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--ff-body); }
 
     /* ── Themes tab ── */
-    .themes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+    }
     .theme-card {
       background: var(--white);
       border: 1px solid rgba(92,61,46,0.1);
       border-radius: 2px;
-      padding: 1.75rem;
-      transition: border-color 0.2s;
+      padding: 1.5rem;
     }
-    .theme-card:hover { border-color: rgba(92,61,46,0.3); }
-    .theme-number { font-family: var(--ff-display); font-size: 2.5rem; font-weight: 300; color: rgba(92,61,46,0.12); line-height: 1; margin-bottom: 0.5rem; }
-    .theme-name { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--accent); margin-bottom: 0.75rem; }
-    .theme-body { font-size: 0.88rem; color: var(--ink2); line-height: 1.75; }
-    .theme-quote { margin-top: 1rem; padding: 0.75rem 1rem; background: var(--paper2); border-left: 2px solid var(--gold); font-family: var(--ff-display); font-size: 0.95rem; font-style: italic; color: var(--ink2); line-height: 1.6; }
-
-    /* ── Characters tab ── */
-    .char-list { display: flex; flex-direction: column; gap: 1.25rem; }
-    .char-card {
-      background: var(--white);
-      border: 1px solid rgba(92,61,46,0.1);
-      border-radius: 2px;
-      padding: 1.75rem;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-    .char-initial {
-      width: 60px; height: 60px;
-      background: var(--accent);
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
+    .theme-icon {
       font-family: var(--ff-display);
       font-size: 1.8rem;
       font-style: italic;
-      color: rgba(255,255,255,0.85);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
     }
-    .char-name { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--ink); margin-bottom: 0.2rem; }
-    .char-role { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .char-body { font-size: 0.88rem; color: var(--ink2); line-height: 1.75; }
-    .char-insight { margin-top: 0.75rem; font-size: 0.83rem; color: var(--accent); font-style: italic; }
+    .theme-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
 
     /* ── Quotes tab ── */
-    .quotes-list { display: flex; flex-direction: column; gap: 2rem; max-width: 720px; }
-    .quote-block { position: relative; padding-left: 2rem; }
-    .quote-block::before {
-      content: '\201C';
-      position: absolute;
-      left: 0; top: -0.5rem;
-      font-family: var(--ff-display);
-      font-size: 3.5rem;
-      color: var(--gold);
-      opacity: 0.4;
-      line-height: 1;
+    .quotes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 680px;
+    }
+    .quote-item {
+      position: relative;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      border-left: 3px solid var(--gold);
     }
     .quote-text {
       font-family: var(--ff-display);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-style: italic;
       font-weight: 300;
       color: var(--ink);
-      line-height: 1.7;
-      margin-bottom: 0.6rem;
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
     }
-    .quote-context { font-size: 0.8rem; color: var(--ink3); line-height: 1.6; }
-    .quote-divider { border: none; border-top: 1px solid rgba(92,61,46,0.08); margin-top: 2rem; }
+    .quote-note {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
 
-    /* ── Connections tab ── */
-    .connections-section { margin-bottom: 3rem; }
-    .conn-section-title {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+    /* ── Characters tab ── */
+    .characters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 680px;
+    }
+    .char-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+      align-items: start;
+    }
+    .char-row:first-child { border-top: 1px solid rgba(92,61,46,0.08); }
+    .char-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .char-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(92,61,46,0.1);
     }
-    .conn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .char-desc {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* ── Connections tab ── */
+    .connections-section { max-width: 900px; }
+    .conn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .conn-label:first-child { margin-top: 0; }
+    .conn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
     .conn-card {
       background: var(--white);
       border: 1px solid rgba(92,61,46,0.1);
       border-radius: 2px;
-      padding: 1.25rem;
-      transition: border-color 0.2s;
+      padding: 0.85rem 1.2rem;
+      min-width: 180px;
     }
-    .conn-card:hover { border-color: rgba(92,61,46,0.3); }
-    .conn-card-type { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 0.5rem; }
-    .conn-card-title { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--ink); margin-bottom: 0.3rem; }
-    .conn-card-sub { font-size: 0.75rem; color: var(--ink3); margin-bottom: 0.6rem; }
-    .conn-card-why { font-size: 0.83rem; color: var(--ink2); line-height: 1.65; }
-
-    /* ── Easter egg ── */
-    .easter-egg-bar {
+    .conn-card-title {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .conn-card-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+    .conn-why {
+      font-size: 0.82rem;
+      color: var(--ink2);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+    .music-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
       background: var(--paper2);
-      border: 1px solid rgba(201,169,110,0.3);
       border-radius: 2px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 2.5rem;
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .music-note strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── Easter egg tab ── */
+    .egg-intro {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+    .egg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 680px;
+    }
+    .egg-item {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .egg-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
       cursor: pointer;
-      transition: border-color 0.2s;
+      font-family: var(--ff-body);
     }
-    .easter-egg-bar:hover { border-color: var(--gold); }
-    .egg-icon { font-size: 1.2rem; flex-shrink: 0; }
-    .egg-prompt { font-size: 0.88rem; color: var(--ink2); }
-    .egg-prompt strong { color: var(--accent); font-weight: 500; }
-    .egg-reveal { display: none; margin-top: 1rem; padding: 1.25rem; background: var(--white); border: 1px solid rgba(92,61,46,0.1); border-radius: 2px; font-size: 0.9rem; color: var(--ink2); line-height: 1.75; }
-    .egg-reveal.open { display: block; }
-    .egg-reveal h4 { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--accent); margin-bottom: 0.5rem; }
+    .egg-question {
+      font-size: 0.9rem;
+      color: var(--paper);
+      line-height: 1.5;
+    }
+    .egg-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .egg-item.open .egg-icon { transform: rotate(45deg); }
+    .egg-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .egg-item.open .egg-body { max-height: 400px; }
+    .egg-answer {
+      padding: 0 1.5rem 1.4rem;
+      font-size: 0.88rem;
+      color: rgba(247,244,239,0.7);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1rem;
+      margin-top: 0;
+    }
+
+    /* ── Nav between books ── */
+    .book-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(92,61,46,0.1);
+    }
+    .book-nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .book-nav-link:hover { opacity: 0.7; }
+    .book-nav-link.right { text-align: right; }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
 
     /* ── Footer ── */
     footer { background: var(--ink); color: var(--paper); padding: 3rem 2rem; text-align: center; }
@@ -416,13 +507,12 @@
     @media (max-width: 768px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
-      .book-hero { padding: 7rem 1.25rem 2.5rem; }
-      .book-hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-      .book-cover { width: 110px; }
-      .hero-ghost { display: none; }
-      .review-grid { grid-template-columns: 1fr; }
-      .content-wrap { padding: 2rem 1.25rem 4rem; }
-      .char-card { grid-template-columns: 1fr; }
+      .book-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.25rem 3rem; }
+      .cover-wrap { position: static; max-width: 200px; }
+      .tabs-section { padding: 0 1.25rem 4rem; }
+      .tab-btn { padding: 0.75rem 1rem; font-size: 0.75rem; }
+      .char-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .book-nav { padding: 2rem 1.25rem 4rem; }
     }
   </style>
 </head>
@@ -434,373 +524,365 @@
     <ul class="nav-links">
       <li><a href="../index.html#feel">Feel Something</a></li>
       <li><a href="../books.html">Books</a></li>
+      <li><a href="../dna.html">Literary DNA</a></li>
       <li><a href="../about.html">About</a></li>
     </ul>
-    <a href="../books.html" class="nav-back">← All books</a>
   </nav>
 
-  <!-- Hero -->
-  <header class="book-hero">
-    <div class="hero-ghost">Human</div>
-    <div class="book-hero-inner">
-      <div class="book-cover">
-  <img 
-    src="https://covers.openlibrary.org/b/isbn/9780140449136-L.jpg"
-    alt="Crime and Punishment by Dostoevsky"
-    style="width:100%; max-width:260px; border-radius:2px; box-shadow: 8px 8px 30px rgba(0,0,0,0.2);"
-    onerror="this.style.display='none'"
-  />
-</div>
-      <div class="book-hero-text">
-        <p class="hero-eyebrow">Book review</p>
-        <h1 class="hero-title">Crime and Punishment</h1>
-        <p class="hero-author">Fyodor  Dostoyevsky · Russia  · 1866</p>
-        <div class="hero-meta">
-          <div class="meta-item">
-            <span class="meta-label">Aashima's rating</span>
-            <span class="meta-value stars">★★★★★</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Mood</span>
-            <span class="meta-value">Dark · Psychological</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Read in</span>
-            <span class="meta-value">2024</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Pages</span>
-            <span class="meta-value">550</span>
-          </div>
-        </div>
-        <div class="hero-tags">
-          <span class="hero-tag"> Russian Literature</span>
-          <span class="hero-tag">Psychological</span>
-          <span class="hero-tag">Crime Fiction</span>
-          <span class="hero-tag">Moral Philosophy</span>
-          <span class="hero-tag">Dostoyevsky</span>
-        </div>
-      </div>
-    </div>
-  </header>
+  <!-- ── Hero ── -->
+  <div class="book-hero">
 
-  <!-- Tabs -->
-  <div class="tabs-bar">
-    <div class="tabs-inner">
-      <button class="tab-btn active" data-tab="review">Review</button>
-      <button class="tab-btn" data-tab="themes">Themes</button>
-      <button class="tab-btn" data-tab="characters">Characters</button>
-      <button class="tab-btn" data-tab="quotes">Quotes</button>
-      <button class="tab-btn" data-tab="connections">Connections</button>
+    <!-- Cover -->
+    <div class="cover-wrap reveal">
+      <img
+        class="cover-img"
+        src="https://covers.openlibrary.org/b/isbn/9780140449136-L.jpg"
+        alt="Crime and Punishment by Fyodor Dostoevsky"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="cover-fallback" style="display:none;">
+        <div class="cover-fallback-text">Crime and Punishment<br><br>Fyodor Dostoevsky</div>
+      </div>
+
+      <div class="cover-rating">★★★★☆</div>
+      <div class="cover-verdict">Haunting</div>
+    </div>
+
+    <!-- Meta -->
+    <div class="book-meta reveal">
+      <p class="breadcrumb">
+        <a href="../books.html">← All books</a>
+      </p>
+
+      <h1 class="book-title-main">Crime and Punishment</h1>
+      <p class="book-author-main">Fyodor Dostoevsky · 1866</p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">Russia</span>
+        <span class="meta-pill">Psychological Fiction</span>
+        <span class="meta-pill">Philosophical Novel</span>
+        <span class="meta-pill">720 pages</span>
+        <span class="meta-pill mood">existential</span>
+      </div>
+
+      <p class="opening-line">
+        A man commits a murder to prove he is above the law — and spends the rest of the novel being destroyed by the proof that he is not.
+      </p>
     </div>
   </div>
 
-  <!-- ══ REVIEW TAB ══════════════════════════════════════════ -->
-  <div class="tab-content active" id="tab-review">
-    <div class="content-wrap">
-      <div class="review-grid">
-        <div class="review-body">
-          <p>
-           There are stories that entertain you, and then there are stories that drag you into the messiest, darkest corners of the human mind and refuse to let you look away. Crime and Punishment is the second kind. Dostoyevsky takes a single act, a murder Raskolnikov has convinced himself is philosophically justified, and then spends 550 pages dismantling every wall the man builds around it.
-          </p>
-          <p>
-            The novel follows Raskolnikov, a broke, feverish former student in St. Petersburg who believes himself to be one of the rare people history permits to transgress ordinary moral law. He kills a pawnbroker. And then the real story begins, not the crime, but what the crime does to him. His mind turns on itself. The guilt he was certain he wouldn't feel arrives anyway, quietly at first and then all at once.
-          </p>
+  <!-- ── Tabs ── -->
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('review', this)">Review</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Themes</button>
+      <button class="tab-btn" onclick="switchTab('quotes', this)">Quotes</button>
+      <button class="tab-btn" onclick="switchTab('characters', this)">Characters</button>
+      <button class="tab-btn" onclick="switchTab('connections', this)">Connections</button>
+      <button class="tab-btn" onclick="switchTab('easter', this)">Hidden depths</button>
+    </div>
 
-          <div class="review-pull">
-            "Pain and suffering are always inevitable for a large intelligence and a deep heart."
+    <!-- ── TAB 1: Review ── -->
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-prose reveal">
+
+        <p>
+          There are stories that shake you, and then there are stories that drag you mercilessly into the messy nooks and corners of the human mind. Crime and Punishment is such a masterpiece. It's dark, intense, and complex — and to its great degree with regard to guilt, pride, and morality, it stands out as one of those unforgettable pieces of 19th-century Russian literature. Reading it feels less like following a plot and more like being slowly lowered into someone else's fever dream and asked to find your way out.
+        </p>
+
+        <p class="pull-quote">
+          He draws us to Raskolnikov while making us abhor everything he does — and that tension, never resolved, is the whole point.
+        </p>
+
+        <p>
+          The novel revolves around Raskolnikov, a bruised former student in St. Petersburg who, believing himself to be extraordinary, commits a calculated murder — only for his inner world to collapse the moment it's done. What follows is not a whodunit but something far stranger: a psychological game of cat and mouse between Raskolnikov and detective Porfiry, played out largely inside Raskolnikov's own disintegrating mind. Dostoevsky understood, long before psychology had the language for it, that guilt does not wait for punishment. It becomes the punishment.
+        </p>
+
+        <p>
+          I came to this book expecting an intelligent criminal with a clean philosophy. I found something more unsettling: a man whose motivations are layered, contradictory, and disturbingly human. The claustrophobia of St. Petersburg — its cramped streets, suffocating poverty, the yellowish light that seems to press down on every scene — perfectly mirrors Raskolnikov's interior state. Dostoevsky doesn't describe a city so much as project a psyche onto one. The setting and the soul become inseparable.
+        </p>
+
+        <p>
+          What stays with me is not the murder, but Sonya reading aloud the story of Lazarus. A broken man listening to a broken woman read about resurrection — and in that moment, Dostoevsky suggesting, quietly and without insistence, that something like redemption might still be possible. It's the most unexpected tenderness in a book otherwise devoted to despair.
+        </p>
+
+      </div>
+
+      <!-- Who should read this -->
+      <div class="who-should-read reveal">
+        <p class="wsr-label">Who should read this</p>
+        <p class="wsr-text">
+          Read this if you are drawn to anti-heroes who aren't glamorous but genuinely troubled, if moral philosophy feels more urgent than plot momentum, or if you've ever caught yourself rationalising something you knew was wrong and wondered how far that logic could go. Do not read this if you need your fiction to move quickly, if darkness without guaranteed resolution exhausts you, or if you require your protagonist to be at least minimally sympathetic in the conventional sense. This is not a comfortable book. It is a necessary one.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── TAB 2: Themes ── -->
+    <div class="tab-panel" id="tab-themes">
+      <div class="themes-grid reveal">
+
+        <div class="theme-card">
+          <div class="theme-icon">I</div>
+          <div class="theme-name">Guilt &amp; Conscience</div>
+          <div class="theme-desc">The novel's central argument is that conscience is inescapable — not as a social construct, but as something biologically and spiritually wired into us. Raskolnikov's crime is solved not by detective work but by his own inability to live with himself.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">II</div>
+          <div class="theme-name">The Extraordinary Man Theory</div>
+          <div class="theme-desc">Raskolnikov believes that truly great people — Napoleon being his model — have the right to transgress moral law in service of a higher purpose. The entire novel is Dostoevsky's refutation of this idea, engineered from the inside.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">III</div>
+          <div class="theme-name">Poverty &amp; Social Desperation</div>
+          <div class="theme-desc">19th-century St. Petersburg is not backdrop but cause. The grinding poverty that surrounds Raskolnikov — Marmeladov's alcoholism, Sonya's forced prostitution, the Raskolnikov family's sacrifice — makes extreme thinking feel like a rational response to an irrational world.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">IV</div>
+          <div class="theme-name">Redemption through Suffering</div>
+          <div class="theme-desc">Dostoevsky was a devout Christian, and his belief that suffering is the path to spiritual transformation runs underneath everything. Sonya embodies this — she has suffered the most and is the most spiritually whole. Raskolnikov's confession and Siberian exile is not punishment so much as painful medicine.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">V</div>
+          <div class="theme-name">Identity &amp; Duality</div>
+          <div class="theme-desc">Raskolnikov's very name comes from the Russian word for "schism." He is split between intellectual coldness and deep emotional sensitivity, between nihilism and the desperate desire to be loved. Every major character reflects a different possible version of him — who he might become depending on which half wins.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB 3: Quotes ── -->
+    <div class="tab-panel" id="tab-quotes">
+      <div class="quotes-list reveal">
+
+        <div class="quote-item">
+          <p class="quote-text">"Pain and suffering are always inevitable for a large intelligence and a deep heart."</p>
+          <p class="quote-note">Why this line: This is Dostoevsky's thesis hidden in plain sight — and also his compassion for Raskolnikov. The most troubled characters are not broken because they are weak, but because they feel and think too much. It reframes the entire novel as a tragedy of excess sensitivity, not moral depravity.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"Taking a new step, uttering a new word, is what people fear most."</p>
+          <p class="quote-note">Why this line: Raskolnikov uses this to justify crossing the moral threshold, but it cuts both ways — it also describes his own paralysis, and ours. This is the line that makes you realise Dostoevsky is not just writing about murder. He's writing about every moment we talk ourselves into or out of something we know will change us.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"The man who has a conscience suffers whilst acknowledging his crime. That is his punishment."</p>
+          <p class="quote-note">Why this line: This is the quiet answer the whole novel has been building toward. Legal punishment is almost beside the point. The real sentence is self-knowledge — living inside the mind of someone who knows exactly what they have done. Raskolnikov is convicted long before Porfiry closes in.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"It takes something more than intelligence to act intelligently."</p>
+          <p class="quote-note">Why this line: The sharpest demolition of Raskolnikov's entire philosophy in a single sentence. His theory depends on pure rationality, but humans are not rational engines. The gap between knowing the right thing and being able to do it is where the whole novel lives.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB 4: Characters ── -->
+    <div class="tab-panel" id="tab-characters">
+      <div class="characters-list reveal">
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Raskolnikov</p>
+            <p class="char-role">Protagonist</p>
           </div>
-
-          <p>
-            What makes Dostoyevsky so suffocating in the best way is that Raskolnikov is not a monster. He is brilliant, proud, and completely undone by the gap between who he thought he was and who he turns out to be. That is the knife the book twists slowly. I went in expecting a thriller. I got a mirror.
-          </p>
-          <p>
-          Dostoyevsky wrote this while drowning in debt, gambling losses, and a deadline he had signed away under penalty of losing all future work. The pressure is somehow visible in the prose, there is a feverishness to it that never lets up. This is not a comfortable book. It does not offer you relief. It offers you Raskolnikov, which is a different thing entirely.
-          </p>
-          <p>
-          Read it if you want to understand what guilt actually feels like from the inside. Read it if you are interested in what happens when a brilliant person is completely wrong about themselves. Read it slowly. It rewards patience in a way very few novels do.
+          <p class="char-desc">
+            A man at war with himself, split (his name literally means schism) between grandiose intellectual coldness and a desperate, buried need for human connection. He doesn't commit murder out of greed or hatred but as a philosophical experiment — and then cannot survive the results. His tragedy is not that he is evil, but that he is intelligent enough to construct a justification for evil and not quite inhuman enough to live by it.
           </p>
         </div>
 
-        <div class="review-sidebar">
-          <div class="sidebar-card">
-            <p class="sidebar-card-title">At a glance</p>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Country</span><span class="sidebar-stat-value">Russia</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Year</span><span class="sidebar-stat-value">1866</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Pages</span><span class="sidebar-stat-value">~550</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Genre</span><span class="sidebar-stat-value"> Psychological fiction</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Difficulty</span><span class="sidebar-stat-value">Challenging</span></div>
+        <div class="char-row">
+          <div>
+            <p class="char-name">Sonya Marmeladova</p>
+            <p class="char-role">Moral Compass</p>
           </div>
+          <p class="char-desc">
+            The most spiritually luminous character in the book, and also the one who has suffered most. Sonya sells herself to keep her family alive and yet holds onto her faith without performance or self-pity. She is not sentimental — she is iron. In Dostoevsky's moral universe, she represents the only path Raskolnikov has toward something like repair. Her strength comes not despite her suffering but through it.
+          </p>
+        </div>
 
-          <div class="sidebar-card">
-            <p class="sidebar-card-title">Aashima's verdict</p>
-            <p class="aashima-verdict">
-              <strong>Why I loved it</strong>
-              Dostoyevsky writes psychological collapse better than anyone. Raskolnikov's guilt doesn't arrive dramatically, it seeps. By the end I was exhausted in the way only truly great books manage. This one got under my skin and stayed there.
+        <div class="char-row">
+          <div>
+            <p class="char-name">Porfiry Petrovich</p>
+            <p class="char-role">Investigator</p>
+          </div>
+          <p class="char-desc">
+            The detective who never raises his voice and never needs to. Porfiry is one of literature's great antagonists because he barely acts like one — he is almost kind, almost sympathetic, and completely certain. He understands Raskolnikov's psychology with eerie precision and uses that understanding not to trap him but to guide him toward the only exit. He is less an enemy than a strange, ironic physician.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Razumikhin</p>
+            <p class="char-role">Foil &amp; Friend</p>
+          </div>
+          <p class="char-desc">
+            Everything Raskolnikov could have been if he'd turned his intelligence outward rather than inward. Razumikhin is poor, clever, and idealistic — but he works, he laughs, he loves people practically and without theory. His presence is Dostoevsky's quiet suggestion that the real difference between someone who survives hardship and someone who implodes under it is not intelligence but warmth.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Svidrigailov</p>
+            <p class="char-role">Dark Mirror</p>
+          </div>
+          <p class="char-desc">
+            The most disturbing character in the novel precisely because he is what Raskolnikov's philosophy, fully lived out, actually looks like. Svidrigailov has no conscience-induced suffering — he has crossed every line and feels nothing afterward. And yet he is not triumphant. He is hollow. His fate is the novel's most chilling argument against the extraordinary man theory: this is where that road ends.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB 5: Connections ── -->
+    <div class="tab-panel" id="tab-connections">
+      <div class="connections-section reveal">
+
+        <!-- Films -->
+        <p class="conn-label">If you loved this book, watch…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Dark Knight</p>
+            <p class="conn-card-sub">Christopher Nolan · 2008</p>
+            <p class="conn-why">Bruce Wayne and the Joker enact the same philosophical debate as Raskolnikov — can one person's extraordinary will place them above ordinary moral constraints? — but staged as spectacle rather than interiority.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Pickpocket</p>
+            <p class="conn-card-sub">Robert Bresson · 1959</p>
+            <p class="conn-why">Bresson's protagonist holds the same "superior man" theory as Raskolnikov and tests it through petty crime rather than murder — the film is essentially a 75-minute distillation of the novel's core argument, stripped to bone.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Rope</p>
+            <p class="conn-card-sub">Alfred Hitchcock · 1948</p>
+            <p class="conn-why">Two young men murder a classmate to prove they are intellectually superior beings unbound by common morality — and then host a dinner party over the body. Hitchcock's cruelest and most philosophical film.</p>
+          </div>
+        </div>
+
+        <!-- Books -->
+        <p class="conn-label">Read next…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Brothers Karamazov</p>
+            <p class="conn-card-sub">Fyodor Dostoevsky</p>
+            <p class="conn-why">Dostoevsky's final and greatest novel asks the same questions — faith, guilt, the existence of God — but with four times the characters and a lifetime more wisdom. The natural continuation of everything Crime and Punishment begins.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">No Longer Human</p>
+            <p class="conn-card-sub">Osamu Dazai</p>
+            <p class="conn-why">A Japanese Raskolnikov who doesn't commit murder but is equally convinced of his own alienation from humanity — written with the same claustrophobic interiority and the same sense that the narrator is both unreliable and desperately sincere.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">The Stranger</p>
+            <p class="conn-card-sub">Albert Camus</p>
+            <p class="conn-why">Meursault is what Raskolnikov fears he might be — a man who commits a killing and genuinely feels nothing. Reading the two together illuminates exactly what Dostoevsky believed and what Camus was arguing against.</p>
+          </div>
+        </div>
+
+        <!-- Music -->
+        <p class="conn-label">Listen while you read…</p>
+        <div class="music-note">
+          <strong>Playlist mood</strong>
+          Heavy, minor-key, claustrophobic. The kind of music that sounds like it was composed in a room too small for the feelings inside it. Try Shostakovich's String Quartet No. 8 — written in three days, reportedly about his own guilt and despair. Add Schnittke's Concerto Grosso No. 1, Arvo Pärt's Spiegel im Spiegel for the Sonya scenes, and the score from Andrei Tarkovsky's Stalker when Raskolnikov's fever peaks.
+        </div>
+
+        <!-- Philosophy -->
+        <p class="conn-label">If this book made you think, explore…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Nietzsche — Übermensch</p>
+            <p class="conn-card-sub">Philosophy · Ethics</p>
+            <p class="conn-why">Raskolnikov's "extraordinary man" theory is a proto-Nietzschean idea, and reading Beyond Good and Evil alongside the novel reveals that Dostoevsky was demolishing the argument before Nietzsche had fully made it.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Freud — Unconscious Guilt</p>
+            <p class="conn-card-sub">Psychology · Psychoanalysis</p>
+            <p class="conn-why">Freud reportedly said that Dostoevsky understood the unconscious better than any psychologist. Raskolnikov's self-sabotage — returning to the scene, nearly confessing to strangers — reads as a textbook case of the mind seeking punishment it consciously refuses to seek.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB 6: Hidden depths (Easter eggs) ── -->
+    <div class="tab-panel" id="tab-easter">
+      <p class="egg-intro reveal">
+        Things in this book that most people miss on a first read. Click to reveal.
+      </p>
+      <div class="egg-list reveal">
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Why does Raskolnikov keep almost confessing — to strangers, to people who have no power over him?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              These moments aren't slips or stupidity — they're Dostoevsky dramatising a Freudian concept decades before Freud named it: the unconscious drive toward punishment. Raskolnikov's rational mind refuses to confess, but a deeper part of him cannot bear the separation from humanity that his crime has created. Every near-confession is his soul trying to return to the human community he exiled himself from. Porfiry understands this, which is why he doesn't rush to arrest him — he simply waits for Raskolnikov's own psychology to do the work.
             </p>
           </div>
+        </div>
 
-          <div class="sidebar-card">
-            <p class="sidebar-card-title">Read if you liked</p>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">The Stranger</span><span class="sidebar-stat-value">Camus</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">The Bell Jar</span><span class="sidebar-stat-value">Plath</span></div>
-            <div class="sidebar-stat"><span class="sidebar-stat-label">Norwegian Wood</span><span class="sidebar-stat-value">Murakami</span></div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">What is the significance of the Lazarus passage Sonya reads aloud?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              When Raskolnikov asks Sonya to read from the New Testament, she reads the story of Lazarus — the man raised from the dead by Christ. This is not an accident. Dostoevsky is signalling that Raskolnikov, spiritually dead since the murder, has the possibility of resurrection — not literally, but through confession and suffering. The scene is also quietly radical: a prostitute reading scripture to an intellectual murderer. In Dostoevsky's world, grace travels through the humblest vessels.
+            </p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ══ THEMES TAB ══════════════════════════════════════════ -->
-  <div class="tab-content" id="tab-themes">
-    <div class="content-wrap">
-      <div class="themes-grid">
-
-        <div class="theme-card">
-          <div class="theme-number">01</div>
-          <div class="theme-name">The Superman Theory</div>
-          <div class="theme-body">Raskolnikov believes certain extraordinary people exist above ordinary moral law  that history's great men commit acts others cannot and are justified by history. The entire novel is Dostoyevsky's methodical demolition of this idea, not through argument but through watching Raskolnikov live with what it costs him.</div>
-          <div class="theme-quote">"Extraordinary men have the right to commit crimes and to transgress the law in various ways, simply because they are extraordinary."</div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Svidrigailov and Raskolnikov never have a direct confrontation — why not?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Because they don't need to. Svidrigailov is what Raskolnikov would become if he fully committed to his own philosophy and felt no remorse. He is Raskolnikov's potential future, not his antagonist. Their scenes together are deliberately uncanny — Raskolnikov recognises something in Svidrigailov that he cannot name but fears. When Svidrigailov kills himself, it's not just his death: it's Dostoevsky showing Raskolnikov (and us) where the "extraordinary man" logic terminates. The road ends not in triumph but in a grey morning, a pistol, and nothing left to feel.
+            </p>
+          </div>
         </div>
 
-        <div class="theme-card">
-          <div class="theme-number">02</div>
-          <div class="theme-name">Guilt as a physical force</div>
-          <div class="theme-body">Dostoyevsky treats guilt not as an emotion but as a bodily experience. Raskolnikov sweats, faints, hallucinates, falls into fevers. The crime lives in his body before it lives in his confession. This is the novel's most modern psychological insight.</div>
-          <div class="theme-quote">"He was in a terrible state — dishevelled, dirty, he had not undressed or washed for several days."</div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The name "Raskolnikov" is doing a lot of work — what exactly?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              "Raskolnikov" derives from the Russian "raskol," meaning schism or split. Dostoevsky named his protagonist after the concept of being divided — against himself, against society, against God. But "raskol" also specifically refers to the 17th-century Russian Orthodox schism, when the Old Believers broke from the official church. This adds another layer: Raskolnikov is not just personally split but represents a broader cultural rupture between the old Russian spiritual tradition and the new Western rationalism flooding into 19th-century Russia. He is a walking symbol of a civilisational crisis.
+            </p>
+          </div>
         </div>
 
-        <div class="theme-card">
-          <div class="theme-number">03</div>
-          <div class="theme-name">Redemption through suffering</div>
-          <div class="theme-body">Sonya represents the novel's answer, that suffering accepted honestly, rather than rationalised away, is what leads a person back to themselves. Dostoyevsky is not being cruel. He genuinely believed this. Whether you agree with him or not, the argument is devastating.</div>
-          <div class="theme-quote">"Go at once, this very minute, stand at the cross-roads, bow down, first kiss the earth which you have defiled, and then bow down to all the world and say to all men aloud, 'I am a murderer!' Then God will send you life again."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">04</div>
-          <div class="theme-name"> Poverty and the city</div>
-          <div class="theme-body">St. Petersburg is not a backdrop. It is a pressure. The cramped apartments, the heat, the desperate people on every corner, Dostoyevsky uses the city to make Raskolnikov's mental state feel inevitable. This is what extreme poverty does to a brilliant mind with no outlet.</div>
-          <div class="theme-quote">"There was a desperate claustrophobia in those streets — the stench, the crowds, the lime dust, the scaffolding, the bricks. That particular Petersburg stench combined with the heat was enough to make even a man who was used to it feel sick."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">05</div>
-          <div class="theme-name">Pride as self-destruction</div>
-          <div class="theme-body">Raskolnikov's real enemy is not the detective Porfiry. It is his own pride. He cannot confess because confession requires admitting he was wrong, and being wrong means the theory collapses, and the theory is all he has. Dostoyevsky understood that pride is just fear with better posture.</div>
-          <div class="theme-quote">"I wanted to become Napoleon — that is why I killed her."</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-number">06</div>
-          <div class="theme-name">Faith vs Rationalism</div>
-          <div class="theme-body">The novel is in constant argument with itself, Raskolnikov's cold utilitarian logic on one side, Sonya's irrational, unearnable faith on the other. Dostoyevsky doesn't pretend this is simple. But he knows which one he thinks keeps a person human.</div>
-          <div class="theme-quote">"And what should I be without God?" she whispered rapidly, intensely, glancing at him with sudden flashing eyes, and squeezing his hand tightly. (spoken by Sonya, drawn from Dostoyevsky's own notebooks for the novel)"</div>
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Why is the novel set during a St. Petersburg summer — and why does that matter?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Most readers expect Russian literature to be cold and wintry. Dostoevsky deliberately sets the novel during the city's brutal summer heat, which in the 1860s turned St. Petersburg's cramped tenements into something close to an oven. The heat is not atmosphere — it's a psychological pressure cooker. It makes the city physically unbearable, amplifies illness, despair, and mania, and makes Raskolnikov's fevered mental state feel physically caused as much as spiritually. It also strips away the romantic associations of Russian snow and replaces them with something rank, yellow, and suffocating.
+            </p>
+          </div>
         </div>
 
       </div>
     </div>
-  </div>
 
-  <!-- ══ CHARACTERS TAB ══════════════════════════════════════ -->
-                                                                                                                                                                                                                          <div <div class="tab-content" id="tab-characters">
-  <div class="content-wrap">
-    <div class="char-list">
+  </div><!-- end tabs -->
 
-      <div class="char-card">
-        <div>
-          <div class="char-initial">R</div>
-        </div>
-        <div>
-          <div class="char-name">Raskolnikov</div>
-          <div class="char-role">Protagonist</div>
-          <div class="char-body">Brilliant, feverish, and catastrophically proud. Raskolnikov is one of literature's great anti-heroes because Dostoyevsky refuses to make him simply evil or simply sympathetic. He is both, in shifting proportions, and the reader is never allowed to settle into a comfortable judgment.</div>
-          <div class="char-insight">→ Aashima's note: Raskolnikov reminded me that intelligence without humility is just a more elaborate way to be lost.</div>
-        </div>
-      </div>
-
-      <div class="char-card">
-        <div>
-          <div class="char-initial" style="background:var(--ink3);">S</div>
-        </div>
-        <div>
-          <div class="char-name">Sonya</div>
-          <div class="char-role">The moral centre</div>
-          <div class="char-body">A young woman forced into an impossible life who has kept her faith intact anyway. She is the novel's answer to everything Raskolnikov argues. Not because she wins the argument but because she doesn't need to — she just continues to exist, honestly, in front of him.</div>
-          <div class="char-insight">→ Aashima's note: Sonya could have been written as a symbol. Dostoyevsky wrote her as a person. That's the difference.</div>
-        </div>
-      </div>
-
-      <div class="char-card">
-        <div>
-          <div class="char-initial" style="background:#7b8fa1;">P</div>
-        </div>
-        <div>
-          <div class="char-name">Porfiry Petrovich</div>
-          <div class="char-role">The detective</div>
-          <div class="char-body">The most interesting cat-and-mouse in 19th century fiction. Porfiry knows. Raskolnikov knows he knows. The game is not about evidence — it is about who breaks first. Porfiry is brilliant and oddly kind, which makes him more frightening.</div>
-          <div class="char-insight">→ Aashima's note: Porfiry wins by being patient. That is somehow the most unsettling thing about him.</div>
-        </div>
-      </div>
-
-      <div class="char-card">
-        <div>
-          <div class="char-initial" style="background:#9b7e6a;">D</div>
-        </div>
-        <div>
-          <div class="char-name">Dunya</div>
-          <div class="char-role">Raskolnikov's sister</div>
-          <div class="char-body">Strong, clear-eyed, and one of the most underrated characters in the novel. She loves her brother without being destroyed by him, which is its own kind of extraordinary. Her subplot mirrors the main story's themes of dignity under pressure.</div>
-          <div class="char-insight">→ Aashima's note: Dunya is who Raskolnikov could have been if the pride hadn't curdled into theory.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-  <!-- ══ QUOTES TAB ═════════════════════════════════════════ -->
-  <div class="tab-content" id="tab-quotes">
-    <div class="content-wrap">
-      <div class="quotes-list">
-
-        <div class="quote-block">
-          <div class="quote-text">Pain and suffering are always inevitable for a large intelligence and a deep heart.</div>
-          <div class="quote-context">The line that explains Raskolnikov before you even meet him.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">Power is given only to those who dare to lower themselves and pick it up. Only one thing matters, one thing; to be able to dare.</div>
-          <div class="quote-context">Raskolnikov's philosophy, stated plainly. Everything that follows is its undoing.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">The darker the night, the brighter the stars. The deeper the grief, the closer is God.</div>
-          <div class="quote-context">Dostoyevsky's own belief, speaking through the novel's texture.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">To go wrong in one's own way is better than to go right in someone else's.</div>
-          <div class="quote-context">The line that sounds like freedom and is actually the trap.</div>
-          <hr class="quote-divider" />
-        </div>
-
-        <div class="quote-block">
-          <div class="quote-text">I did not bow down to you, I bowed down to all the suffering of humanity</div>
-          <div class="quote-context">Raskolnikov to Sonya. The moment the wall begins to crack.</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ CONNECTIONS TAB ════════════════════════════════════ -->
-  <div class="tab-content" id="tab-connections">
-    <div class="content-wrap">
-
-      <!-- Easter egg -->
-      <div class="easter-egg-bar" onclick="toggleEgg()">
-        <span class="egg-icon">🗝</span>
-        <p class="egg-prompt"><strong>Hidden discovery:</strong> Did you know Dostoyevsky was minutes away from execution before he wrote this novel.? Click to see what that changes.</p>
-      </div>
-      <div class="egg-reveal" id="egg-reveal">
-        <h4>Before the novel, there was a firing squad</h4>
-        <p>Fyodor  Dostoyevsky was arrested in 1849 for involvement in a socialist reading group. He was sentenced to death, taken to the execution ground, and had already watched two men before him be prepared for shooting, before a rider arrived with a last-minute commutation from the Tsar. He spent four years in a Siberian labour camp instead.</p>
-        <p style="margin-top:0.75rem;">He never forgot what it felt like to stand in front of death and then be handed back his life. Raskolnikov's psychological obsession with transgression, punishment, and whether a person can earn their own survival, that is not invented. Dostoyevsky already knew what it felt like to be judged, condemned, and given an unexpected second chance. He spent the rest of his life writing about it.</p>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Films with a similar atmosphere</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Film · France · 1959</div>
-            <div class="conn-card-title">Pickpocket </div>
-            <div class="conn-card-sub">Robert Bresson</div>
-            <div class="conn-card-why">A man who believes he is intellectually above the law, told in cold, precise close-ups. Bresson never explains or moralises. The closest a film has ever come to Raskolnikov's interior logic.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Film · USA · 1935</div>
-            <div class="conn-card-title">Crime and Punishment</div>
-            <div class="conn-card-sub">Josef von Sternberg</div>
-            <div class="conn-card-why">The earliest major adaptation. Peter Lorre as Raskolnikov is genuinely unsettling, all nervous energy and barely contained collapse. Worth watching just for his performance.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Film · UK · 2005</div>
-            <div class="conn-card-title">Match Point </div>
-            <div class="conn-card-sub">Woody Allen</div>
-            <div class="conn-card-why">A man commits a crime he believes he can outthink his way through. The guilt arrives differently than he expected. Allen has said Dostoyevsky was the direct inspiration.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Books in the same conversation</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Novel · France · 1942</div>
-            <div class="conn-card-title">The Stranger</div>
-            <div class="conn-card-sub">Albert Camus</div>
-            <div class="conn-card-why">Both Meursault and Raskolnikov are alienated from normal human feeling, but where Meursault is cold, Yozo is overwhelmed. Two sides of the same rupture.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Novel · USA · 1963</div>
-            <div class="conn-card-title">The Bell Jar</div>
-            <div class="conn-card-sub">Sylvia Plath</div>
-            <div class="conn-card-why">Plath and Dostoyevsky are writing from the same interior — the precise, first-person account of a mind that cannot make peace with the world outside it.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Novel · Russia · 1864</div>
-            <div class="conn-card-title">Notes from Underground</div>
-            <div class="conn-card-sub">Fyodor Dostoyevsky</div>
-            <div class="conn-card-why">Written just before Crime and Punishment. The Underground Man is Raskolnikov before the murder, all the pride and the theory, none of the consequences yet. Read this first if you want to understand where Raskolnikov comes from</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Music that matches the mood</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Album · Russia · 1937</div>
-            <div class="conn-card-title">Symphony No. 5 </div>
-            <div class="conn-card-sub">Dmitri Shostakovich </div>
-            <div class="conn-card-why">Written under political pressure, performed under surveillance. There is something in it that sounds exactly like Raskolnikov's mind, brilliant, controlled on the surface, barely holding together underneath.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Album · USA · 1975</div>
-            <div class="conn-card-title">The Köln Concert</div>
-            <div class="conn-card-sub">Keith Jarrett</div>
-            <div class="conn-card-why">Improvised piano, live, in one sitting. It moves between unbearable tension and something close to grace. The same arc the novel takes, just without words.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-type">Album · UK · 2011</div>
-            <div class="conn-card-title">A Winged Victory for the Sullen</div>
-            <div class="conn-card-sub">Erased Tapes</div>
-            <div class="conn-card-why">Slow, heavy, beautiful ambient music that feels like guilt that has been sitting in a room for a long time. Perfect for the chapters where Raskolnikov is just lying in his apartment falling apart.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="connections-section">
-        <p class="conn-section-title">Philosophy nearby</p>
-        <div class="conn-grid">
-          <div class="conn-card">
-            <div class="conn-card-type">Philosophy · 19th century Germany</div>
-            <div class="conn-card-title">Nihilism </div>
-            <div class="conn-card-sub">Nietzsche</div>
-            <div class="conn-card-why">Raskolnikov's superman theory is a dark cousin of Nietzschean philosophy, the idea that extraordinary individuals exist beyond ordinary moral constraints. Dostoyevsky was writing a rebuttal before Nietzsche had even finished the argument.</div>
-          </div>
-          <div class="conn-card">
-            <div class="conn-card-title">Russian Orthodox Christianity</div>
-            <div class="conn-card-why">Not an academic philosophy but the living worldview underneath the novel. Sonya's faith, the idea of redemption through suffering, the possibility of forgiveness,  none of it makes sense without understanding what Dostoyevsky actually believed. The novel is, among other things, a theological argument.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <!-- ── Book nav ── -->
+  <div class="book-nav">
+    <a href="no-longer-human.html" class="book-nav-link">← No Longer Human</a>
+    <a href="to-kill-a-mockingbird.html" class="book-nav-link right">To Kill a Mockingbird →</a>
   </div>
 
   <!-- Footer -->
@@ -815,21 +897,32 @@
   </footer>
 
   <script>
-    // ── Tabs ─────────────────────────────────────────────────
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-        window.scrollTo({ top: document.querySelector('.tabs-bar').offsetTop - 70, behavior: 'smooth' });
+    // ── Tabs ──────────────────────────────────────────────
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      // re-trigger reveals inside newly visible tab
+      document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
+        el.classList.remove('in-view');
+        setTimeout(() => el.classList.add('in-view'), 60);
       });
-    });
-
-    // ── Easter egg ───────────────────────────────────────────
-    function toggleEgg() {
-      document.getElementById('egg-reveal').classList.toggle('open');
     }
+
+    // ── Easter eggs ───────────────────────────────────────
+    function toggleEgg(btn) {
+      const item = btn.closest('.egg-item');
+      item.classList.toggle('open');
+    }
+
+    // ── Scroll reveal ─────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
