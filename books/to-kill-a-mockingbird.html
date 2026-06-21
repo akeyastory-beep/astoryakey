@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Kill a Mockingbird — A Story, A Key</title>
+  <meta name="description" content="Aashima's review of To Kill a Mockingbird by Harper Lee — a novel that turns childhood innocence into the sharpest lens on American injustice." />
+  <meta property="og:title" content="To Kill a Mockingbird — A Story, A Key" />
+  <meta property="og:description" content="Aashima's review of To Kill a Mockingbird by Harper Lee." />
+  <meta property="og:url" content="https://astoryakey-beep.github.io/astoryakey/books/to-kill-a-mockingbird.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1a1814;
+      --ink2:    #4a4740;
+      --ink3:    #8a8680;
+      --paper:   #f7f4ef;
+      --paper2:  #efeae2;
+      --accent:  #5c3d2e;
+      --accent2: #8b5e3c;
+      --gold:    #c9a96e;
+      --white:   #ffffff;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+    .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
+
+    /* Hero */
+    .book-hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .cover-wrap {
+      position: sticky;
+      top: 6rem;
+    }
+    .cover-img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: block;
+    }
+    .cover-fallback {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: var(--accent);
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .cover-fallback-text {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .cover-rating {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .cover-verdict {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    /* Book meta */
+    .book-meta { padding-top: 1rem; }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .book-title-main {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .book-author-main {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 2rem;
+    }
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(92,61,46,0.2);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .meta-pill.mood {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .opening-line {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+      max-width: 560px;
+    }
+
+    /* Tabs */
+    .tabs-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(92,61,46,0.12);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      padding: 0.85rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--ink2); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Review tab */
+    .review-prose {
+      max-width: 680px;
+      font-size: 1rem;
+      color: var(--ink2);
+      line-height: 1.95;
+    }
+    .review-prose p { margin-bottom: 1.4rem; }
+    .review-prose p:last-child { margin-bottom: 0; }
+    .pull-quote {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 560px;
+    }
+    .who-should-read {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      max-width: 560px;
+    }
+    .wsr-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .wsr-text {
+      font-size: 0.92rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Themes tab */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+    }
+    .theme-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 1.5rem;
+    }
+    .theme-icon {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .theme-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+
+    /* Quotes tab */
+    .quotes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 680px;
+    }
+    .quote-item {
+      position: relative;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      border-left: 3px solid var(--gold);
+    }
+    .quote-text {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .quote-note {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
+
+    /* Characters tab */
+    .characters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 680px;
+    }
+    .char-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+      align-items: start;
+    }
+    .char-row:first-child { border-top: 1px solid rgba(92,61,46,0.08); }
+    .char-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .char-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .char-desc {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Connections tab */
+    .connections-section { max-width: 900px; }
+    .conn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .conn-label:first-child { margin-top: 0; }
+    .conn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .conn-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 0.85rem 1.2rem;
+      min-width: 180px;
+    }
+    .conn-card-title {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .conn-card-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+    .conn-why {
+      font-size: 0.82rem;
+      color: var(--ink2);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+    .music-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .music-note strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Easter egg tab */
+    .egg-intro {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+    .egg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 680px;
+    }
+    .egg-item {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .egg-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--ff-body);
+    }
+    .egg-question {
+      font-size: 0.9rem;
+      color: var(--paper);
+      line-height: 1.5;
+    }
+    .egg-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .egg-item.open .egg-icon { transform: rotate(45deg); }
+    .egg-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .egg-item.open .egg-body { max-height: 400px; }
+    .egg-answer {
+      padding: 1rem 1.5rem 1.4rem;
+      font-size: 0.88rem;
+      color: rgba(247,244,239,0.7);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Book nav */
+    .book-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(92,61,46,0.1);
+    }
+    .book-nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .book-nav-link:hover { opacity: 0.7; }
+    .book-nav-link.right { text-align: right; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    footer { background: var(--ink); color: var(--paper); padding: 3rem 2rem; text-align: center; }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--gold); margin-bottom: 0.75rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; list-style: none; margin: 1rem 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.45); }
+    .footer-links a:hover { color: var(--gold); transition: color 0.2s; }
+    .footer-sub { font-size: 0.8rem; color: rgba(247,244,239,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .book-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.25rem 3rem; }
+      .cover-wrap { position: static; max-width: 200px; }
+      .tabs-section { padding: 0 1.25rem 4rem; }
+      .tab-btn { padding: 0.75rem 1rem; font-size: 0.75rem; }
+      .char-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .book-nav { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="../index.html" class="nav-logo">A Story, A Key</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../dna.html">Literary DNA</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div class="book-hero">
+
+    <!-- Cover -->
+    <div class="cover-wrap reveal">
+      <img
+        class="cover-img"
+        src="https://covers.openlibrary.org/b/isbn/9780060935467-L.jpg"
+        alt="To Kill a Mockingbird by Harper Lee"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="cover-fallback" style="display:none;">
+        <div class="cover-fallback-text">To Kill a Mockingbird<br><br>Harper Lee</div>
+      </div>
+      <div class="cover-rating">★★★★★</div>
+      <div class="cover-verdict">Necessary</div>
+    </div>
+
+    <!-- Meta -->
+    <div class="book-meta reveal">
+      <p class="breadcrumb">
+        <a href="../books.html">← All books</a>
+      </p>
+
+      <h1 class="book-title-main">To Kill a Mockingbird</h1>
+      <p class="book-author-main">Harper Lee · 1960</p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">United States</span>
+        <span class="meta-pill">Southern Gothic</span>
+        <span class="meta-pill">Bildungsroman</span>
+        <span class="meta-pill">324 pages</span>
+        <span class="meta-pill mood">nostalgic</span>
+      </div>
+
+      <p class="opening-line">
+        A child's eyes are the cruelest mirror for a world that has convinced itself it is civilised.
+      </p>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('review', this)">Review</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Themes</button>
+      <button class="tab-btn" onclick="switchTab('quotes', this)">Quotes</button>
+      <button class="tab-btn" onclick="switchTab('characters', this)">Characters</button>
+      <button class="tab-btn" onclick="switchTab('connections', this)">Connections</button>
+      <button class="tab-btn" onclick="switchTab('easter', this)">Hidden depths</button>
+    </div>
+
+    <!-- TAB 1: Review -->
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-prose reveal">
+
+        <p>
+          There are books you read, and then there are books that read you back. To Kill a Mockingbird is the second kind. Set in the fictional Maycomb, Alabama, during the early years of the Great Depression, Harper Lee gives us the world as it looked through the eyes of Jean Louise "Scout" Finch, a sharp-tongued six-year-old who notices everything adults would rather she didn't. The experience of reading it is something like being handed a snow globe of childhood and slowly realising the flakes falling inside aren't snow at all.
+        </p>
+
+        <p class="pull-quote">
+          Scout doesn't just witness injustice. She feels the exact moment the world stops making sense, and that moment lands differently every time you read it.
+        </p>
+
+        <p>
+          Beneath the surface of a courtroom drama, this is a book about the gap between the world as it should be and the world as it is, and what it costs the people who refuse to pretend that gap doesn't exist. When Atticus Finch agrees to defend Tom Robinson, a Black man accused of a crime the evidence clearly shows he didn't commit, he isn't performing heroism. He's doing the only thing his conscience will allow. That distinction matters. It makes him feel real rather than saintly, and it makes his eventual defeat all the harder to sit with.
+        </p>
+
+        <p>
+          What stayed with me most on my latest reread was Boo Radley. As a child, I read him as the ghost story at the edges of a sunnier tale. As an adult, I read him as someone the town decided was monstrous because he didn't fit, and then left to live inside that story about himself. His quiet act of protection near the end of the novel isn't a plot twist. It's the whole book's argument arriving in a single gesture. Some people are mockingbirds, Lee is saying, and we keep shooting anyway.
+        </p>
+
+        <p>
+          There is a reason this book has never left the conversation. It's not comfortable and it's not meant to be. The trial of Tom Robinson strips away every polite fiction Maycomb has built around itself, and what's underneath is something that still hasn't fully gone away. That's why you finish it feeling both devastated and oddly grateful. Grateful that someone wrote it down, that Scout was there to watch, and that Atticus, for one summer in one fictional town, stood up and told the truth anyway.
+        </p>
+
+      </div>
+
+      <div class="who-should-read reveal">
+        <p class="wsr-label">Who should read this</p>
+        <p class="wsr-text">
+          Read this if you grew up believing the world was basically fair and have spent the years since quietly revising that view. Read it if you want a book that gives you both the warmth of childhood and the cold of disillusionment in the same breath. Read it again if you read it young and remember mostly Scout's adventures rather than Atticus's grief. Skip it only if you're in no place to sit with injustice that doesn't resolve neatly, because this one doesn't.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 2: Themes -->
+    <div class="tab-panel" id="tab-themes">
+      <div class="themes-grid reveal">
+
+        <div class="theme-card">
+          <div class="theme-icon">I</div>
+          <div class="theme-name">Racial Injustice</div>
+          <div class="theme-desc">The trial of Tom Robinson is not a story about one man's fate. It is about a legal system that was never built to protect everyone equally. Lee makes this visible not through speeches but through the gap between what the evidence says and what the verdict says.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">II</div>
+          <div class="theme-name">The Loss of Innocence</div>
+          <div class="theme-desc">Scout begins the novel as a child who assumes the grown-up world is sensible. She ends it knowing better. That education isn't shown through a single dramatic moment but through dozens of small observations that accumulate into understanding, which is how it actually works.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">III</div>
+          <div class="theme-name">Moral Courage</div>
+          <div class="theme-desc">Atticus doesn't defend Tom Robinson because he thinks he'll win. He does it because not doing it would mean becoming someone he couldn't live with. The novel asks, at every turn, whether you'd do the same, knowing the cost.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">IV</div>
+          <div class="theme-name">Empathy as Practice</div>
+          <div class="theme-desc">Atticus's famous line about climbing into someone else's skin and walking around in it isn't a nice sentiment. It's the moral spine of the entire book. Every character who causes harm in Maycomb does so because they've stopped trying to imagine another person's inner life.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">V</div>
+          <div class="theme-name">Otherness and Belonging</div>
+          <div class="theme-desc">Boo Radley, Tom Robinson, and Dolphus Raymond all live at the edges of Maycomb's idea of normal. The town deals with each of them through rumour, fear, or contempt. Lee places all three in the same moral category, and the pattern is hard to miss.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: Quotes -->
+    <div class="tab-panel" id="tab-quotes">
+      <div class="quotes-list reveal">
+
+        <div class="quote-item">
+          <p class="quote-text">You never really understand a person until you consider things from his point of view, until you climb into his skin and walk around in it.</p>
+          <p class="quote-note">Why this line: It's the sentence the whole book is built around, but Atticus says it so plainly that you almost miss how radical it is. In a town that runs on judgement, this is a quiet act of resistance.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">Mockingbirds don't do one thing but make music for us to enjoy. They don't eat up people's gardens, don't nest in corncribs, they don't do one thing but sing their hearts out for us. That's why it's a sin to kill a mockingbird.</p>
+          <p class="quote-note">Why this line: Miss Maudie says this almost as an aside, but it names the novel's central argument. Some people only ever give, and the world destroys them anyway. You think of Tom Robinson. You think of Boo.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">I wanted you to see what real courage is, instead of getting the idea that courage is a man with a gun in his hand.</p>
+          <p class="quote-note">Why this line: Atticus says this about Mrs. Dubose, who fought her morphine addiction before she died. It reframes the whole novel. The bravest people here are not the loudest ones.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">Before I can live with other folks I've got to live with myself. The one thing that doesn't abide by majority rule is a person's conscience.</p>
+          <p class="quote-note">Why this line: This is Atticus explaining his choice to Scout without making it sound noble. He's not a crusader. He's just someone who can't do otherwise. That's what makes him convincing.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: Characters -->
+    <div class="tab-panel" id="tab-characters">
+      <div class="characters-list reveal">
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Scout Finch</p>
+            <p class="char-role">Narrator / Protagonist</p>
+          </div>
+          <p class="char-desc">
+            Scout is the best kind of unreliable narrator: not because she lies, but because she understands more than she knows she understands. Her bewilderment is the reader's moral compass. When something strikes her as wrong, it usually is, and her inability to rationalise it away the way adults do is exactly what makes her perspective so devastating.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Atticus Finch</p>
+            <p class="char-role">Father / Defence Attorney</p>
+          </div>
+          <p class="char-desc">
+            Atticus has been called the greatest fictional father and the great moral hero of American literature. He is both, but what makes him human rather than symbolic is that he knows he will lose and does the right thing anyway. His quiet consistency isn't passivity. It's the hardest kind of resolve, the kind that requires no applause to sustain itself.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Boo Radley</p>
+            <p class="char-role">Recluse / Unexpected Protector</p>
+          </div>
+          <p class="char-desc">
+            Boo is the novel's ghost until he isn't. Lee slowly replaces the myth the children have built around him with something far more poignant: a man so damaged by his family and his community that retreat became the only form of survival available to him. His kindness toward Scout and Jem is real, and it is the more moving for being so quiet.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Tom Robinson</p>
+            <p class="char-role">The Accused</p>
+          </div>
+          <p class="char-desc">
+            Tom is the clearest-eyed person in the courtroom, which is part of the tragedy. He knows what the verdict will be before the jury leaves the room. His only crime was being decent to a lonely white woman in a town that had decided decency between a Black man and a white woman could only mean one thing. Lee gives him dignity without making him a symbol, which is the harder and rarer thing to do.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Jem Finch</p>
+            <p class="char-role">Scout's Brother</p>
+          </div>
+          <p class="char-desc">
+            Jem's arc is the sharpest bildungsroman in the novel. He enters it believing in fairness as a fact of the universe and exits it knowing it's something people have to build and fight for, and that they often don't. His devastation after the verdict is the most honest response in the book.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 5: Connections -->
+    <div class="tab-panel" id="tab-connections">
+      <div class="connections-section reveal">
+
+        <p class="conn-label">If you loved this book, watch</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">To Kill a Mockingbird</p>
+            <p class="conn-card-sub">Robert Mulligan · 1962</p>
+            <p class="conn-why">Gregory Peck's Atticus is one of the great performances in American cinema, and the black-and-white cinematography captures Maycomb's heat and its shadows better than colour ever could.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">12 Angry Men</p>
+            <p class="conn-card-sub">Sidney Lumet · 1957</p>
+            <p class="conn-why">A single jury room, a verdict that seems foregone, and one person willing to ask whether everyone has thought this through. The same argument as Maycomb's courtroom, made from a different angle.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Selma</p>
+            <p class="conn-card-sub">Ava DuVernay · 2014</p>
+            <p class="conn-why">Where Mockingbird shows the legal machinery of racism through a child's eyes, Selma shows the people who refused to wait for the law to catch up with justice.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Read next</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Beloved</p>
+            <p class="conn-card-sub">Toni Morrison</p>
+            <p class="conn-why">Where Lee approaches racial violence from the outside looking in, Morrison writes from inside the wound. A necessary and harder companion read.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">The Secret Life of Bees</p>
+            <p class="conn-card-sub">Sue Monk Kidd</p>
+            <p class="conn-why">Another Southern coming-of-age story about a girl learning who the world is and isn't built for, told with similar warmth and similar grief underneath it.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Just Mercy</p>
+            <p class="conn-card-sub">Bryan Stevenson</p>
+            <p class="conn-why">The nonfiction answer to the question Mockingbird leaves open: what happens to the people the legal system was never designed to protect, and who fights for them.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Listen while you read</p>
+        <div class="music-note">
+          <strong>Playlist mood</strong>
+          Slow, Southern, and a little melancholy. Think late-summer evenings on a porch, the kind where the heat doesn't quite break. Try early Johnny Cash for the moral weight, Nina Simone's quieter recordings for the grief underneath the calm, and Yo-Yo Ma's Appalachian Waltz for the moments when the book goes still.
+        </div>
+
+        <p class="conn-label">If this book made you think, explore</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Social Construction of Reality</p>
+            <p class="conn-card-sub">Berger and Luckmann</p>
+            <p class="conn-why">Maycomb's racism isn't just individual prejudice. It's a shared story the town tells itself until it becomes indistinguishable from the truth. This book explains how that happens.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Hannah Arendt on Evil</p>
+            <p class="conn-card-sub">Philosophy</p>
+            <p class="conn-why">Arendt's argument that evil is most dangerous when it's ordinary and unremarkable maps directly onto the jurors of Maycomb, none of whom think of themselves as villains.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: Hidden depths -->
+    <div class="tab-panel" id="tab-easter">
+      <p class="egg-intro reveal">
+        Things in this book that most people miss on a first read. Click to reveal.
+      </p>
+      <div class="egg-list reveal">
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The title doesn't appear anywhere in the text. So where does it come from?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Miss Maudie explains to Scout that it is a sin to kill a mockingbird because they only make music and harm nobody. But Lee never once uses the phrase "to kill a mockingbird" as a complete sentence in the novel. The title exists only in the reader's mind, assembled from separate moments: the gifts in the tree, Boo's quiet kindness, Tom Robinson's death, the mockingbirds Scout and Jem are given air rifles but warned not to shoot. The book asks you to put it together yourself.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Harper Lee based Dill Harris on a real person. Who?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Dill is based on Truman Capote, Lee's childhood neighbour and lifelong friend in Monroeville, Alabama. Capote later returned the tribute by basing the character Idabel in his novel Other Voices, Other Rooms on Lee. They remained close for decades, and Lee reportedly helped Capote with research for In Cold Blood. The friendship between Scout and Dill, playful and a little melancholy at its edges, was drawn directly from their actual summers together.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The novel is set during the Depression, but it was written during a different civil rights moment entirely. Why does that matter?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Lee finished the novel in 1959 and published it in 1960, the same year as the Greensboro sit-ins and just before the Freedom Rides. She set it three decades earlier not to escape the present but to give white Southern readers a safer distance from which to examine what they already knew. The strategy worked: the book became required reading across the South partly because its historical framing let readers engage with its arguments without feeling directly accused. That calculation is now debated by scholars who think the distance let too many readers off too easily.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Atticus argues that all men are created equal in court, but the novel quietly shows he doesn't fully live by that idea at home. What's the detail most readers miss?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Atticus is genuinely heroic within the limits the novel sets for him, but those limits are real. He refers to Calpurnia as part of the family and genuinely cares for her, but she is still their housekeeper, still serving them, and Atticus never interrogates that structure. When his sister Alexandra pushes to let Calpurnia go, he refuses, but his refusal is framed as loyalty rather than recognition of injustice. Later critics, including writer Michiko Kakutani, have argued that Atticus represents the limits of white liberal good intentions: willing to defend the individual, unwilling to challenge the system that makes such a defence necessary in the first place.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The gifts Boo leaves in the knothole spell out a theory of care the novel never states outright. What is it?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Over several chapters, Boo leaves carved soap figures of Scout and Jem, a watch, a spelling bee medal, and chewing gum in the knothole of a tree. Each gift is chosen because he has been watching them and knows them. He never speaks, never approaches, never asks for acknowledgement. When Nathan Radley fills the knothole with cement, he cuts off the only channel Boo had for connection with the world. Lee uses this to make a quiet argument: that love can be expressed through attention and small acts of care without ever requiring the other person to know. Boo's saving of the children at the end is the same impulse, just finally made visible.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end tabs -->
+
+  <!-- Book nav -->
+  <div class="book-nav">
+    <a href="crime-and-punishment.html" class="book-nav-link">← Crime and Punishment</a>
+    <a href="beloved.html" class="book-nav-link right">Beloved →</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">A Story, A Key</p>
+    <ul class="footer-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <p class="footer-sub">Built with curiosity by Aashima · 2025</p>
+  </footer>
+
+  <script>
+    // Tabs
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
+        el.classList.remove('in-view');
+        setTimeout(() => el.classList.add('in-view'), 60);
+      });
+    }
+
+    // Easter eggs
+    function toggleEgg(btn) {
+      const item = btn.closest('.egg-item');
+      item.classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
