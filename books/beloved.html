@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beloved — A Story, A Key</title>
+  <meta name="description" content="Aashima's review of Beloved by Toni Morrison. A lyrical, haunting descent into love, trauma, and the memories that refuse to stay buried." />
+  <meta property="og:title" content="Beloved — A Story, A Key" />
+  <meta property="og:description" content="Aashima's review of Beloved by Toni Morrison. A lyrical, haunting descent into love, trauma, and the memories that refuse to stay buried." />
+  <meta property="og:url" content="https://astoryakey-beep.github.io/astoryakey/books/beloved.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1a1814;
+      --ink2:    #4a4740;
+      --ink3:    #8a8680;
+      --paper:   #f7f4ef;
+      --paper2:  #efeae2;
+      --accent:  #5c3d2e;
+      --accent2: #8b5e3c;
+      --gold:    #c9a96e;
+      --white:   #ffffff;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+    .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
+
+    /* Hero */
+    .book-hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .cover-wrap {
+      position: sticky;
+      top: 6rem;
+    }
+    .cover-img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: block;
+    }
+    .cover-fallback {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: var(--accent);
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .cover-fallback-text {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .cover-rating {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .cover-verdict {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    /* Book meta */
+    .book-meta { padding-top: 1rem; }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .book-title-main {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .book-author-main {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 2rem;
+    }
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(92,61,46,0.2);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .meta-pill.mood {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .opening-line {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+      max-width: 560px;
+    }
+
+    /* Tabs */
+    .tabs-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(92,61,46,0.12);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      padding: 0.85rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--ink2); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Review tab */
+    .review-prose {
+      max-width: 680px;
+      font-size: 1rem;
+      color: var(--ink2);
+      line-height: 1.95;
+    }
+    .review-prose p { margin-bottom: 1.4rem; }
+    .review-prose p:last-child { margin-bottom: 0; }
+    .pull-quote {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 560px;
+    }
+    .who-should-read {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      max-width: 560px;
+    }
+    .wsr-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .wsr-text {
+      font-size: 0.92rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Themes tab */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+    }
+    .theme-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 1.5rem;
+    }
+    .theme-icon {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .theme-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+
+    /* Quotes tab */
+    .quotes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 680px;
+    }
+    .quote-item {
+      position: relative;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      border-left: 3px solid var(--gold);
+    }
+    .quote-text {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .quote-note {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
+
+    /* Characters tab */
+    .characters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 680px;
+    }
+    .char-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+      align-items: start;
+    }
+    .char-row:first-child { border-top: 1px solid rgba(92,61,46,0.08); }
+    .char-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .char-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .char-desc {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Connections tab */
+    .connections-section { max-width: 900px; }
+    .conn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .conn-label:first-child { margin-top: 0; }
+    .conn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .conn-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 0.85rem 1.2rem;
+      min-width: 180px;
+    }
+    .conn-card-title {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .conn-card-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+    .conn-why {
+      font-size: 0.82rem;
+      color: var(--ink2);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+    .music-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .music-note strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Easter egg tab */
+    .egg-intro {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+    .egg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 680px;
+    }
+    .egg-item {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .egg-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--ff-body);
+    }
+    .egg-question {
+      font-size: 0.9rem;
+      color: var(--paper);
+      line-height: 1.5;
+    }
+    .egg-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .egg-item.open .egg-icon { transform: rotate(45deg); }
+    .egg-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .egg-item.open .egg-body { max-height: 500px; }
+    .egg-answer {
+      padding: 0 1.5rem 1.4rem;
+      font-size: 0.88rem;
+      color: rgba(247,244,239,0.7);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1rem;
+      margin-top: 0;
+    }
+
+    /* Nav between books */
+    .book-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(92,61,46,0.1);
+    }
+    .book-nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .book-nav-link:hover { opacity: 0.7; }
+    .book-nav-link.right { text-align: right; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    footer { background: var(--ink); color: var(--paper); padding: 3rem 2rem; text-align: center; }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--gold); margin-bottom: 0.75rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; list-style: none; margin: 1rem 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.45); }
+    .footer-links a:hover { color: var(--gold); transition: color 0.2s; }
+    .footer-sub { font-size: 0.8rem; color: rgba(247,244,239,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .book-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.25rem 3rem; }
+      .cover-wrap { position: static; max-width: 200px; }
+      .tabs-section { padding: 0 1.25rem 4rem; }
+      .tab-btn { padding: 0.75rem 1rem; font-size: 0.75rem; }
+      .char-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .book-nav { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="../index.html" class="nav-logo">A Story, A Key</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../dna.html">Literary DNA</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div class="book-hero">
+
+    <!-- Cover -->
+    <div class="cover-wrap reveal">
+      <img
+        class="cover-img"
+        src="https://covers.openlibrary.org/b/isbn/9781400033416-L.jpg"
+        alt="Beloved by Toni Morrison"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="cover-fallback" style="display:none;">
+        <div class="cover-fallback-text">Beloved<br><br>Toni Morrison</div>
+      </div>
+      <div class="cover-rating">★★★★★</div>
+      <div class="cover-verdict">Necessary</div>
+    </div>
+
+    <!-- Meta -->
+    <div class="book-meta reveal">
+      <p class="breadcrumb">
+        <a href="../books.html">← All books</a>
+      </p>
+
+      <h1 class="book-title-main">Beloved</h1>
+      <p class="book-author-main">Toni Morrison · 1987</p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">United States</span>
+        <span class="meta-pill">Magical Realism</span>
+        <span class="meta-pill">Historical Fiction</span>
+        <span class="meta-pill">324 pages</span>
+        <span class="meta-pill mood">haunted</span>
+      </div>
+
+      <p class="opening-line">
+        This is not a ghost story, it is what happens to a person after surviving something that was never supposed to be survived.
+      </p>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('review', this)">Review</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Themes</button>
+      <button class="tab-btn" onclick="switchTab('quotes', this)">Quotes</button>
+      <button class="tab-btn" onclick="switchTab('characters', this)">Characters</button>
+      <button class="tab-btn" onclick="switchTab('connections', this)">Connections</button>
+      <button class="tab-btn" onclick="switchTab('easter', this)">Hidden depths</button>
+    </div>
+
+    <!-- TAB 1: Review -->
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-prose reveal">
+
+        <p>
+          What happens when your past is more real than your present? Some books comfort you, some entertain, and then there are books like Beloved that disturb you, whisper to you, and leave you breathless, wondering if you are reading a ghost story or a survivor's testimony. Toni Morrison's Pulitzer Prize-winning masterpiece is not a light read. It is a lyrical, haunting, hypnotic descent into love, trauma, and the memories that won't remain buried.
+        </p>
+
+        <p>
+          Set in post-Civil War America, the novel centers around Sethe, a formerly enslaved woman who lives with her daughter Denver in a house that has been haunted since before we even meet her. The ghost is not an ordinary spirit. It is the presence of the baby Sethe killed to spare her from being taken back into slavery. When a strange young woman named Beloved appears at their door, Sethe's history, which she has spent years trying not to think about, returns with agonizing vividness. Morrison weaves reality and magical realism together, braids past and present until you can no longer tell where one ends and the other begins, and the result is not just a portrait of one woman's trauma but an excavation of an entire people's stolen humanity.
+        </p>
+
+        <p class="pull-quote">
+          Morrison doesn't tell you when to weep. She makes you feel it gradually, until it's too late to control.
+        </p>
+
+        <p>
+          The structure of this book is not a flaw, it is the argument. Trauma does not travel in a straight line. Morrison circles back, replays certain memories, shifts point of view without warning, and disorients you the same way grief disorients a person. When the fragments finally settle into place, it is like watching a flower unfurl from ashes. The non-linearity is itself a form of empathy. She is not asking you to understand Sethe's story from a safe distance. She is asking you to live inside it, the same way Sethe does, without the comfort of chronology.
+        </p>
+
+        <p>
+          What stayed with me long after finishing was a moment that had nothing to do with the central act of the plot. It was Baby Suggs running after Sethe, sobbing. That's when the weight of everything landed. Not the dramatic revelation, not the confrontation, but that quiet chase. Morrison earns her emotional moments precisely because she refuses to announce them. She trusts you to feel what she does not underline.
+        </p>
+
+        <p>
+          Beloved is about slavery, but not in the way you might expect. It is not about the physical brutality, though that is present. It is about the psychological terror that remains after the chains are gone. The price of surviving something. The cost of forgetting, and the far higher cost of remembering. If you have ever been followed by your own history, you will find yourself somewhere in these pages. This is one of those books that teaches you how to read it as you go. And once it's over, you will read your own life a little differently too.
+        </p>
+
+      </div>
+
+      <div class="who-should-read reveal">
+        <p class="wsr-label">Who should read this</p>
+        <p class="wsr-text">
+          Read this if you want to understand what grief does to a person over decades, if you are drawn to prose that reads like poetry, or if you have ever wondered what it actually costs a human being to survive. Read this if you love magical realism used not as decoration but as the only honest way to tell an impossible story. Do not read this if you need a linear plot or a tidy resolution. This book will disorient you on purpose, and it will not apologize.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 2: Themes -->
+    <div class="tab-panel" id="tab-themes">
+      <div class="themes-grid reveal">
+
+        <div class="theme-card">
+          <div class="theme-icon">I</div>
+          <div class="theme-name">Rememory</div>
+          <div class="theme-desc">Morrison invents a word for something that already existed: the way traumatic memory lives outside the body, in places and objects, waiting to ambush you. Sethe explains it to Denver as memory that belongs not just to you but to the world, inescapable and contagious across generations.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">II</div>
+          <div class="theme-name">Motherhood Under Slavery</div>
+          <div class="theme-desc">The central moral question of the novel is whether Sethe's act was love or violence or both. Morrison refuses to answer it cleanly. Instead she shows how slavery corrupted the most fundamental human bond, making murder feel like mercy, and mercy feel like the only form of ownership a Black mother was ever allowed.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">III</div>
+          <div class="theme-name">Self-Possession</div>
+          <div class="theme-desc">Every character in this book is defined by their relationship to their own body and selfhood, both of which slavery claimed as property. Paul D locks his feelings in a tobacco tin to survive. Sethe erases memory to keep moving. The novel tracks the long, painful work of coming back to yourself after being told you were never yours.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">IV</div>
+          <div class="theme-name">The Weight of Community</div>
+          <div class="theme-desc">124 is isolated in part because the community withdrew after Sethe's act. Morrison shows how communal silence can become its own form of violence, and how it takes collective witness, not just individual will, to finally exorcise what haunts a household and a history.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">V</div>
+          <div class="theme-name">Dehumanization and Its Aftermath</div>
+          <div class="theme-desc">Schoolteacher's lesson, asking students to list Sethe's human and animal characteristics in two columns, is one of the most chilling passages in American literature. The horror of Beloved is not just what slavery did, but what it required people to believe about other people in order to do it.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: Quotes -->
+    <div class="tab-panel" id="tab-quotes">
+      <div class="quotes-list reveal">
+
+        <div class="quote-item">
+          <p class="quote-text">"124 was spiteful. Full of a baby's venom."</p>
+          <p class="quote-note">Why this line: The opening sentence of the novel does something I have never seen another book do. It gives a house number a personality before it gives us a single character. By the time you understand why the house is spiteful, you realize Morrison told you everything in the first six words.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"Sethe," he says, "me and you, we got more yesterday than anybody. We need some kind of tomorrow."</p>
+          <p class="quote-note">Why this line: Paul D says this near the end, and it is the closest the novel comes to tenderness that isn't immediately shattered. It holds the whole book in two sentences: the crushing weight of the past and the terrifying, necessary act of choosing a future anyway.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"Not a house in the country ain't packed to its rafters with some dead Negro's grief."</p>
+          <p class="quote-note">Why this line: Baby Suggs says this when Sethe suggests they move. It is the quietest possible way to say something enormous: that there is no escaping this history, that it is not a haunting particular to their house but a haunting that belongs to an entire nation's geography.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"Anything dead coming back to life hurts."</p>
+          <p class="quote-note">Why this line: Amy Denver says this about Sethe's frost-damaged feet, but Morrison plants it as a seed that opens into the entire novel. Beloved returning hurts. Memory returning hurts. The self returning after years of suppression hurts. Four words that carry the novel's whole weight.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"The pieces I am, she gather them and give them back to me in all the right order."</p>
+          <p class="quote-note">Why this line: Sixo says this about the Thirty-Mile Woman, and Paul D later thinks it about Sethe. It is the most beautiful definition of love I have read in any novel, and it arrives inside a book about people who were never allowed to be whole. That is not an accident.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: Characters -->
+    <div class="tab-panel" id="tab-characters">
+      <div class="characters-list reveal">
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Sethe</p>
+            <p class="char-role">Protagonist</p>
+          </div>
+          <p class="char-desc">
+            Sethe is one of the most psychologically complex protagonists in American literature. She has survived Sweet Home by building a wall between herself and memory so thick that she refers to it as her "tree," a scar on her back she has never seen. Her act of killing Beloved is not presented as madness but as the logic of a woman who understood exactly what slavery would do to her daughter. The tragedy is that survival has left her with a self she barely recognizes, and the novel is about whether she can be gathered back into one piece.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Beloved</p>
+            <p class="char-role">The Returned</p>
+          </div>
+          <p class="char-desc">
+            Beloved is many things at once and Morrison intends her to be all of them simultaneously. She is the ghost of Sethe's murdered daughter, but she is also the embodiment of everyone lost to the Middle Passage, of grief that has nowhere to go, and of what happens when the past is given a body and allowed to feed. Her hunger is total and her love, if that is what it is, is the kind that devours. She is both a child who was wronged and an accusation that cannot be answered.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Paul D</p>
+            <p class="char-role">Sethe's Old Friend</p>
+          </div>
+          <p class="char-desc">
+            Paul D carries his pain in an imagined tobacco tin in his chest, rusted shut. He is a man who survived unthinkable things by learning not to feel them, and his arc is about what happens when that tin is forced open. He is not a hero in the conventional sense. He makes mistakes and runs from what frightens him. But he is the novel's argument for tenderness, for the possibility that two people carrying impossible histories can still choose each other.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Denver</p>
+            <p class="char-role">Sethe's Daughter</p>
+          </div>
+          <p class="char-desc">
+            Denver was born on a raft in a river, half into the world and half not yet, and she has lived her whole life in that in-between space. She is lonely in a way that has calcified into something almost comfortable. When Beloved arrives, Denver mistakes her for rescue. Her journey is the quietest in the book, but it is the one about the future: the child of trauma learning, slowly, to step outside.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Baby Suggs</p>
+            <p class="char-role">Sethe's Mother-in-Law</p>
+          </div>
+          <p class="char-desc">
+            Baby Suggs Holy, as she is called, is the moral center of the novel's first half. A preacher who holds services in a clearing in the woods, she tells her congregation to love their flesh because no one else will. After Sethe's act, she takes to bed and spends her remaining years staring at colors, one by one, as if relearning the most basic pleasures of being alive. Her collapse is the novel's first argument that a community's grief can exceed one person's capacity to hold it.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 5: Connections -->
+    <div class="tab-panel" id="tab-connections">
+      <div class="connections-section reveal">
+
+        <p class="conn-label">If you loved this book, watch…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">12 Years a Slave</p>
+            <p class="conn-card-sub">Steve McQueen · 2013</p>
+            <p class="conn-why">The same refusal to look away, the same insistence on showing slavery as a psychological and not just a physical wound.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Moonlight</p>
+            <p class="conn-card-sub">Barry Jenkins · 2016</p>
+            <p class="conn-why">A fragmented, poetic structure that mirrors Morrison's, and the same interest in what a person becomes when they are never taught they are worth loving.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Hereditary</p>
+            <p class="conn-card-sub">Ari Aster · 2018</p>
+            <p class="conn-why">A very different film, but it shares Beloved's central terror: the idea that the dead do not stay dead, and that grief can become something that possesses the living.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Read next…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Bluest Eye</p>
+            <p class="conn-card-sub">Toni Morrison</p>
+            <p class="conn-why">Morrison's first novel and in some ways the most nakedly painful. If Beloved is about surviving, The Bluest Eye is about what happens when survival is not even possible.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Pedro Paramo</p>
+            <p class="conn-card-sub">Juan Rulfo</p>
+            <p class="conn-why">The book Morrison herself cited as an influence. Dead voices speaking from the ground, a town suspended in grief, a language that reads like a fever dream.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Homegoing</p>
+            <p class="conn-card-sub">Yaa Gyasi</p>
+            <p class="conn-why">A companion in scope and ambition: the generational cost of slavery told across centuries, asking the same question about what history does to the bodies that carry it.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Listen while you read…</p>
+        <div class="music-note">
+          <strong>Playlist mood</strong>
+          Slow, heavy, and ceremonial. Music that sounds like it is mourning something it cannot name. Try Rhiannon Giddens, Arooj Aftab's Vulture Prince, or Alice Coltrane's Journey in Satchidananda. Avoid anything with lyrics that might pull you out of Morrison's sentences. The goal is something that feels like being underwater, but peacefully.
+        </div>
+
+        <p class="conn-label">If this book made you think, explore…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Judith Herman / Trauma and Recovery</p>
+            <p class="conn-card-sub">Psychology</p>
+            <p class="conn-why">The clinical framework for what Morrison renders in prose: how trauma fragments memory, why recovery requires witness, and why silence protects the perpetrator not the survivor.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Saidiya Hartman / Lose Your Mother</p>
+            <p class="conn-card-sub">History / Essay</p>
+            <p class="conn-why">A scholar traces the route of the Atlantic slave trade and asks the same question as Morrison: what does it mean to be descended from people whose lives were never recorded as human lives?</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: Hidden depths -->
+    <div class="tab-panel" id="tab-easter">
+      <p class="egg-intro reveal">
+        Things in this book that most people miss on a first read. Click to reveal.
+      </p>
+      <div class="egg-list reveal">
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The three-part structure mirrors the house's three states: spiteful, loud, quiet. What does each phase actually mean?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Each of the novel's three parts opens with a description of 124: "spiteful," "loud," and "quiet." These are not just atmosphere. They track the ghost's trajectory. Spiteful is Beloved as a furious poltergeist. Loud is Beloved embodied, the past fully erupted into the present, overwhelming everything. Quiet is the aftermath: Beloved gone, Sethe devastated, the house finally empty but also hollowed out. Morrison gives the building an emotional arc because the house is not just a setting; it is a container for communal memory.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The number 124 is not random. There's a missing digit that most readers never notice.</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              124 skips the number 3. Sethe had four children: Howard, Buglar, the baby she killed (Beloved), and Denver. Three of them eventually leave or are lost to her. The house number marks the absence. 1, 2, and 4 are present. The third child, the one whose loss defines the whole novel, is the missing digit in the address. Morrison builds the grief into the arithmetic before the story even begins.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Beloved's stream-of-consciousness chapter is written without punctuation. It reads like noise. What is it actually?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Chapter 22, told entirely from Beloved's perspective, is one long unpunctuated monologue that is almost impossible to read linearly. Critics have argued it is not just one voice but a chorus: the accumulated consciousness of all the Africans who died in the Middle Passage, the bodies thrown overboard, the people who never made it to shore. The images of water, the ship's hold, the crowding and darkness: they extend far beyond one baby's two years of life. Morrison is giving voice to the unrecorded dead.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The novel is dedicated "Sixty Million and more." Who are they?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Morrison's dedication refers to the estimated number of Africans who died as a direct result of the transatlantic slave trade, whether on the ships, in the holds, or in the early years of captivity. The figure Morrison used was based on scholarship available in the 1980s. She placed this dedication before the story began because she wanted readers to understand from the first page that Sethe's story is not an individual tragedy. It is one thread in a catastrophe that most of history refused to count.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Sethe's scar is described as a tree by Amy Denver, but Sethe has never seen it. Why does that matter?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Sethe's back was brutally whipped at Sweet Home, leaving a massive scar. A white girl named Amy Denver sees it and calls it a chokecherry tree in bloom. Sethe accepts that description as true without ever being able to verify it. This is not a small detail. Her entire relationship to her own body follows this pattern: she knows what was done to her but cannot see it directly. She has to trust other people's accounts of her own wounds. And the fact that the scar is described as something beautiful and living, a tree with blossoms, is Morrison's way of insisting that survival itself can be a kind of strange, unwanted flowering.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end tabs -->
+
+  <!-- Book nav -->
+  <div class="book-nav">
+    <a href="to-kill-a-mockingbird.html" class="book-nav-link">← To Kill a Mockingbird</a>
+    <a href="the-bluest-eye.html" class="book-nav-link right">The Bluest Eye →</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">A Story, A Key</p>
+    <ul class="footer-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <p class="footer-sub">Built with curiosity by Aashima · 2025</p>
+  </footer>
+
+  <script>
+    // Tabs
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
+        el.classList.remove('in-view');
+        setTimeout(() => el.classList.add('in-view'), 60);
+      });
+    }
+
+    // Easter eggs
+    function toggleEgg(btn) {
+      const item = btn.closest('.egg-item');
+      item.classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
