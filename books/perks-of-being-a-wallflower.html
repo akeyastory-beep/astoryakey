@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Perks of Being a Wallflower — A Story, A Key</title>
+  <meta name="description" content="Aashima's review of The Perks of Being a Wallflower by Stephen Chbosky." />
+  <meta property="og:title" content="The Perks of Being a Wallflower — A Story, A Key" />
+  <meta property="og:description" content="A literary universe by Aashima." />
+  <meta property="og:url" content="https://astoryakey-beep.github.io/astoryakey/books/the-perks-of-being-a-wallflower.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1a1814;
+      --ink2:    #4a4740;
+      --ink3:    #8a8680;
+      --paper:   #f7f4ef;
+      --paper2:  #efeae2;
+      --accent:  #5c3d2e;
+      --accent2: #8b5e3c;
+      --gold:    #c9a96e;
+      --white:   #ffffff;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+    .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
+
+    /* Hero */
+    .book-hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .cover-wrap {
+      position: sticky;
+      top: 6rem;
+    }
+    .cover-img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: block;
+    }
+    .cover-fallback {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: var(--accent);
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .cover-fallback-text {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .cover-rating {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .cover-verdict {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    /* Book meta */
+    .book-meta { padding-top: 1rem; }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .book-title-main {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .book-author-main {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 2rem;
+    }
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(92,61,46,0.2);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .meta-pill.mood {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .opening-line {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+      max-width: 560px;
+    }
+
+    /* Tabs */
+    .tabs-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(92,61,46,0.12);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      padding: 0.85rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--ink2); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Review tab */
+    .review-prose {
+      max-width: 680px;
+      font-size: 1rem;
+      color: var(--ink2);
+      line-height: 1.95;
+    }
+    .review-prose p { margin-bottom: 1.4rem; }
+    .review-prose p:last-child { margin-bottom: 0; }
+    .pull-quote {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 560px;
+    }
+    .who-should-read {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      max-width: 560px;
+    }
+    .wsr-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .wsr-text {
+      font-size: 0.92rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Themes tab */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+    }
+    .theme-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 1.5rem;
+    }
+    .theme-icon {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .theme-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+
+    /* Quotes tab */
+    .quotes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 680px;
+    }
+    .quote-item {
+      position: relative;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      border-left: 3px solid var(--gold);
+    }
+    .quote-text {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .quote-note {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
+
+    /* Characters tab */
+    .characters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 680px;
+    }
+    .char-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+      align-items: start;
+    }
+    .char-row:first-child { border-top: 1px solid rgba(92,61,46,0.08); }
+    .char-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .char-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .char-desc {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Connections tab */
+    .connections-section { max-width: 900px; }
+    .conn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .conn-label:first-child { margin-top: 0; }
+    .conn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .conn-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 0.85rem 1.2rem;
+      min-width: 180px;
+    }
+    .conn-card-title {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .conn-card-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+    .conn-why {
+      font-size: 0.82rem;
+      color: var(--ink2);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+    .music-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .music-note strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Easter egg tab */
+    .egg-intro {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+    .egg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 680px;
+    }
+    .egg-item {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .egg-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--ff-body);
+    }
+    .egg-question {
+      font-size: 0.9rem;
+      color: var(--paper);
+      line-height: 1.5;
+    }
+    .egg-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .egg-item.open .egg-icon { transform: rotate(45deg); }
+    .egg-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .egg-item.open .egg-body { max-height: 400px; }
+    .egg-answer {
+      padding: 1rem 1.5rem 1.4rem;
+      font-size: 0.88rem;
+      color: rgba(247,244,239,0.7);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Book nav */
+    .book-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(92,61,46,0.1);
+    }
+    .book-nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .book-nav-link:hover { opacity: 0.7; }
+    .book-nav-link.right { text-align: right; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    footer { background: var(--ink); color: var(--paper); padding: 3rem 2rem; text-align: center; }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--gold); margin-bottom: 0.75rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; list-style: none; margin: 1rem 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.45); }
+    .footer-links a:hover { color: var(--gold); transition: color 0.2s; }
+    .footer-sub { font-size: 0.8rem; color: rgba(247,244,239,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .book-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.25rem 3rem; }
+      .cover-wrap { position: static; max-width: 200px; }
+      .tabs-section { padding: 0 1.25rem 4rem; }
+      .tab-btn { padding: 0.75rem 1rem; font-size: 0.75rem; }
+      .char-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .book-nav { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="../index.html" class="nav-logo">A Story, A Key</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../dna.html">Literary DNA</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div class="book-hero">
+
+    <!-- Cover -->
+    <div class="cover-wrap reveal">
+      <img
+        class="cover-img"
+        src="https://covers.openlibrary.org/b/isbn/9780671027346-L.jpg"
+        alt="The Perks of Being a Wallflower by Stephen Chbosky"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="cover-fallback" style="display:none;">
+        <div class="cover-fallback-text">The Perks of Being a Wallflower<br><br>Stephen Chbosky</div>
+      </div>
+      <div class="cover-rating">★★★☆☆</div>
+      <div class="cover-verdict">Nostalgic</div>
+    </div>
+
+    <!-- Meta -->
+    <div class="book-meta reveal">
+      <p class="breadcrumb">
+        <a href="../books.html">← All books</a>
+      </p>
+      <h1 class="book-title-main">The Perks of Being a Wallflower</h1>
+      <p class="book-author-main">Stephen Chbosky · 1999</p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">United States</span>
+        <span class="meta-pill">Young Adult</span>
+        <span class="meta-pill">Epistolary</span>
+        <span class="meta-pill">Bildungsroman</span>
+        <span class="meta-pill">213 pages</span>
+        <span class="meta-pill mood">nostalgic</span>
+      </div>
+
+      <p class="opening-line">
+        A book that a generation swears changed their life, and yet somehow still manages to hold you at arm's length.
+      </p>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('review', this)">Review</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Themes</button>
+      <button class="tab-btn" onclick="switchTab('quotes', this)">Quotes</button>
+      <button class="tab-btn" onclick="switchTab('characters', this)">Characters</button>
+      <button class="tab-btn" onclick="switchTab('connections', this)">Connections</button>
+      <button class="tab-btn" onclick="switchTab('easter', this)">Hidden depths</button>
+    </div>
+
+    <!-- TAB 1: Review -->
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-prose reveal">
+
+        <p>
+          There are novels that capture a generation, and The Perks of Being a Wallflower is one of them, without a doubt. It has been hailed as the coming-of-age novel, the sort of book that people hold close to their chest and say, this changed me. But when I finished the final page, I was not left with any sense of epiphany. I just sat there thinking, that's it?
+        </p>
+
+        <p>
+          This book is everywhere. You know those books that everyone tells you to read, or you're missing out on some cosmic secret knowledge? This is that book for a lot of people. And while I can see why it speaks to so many, I'm not one of the converted.
+        </p>
+
+        <p>
+          For those unfamiliar with the story: The Perks of Being a Wallflower follows Charlie, a 15-year-old introverted boy who writes letters to an anonymous recipient about his life. He is an outsider, observing rather than participating, hence the wallflower. Told entirely through these letters, the novel has the intimacy of reading someone's diary. Charlie battles trauma, loss, and the awkward mess of high school, finding comfort in two older friends, Sam and Patrick, who pull him into the world of parties, music, and books. We witness his heartbreaks, his friendships, and an unravelling past that eventually surfaces in a way that recontextualises everything.
+        </p>
+
+        <p class="pull-quote">
+          Charlie doesn't feel like a human being. He's so passive that he becomes a shadow in the background of his own book.
+        </p>
+
+        <p>
+          My gripe is this: the emotional honesty of the premise is real, but Charlie keeps undermining it. His passivity is the point, yes, but it pushes him so far from the centre of his own story that he reads more like a camera than a person. The flat, innocent narrative voice is used for everything equally, whether he's buying a milkshake or processing something genuinely harrowing. That tonal sameness is a choice, but it ends up feeling like an evasion rather than a style. Something essential is missing on an emotional level, and no amount of sincerity quite fills the gap.
+        </p>
+
+        <p>
+          And then there's the ending. I understand the intention, but it shifts the entire register of the book in a way that didn't sit right with me. The first three quarters set up a gritty, realistic portrait of teenage life, the complexity of first love, the feeling of being both inside and outside everything at once. Then, the final revelation reframes all of that as the symptom of something else, something the reader could not have seen coming because the book doesn't lay the groundwork with enough care. It changes Hey, high school is hard and confusing and that's okay into something far more clinical, and I'm not sure the novel earns that switch.
+        </p>
+
+        <p>
+          Even so, I can see why this book matters deeply to people. If you have ever felt like the person watching from the outside, if you have ever had a song or a book that made you feel genuinely seen, Charlie's story probably hits somewhere real. The 90s references are warm without being cloying, the idea of found family is treated with genuine tenderness, and those infinite moments, the ones where you are fully present and briefly free, are the best thing in the novel. I just wanted more from the book around them.
+        </p>
+
+      </div>
+
+      <div class="who-should-read reveal">
+        <p class="wsr-label">Who should read this</p>
+        <p class="wsr-text">
+          Read this if you grew up feeling like you were watching your own life from a slight distance, or if you're the kind of person who attaches deeply to music and needs to feel understood by a book. It works best when you're young and when the rawness of high school is still something you can taste. Don't read this if you need your protagonist to actually drive the story, or if you find it hard to stay with a narrator who refuses to fully arrive.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 2: Themes -->
+    <div class="tab-panel" id="tab-themes">
+      <div class="themes-grid reveal">
+
+        <div class="theme-card">
+          <div class="theme-icon">I</div>
+          <div class="theme-name">Observation vs Participation</div>
+          <div class="theme-desc">Charlie watches everything and joins in very little. The novel asks whether witnessing a life is the same as living one, and quietly suggests it is not. His growth, such as it is, comes only when he is pushed into participating rather than standing at the edge of the room.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">II</div>
+          <div class="theme-name">Repressed Trauma</div>
+          <div class="theme-desc">Charlie carries something he cannot name or access for most of the novel. His oddly flat affect and his tendency to dissociate during emotional peaks are quietly explained by a buried memory, though the book holds that secret until the very end in a way that divides readers on whether it feels earned.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">III</div>
+          <div class="theme-name">Found Family</div>
+          <div class="theme-desc">Sam and Patrick are not just friends; they are the first people who choose Charlie without needing anything from him. The novel is warmest when it's about this kind of love, the specific tenderness of being adopted by people who see you clearly and like you anyway.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">IV</div>
+          <div class="theme-name">Literature as Lifeline</div>
+          <div class="theme-desc">Books are passed between characters here like medicine. Charlie's English teacher Bill slips him novels outside the curriculum, and reading functions as one of the few ways Charlie can feel without consequence. The book treats literature with genuine reverence, even when it name-drops rather than engages.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">V</div>
+          <div class="theme-name">Adolescent Identity</div>
+          <div class="theme-desc">Everyone in this novel is working out who they are, sometimes at great cost. Patrick's story, in particular, carries a weight that the novel handles with more care than it does some of its other subplots. The question of how much of yourself you can hide before you stop recognising yourself runs through every character.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: Quotes -->
+    <div class="tab-panel" id="tab-quotes">
+      <div class="quotes-list reveal">
+
+        <div class="quote-item">
+          <p class="quote-text">"And in that moment, I swear we were infinite."</p>
+          <p class="quote-note">Why this line: It's the most famous sentence in the book for a reason. It captures what Chbosky does best, the idea that certain moments feel outside of time, that adolescence has these brief windows where everything is simultaneously too much and exactly right. Even if you found the novel frustrating, this line lands.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"We accept the love we think we deserve."</p>
+          <p class="quote-note">Why this line: Bill says this to Charlie, and it's the sentence that has outlived the novel itself. It's the kind of thing that sounds like a platitude until it describes your own situation perfectly, and then it sits in you for years. The novel's reputation probably rests on this line more than any other.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"I am both happy and sad at the same time, and I'm still trying to figure out how that could be."</p>
+          <p class="quote-note">Why this line: This is Charlie at his most precise. He doesn't have the vocabulary yet to name what he's feeling, but he notices the contradiction with a kind of earnest accuracy. It's one of the moments where the simplicity of his voice works in the novel's favour rather than against it.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">"So, this is my life. And I want you to know that I am both happy and sad and I'm still trying to figure out how that could be."</p>
+          <p class="quote-note">Why this line: The opening of the novel sets up everything about Charlie's relationship with contradiction and with the unnamed recipient of his letters. It is deliberately unresolved, and that feeling of unresolved emotional complexity is what the whole book is trying to hold.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: Characters -->
+    <div class="tab-panel" id="tab-characters">
+      <div class="characters-list reveal">
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Charlie</p>
+            <p class="char-role">Protagonist</p>
+          </div>
+          <p class="char-desc">
+            Charlie is all interiority and very little agency. He perceives everything around him with unusual sensitivity, notices things other people miss, feels things deeply but cannot process them in real time. What reads as gentleness or innocence is, by the end, revealed as dissociation, a self hiding from a memory it cannot survive. The problem is that Chbosky makes him so passive that it's hard to invest in his journey. Charlie is more observed than observing, despite the first-person voice.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Sam</p>
+            <p class="char-role">Love Interest / Mentor Figure</p>
+          </div>
+          <p class="char-desc">
+            Sam is the kind of character who exists primarily to be wanted. She's interesting, self-aware, and working through her own complicated history, but the novel keeps flattening her into the thing Charlie orbits. When she gets to have her own interiority, she's genuinely compelling. She just doesn't get enough of those moments.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Patrick</p>
+            <p class="char-role">Best Friend</p>
+          </div>
+          <p class="char-desc">
+            Patrick is the most alive character in the book. Funny, reckless, and carrying a grief he performs as charisma, he is navigating a secret relationship in an environment that would destroy him if the secret came out. His storyline has the most genuine stakes, and his unravelling mid-novel is the section where the book really earns its emotional weight.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Bill (Mr. Anderson)</p>
+            <p class="char-role">English Teacher</p>
+          </div>
+          <p class="char-desc">
+            Bill is the adult who sees Charlie most clearly and does the most to draw him toward engagement with the world. He functions partly as a literary stand-in, the teacher who believes that the right book given at the right moment can genuinely change a person's life. He also asks more of Charlie than anyone else does, which makes him the novel's most quietly important character.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 5: Connections -->
+    <div class="tab-panel" id="tab-connections">
+      <div class="connections-section reveal">
+
+        <p class="conn-label">If you loved this book, watch…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Perks of Being a Wallflower</p>
+            <p class="conn-card-sub">Stephen Chbosky · 2012</p>
+            <p class="conn-why">The film adaptation, directed by Chbosky himself, genuinely surpasses the book. Logan Lerman and Ezra Miller give the characters a physicality and warmth the prose never quite achieves.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Almost Famous</p>
+            <p class="conn-card-sub">Cameron Crowe · 2000</p>
+            <p class="conn-why">A sensitive outsider, a group of people who make him feel temporarily infinite, and a 90s/70s soundtrack doing most of the emotional heavy lifting. The atmosphere is very similar.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Boyhood</p>
+            <p class="conn-card-sub">Richard Linklater · 2014</p>
+            <p class="conn-why">Same interest in the texture of growing up rather than dramatic narrative beats, and the same conviction that ordinary adolescent moments deserve to be treated as something close to sacred.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Read next…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">The Catcher in the Rye</p>
+            <p class="conn-card-sub">J.D. Salinger</p>
+            <p class="conn-why">The obvious antecedent: another sensitive teenage narrator writing in a confessional, vernacular voice about feeling outside of everything. Holden is more caustic than Charlie, and the novel is sharper for it.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Thirteen Reasons Why</p>
+            <p class="conn-card-sub">Jay Asher</p>
+            <p class="conn-why">Another epistolary YA novel wrestling with trauma, mental health, and the hidden weight people carry through high school. Similarly divisive, similarly felt.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">A Little Life</p>
+            <p class="conn-card-sub">Hanya Yanagihara</p>
+            <p class="conn-why">If Perks left you wanting a more unflinching examination of childhood trauma and the way it echoes across a whole life, A Little Life does it with devastating precision. Not YA, not gentle.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Listen while you read…</p>
+        <div class="music-note">
+          <strong>Playlist mood</strong>
+          Mixtape energy with a melancholy undertow. Think The Smiths, David Bowie's Heroes, Landslide by Fleetwood Mac, and something by New Order or the Cocteau Twins for the tunnel scenes. The novel lives in late-night car rides and bedroom floors, so anything that sounds like 1991 and feels like something about to end.
+        </div>
+
+        <p class="conn-label">If this book made you think, explore…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Dissociation and Repressed Memory</p>
+            <p class="conn-card-sub">Psychology</p>
+            <p class="conn-why">Charlie's flatness and his tendency to detach during emotional peaks are textbook dissociative responses to unprocessed trauma. Understanding how the mind protects itself makes his narration much more legible.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Winnicott's "True Self / False Self"</p>
+            <p class="conn-card-sub">Developmental Psychology</p>
+            <p class="conn-why">Winnicott wrote about how early environments can cause people to construct a compliant self that hides a more authentic inner life. Charlie is a case study in this, being agreeable on the surface while something more complicated survives beneath it.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: Hidden depths -->
+    <div class="tab-panel" id="tab-easter">
+      <p class="egg-intro reveal">
+        Things in this book that most people miss on a first read. Click to reveal.
+      </p>
+      <div class="egg-list reveal">
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The anonymous recipient of Charlie's letters is never named. Who is he actually writing to?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Chbosky has said the recipient is deliberately unnamed so that readers can project themselves into that role. But there's a reading that the letters are addressed to no one, that Charlie is writing into a void because he has no one safe to talk to. The framing device is less about communication and more about a boy practicing the idea of being understood. The fact that we never get a response, ever, is part of what makes the novel feel so hermetically sealed inside Charlie's perspective.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The books Bill assigns Charlie aren't random. They form a very deliberate reading list.</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Bill gives Charlie To Kill a Mockingbird, This Side of Paradise, A Separate Peace, Peter Pan, Hamlet, The Great Gatsby, Naked Lunch, and others. Each one is a story about innocence, loss, or what happens when you can't quite become the person the world expects you to be. Chbosky chose them as a map of Charlie's inner life, reading the list carefully tells you more about what Charlie is going through than Charlie himself ever does directly.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Patrick's storyline is based on a real cultural moment that most younger readers miss entirely.</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              The novel is set in the early 1990s in suburban Pennsylvania. Patrick's secret relationship with Brad, a closeted football player, and the violent fallout when it's exposed, reflects a specific and well-documented reality of that era. The AIDS crisis had made being openly gay genuinely dangerous in many American communities, and the kind of violence Brad and his friends direct at Patrick was not an exaggeration. Reading the novel knowing that historical context shifts Patrick's storyline from melodrama to something much more sobering.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Charlie's symptoms are clinically consistent with a specific kind of trauma response, laid out almost as a checklist.</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Chbosky seeds Charlie's narration with what are now recognised as hallmark signs of childhood trauma and PTSD: emotional numbing, dissociation during stressful moments, an unusually flat affect, difficulty placing himself in time, and a tendency to describe his own experience from a slight remove, as if watching himself. The ending is not a twist in the thriller sense; it's a clinical explanation for everything that has felt slightly off about Charlie's perspective. On a reread, the signs are everywhere from the very first letter.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The tunnel scene is not just a great set piece. It's doing something very specific about memory and time.</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              The moment where Charlie stands in the back of the pickup truck driving through the Fort Pitt Tunnel while Heroes plays is the novel's most iconic image, and the film makes it literal. But in the book, Chbosky frames it very carefully: Charlie says he felt infinite. He does not say he was happy. The distinction matters. For someone who spends most of the novel unable to be fully present in his own life, that moment of feeling boundless is specifically about escaping the weight of selfhood rather than achieving it. It's a beautiful scene, but it's also a scene about dissociation, which makes it more complicated than it first appears.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Book nav -->
+  <div class="book-nav">
+    <a href="the-bluest-eye.html" class="book-nav-link">← The Bluest Eye</a>
+    <a href="the-seven-husbands-of-evelyn-hugo.html" class="book-nav-link right">The Seven Husbands of Evelyn Hugo →</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">A Story, A Key</p>
+    <ul class="footer-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <p class="footer-sub">Built with curiosity by Aashima · 2025</p>
+  </footer>
+
+  <script>
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
+        el.classList.remove('in-view');
+        setTimeout(() => el.classList.add('in-view'), 60);
+      });
+    }
+
+    function toggleEgg(btn) {
+      const item = btn.closest('.egg-item');
+      item.classList.toggle('open');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
