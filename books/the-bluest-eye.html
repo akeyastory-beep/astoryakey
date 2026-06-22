@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Bluest Eye — A Story, A Key</title>
+  <meta name="description" content="Aashima's review of The Bluest Eye by Toni Morrison. A childhood stolen, a world reflected." />
+  <meta property="og:title" content="The Bluest Eye — A Story, A Key" />
+  <meta property="og:description" content="Aashima's review of The Bluest Eye by Toni Morrison. A childhood stolen, a world reflected." />
+  <meta property="og:url" content="https://astoryakey-beep.github.io/astoryakey/books/the-bluest-eye.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1a1814;
+      --ink2:    #4a4740;
+      --ink3:    #8a8680;
+      --paper:   #f7f4ef;
+      --paper2:  #efeae2;
+      --accent:  #5c3d2e;
+      --accent2: #8b5e3c;
+      --gold:    #c9a96e;
+      --white:   #ffffff;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+    .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
+
+    /* Hero */
+    .book-hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .cover-wrap {
+      position: sticky;
+      top: 6rem;
+    }
+    .cover-img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: block;
+    }
+    .cover-fallback {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: var(--accent);
+      border-radius: 2px;
+      box-shadow: 8px 12px 40px rgba(26,24,20,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .cover-fallback-text {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .cover-rating {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .cover-verdict {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    /* Book meta */
+    .book-meta { padding-top: 1rem; }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .book-title-main {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .book-author-main {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 2rem;
+    }
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(92,61,46,0.2);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .meta-pill.mood {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .opening-line {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+      max-width: 560px;
+    }
+
+    /* Tabs */
+    .tabs-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(92,61,46,0.12);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      padding: 0.85rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--ink2); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Review tab */
+    .review-prose {
+      max-width: 680px;
+      font-size: 1rem;
+      color: var(--ink2);
+      line-height: 1.95;
+    }
+    .review-prose p { margin-bottom: 1.4rem; }
+    .review-prose p:last-child { margin-bottom: 0; }
+    .pull-quote {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 560px;
+    }
+    .who-should-read {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      max-width: 560px;
+    }
+    .wsr-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .wsr-text {
+      font-size: 0.92rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Themes tab */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+    }
+    .theme-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 1.5rem;
+    }
+    .theme-icon {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .theme-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+
+    /* Quotes tab */
+    .quotes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 680px;
+    }
+    .quote-item {
+      position: relative;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      border-left: 3px solid var(--gold);
+    }
+    .quote-text {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .quote-note {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
+
+    /* Characters tab */
+    .characters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 680px;
+    }
+    .char-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(92,61,46,0.08);
+      align-items: start;
+    }
+    .char-row:first-child { border-top: 1px solid rgba(92,61,46,0.08); }
+    .char-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .char-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .char-desc {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* Connections tab */
+    .connections-section { max-width: 900px; }
+    .conn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .conn-label:first-child { margin-top: 0; }
+    .conn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .conn-card {
+      background: var(--white);
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 2px;
+      padding: 0.85rem 1.2rem;
+      min-width: 180px;
+    }
+    .conn-card-title {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .conn-card-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+    .conn-why {
+      font-size: 0.82rem;
+      color: var(--ink2);
+      margin-top: 0.4rem;
+      line-height: 1.55;
+    }
+    .music-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--paper2);
+      border-radius: 2px;
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .music-note strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Easter egg tab */
+    .egg-intro {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+    .egg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 680px;
+    }
+    .egg-item {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .egg-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--ff-body);
+    }
+    .egg-question {
+      font-size: 0.9rem;
+      color: var(--paper);
+      line-height: 1.5;
+    }
+    .egg-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .egg-item.open .egg-icon { transform: rotate(45deg); }
+    .egg-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .egg-item.open .egg-body { max-height: 400px; }
+    .egg-answer {
+      padding: 0 1.5rem 1.4rem;
+      font-size: 0.88rem;
+      color: rgba(247,244,239,0.7);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1rem;
+      margin-top: 0;
+    }
+
+    /* Book nav */
+    .book-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(92,61,46,0.1);
+    }
+    .book-nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .book-nav-link:hover { opacity: 0.7; }
+    .book-nav-link.right { text-align: right; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    footer { background: var(--ink); color: var(--paper); padding: 3rem 2rem; text-align: center; }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.3rem; font-style: italic; color: var(--gold); margin-bottom: 0.75rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; list-style: none; margin: 1rem 0; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.45); }
+    .footer-links a:hover { color: var(--gold); transition: color 0.2s; }
+    .footer-sub { font-size: 0.8rem; color: rgba(247,244,239,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .book-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.25rem 3rem; }
+      .cover-wrap { position: static; max-width: 200px; }
+      .tabs-section { padding: 0 1.25rem 4rem; }
+      .tab-btn { padding: 0.75rem 1rem; font-size: 0.75rem; }
+      .char-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .book-nav { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="../index.html" class="nav-logo">A Story, A Key</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../dna.html">Literary DNA</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div class="book-hero">
+
+    <!-- Cover -->
+    <div class="cover-wrap reveal">
+      <img
+        class="cover-img"
+        src="https://covers.openlibrary.org/b/isbn/9780307278449-L.jpg"
+        alt="The Bluest Eye by Toni Morrison"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="cover-fallback" style="display:none;">
+        <div class="cover-fallback-text">The Bluest Eye<br><br>Toni Morrison</div>
+      </div>
+      <div class="cover-rating">★★★★★</div>
+      <div class="cover-verdict">Necessary</div>
+    </div>
+
+    <!-- Meta -->
+    <div class="book-meta reveal">
+      <p class="breadcrumb">
+        <a href="../books.html">← All books</a>
+      </p>
+      <h1 class="book-title-main">The Bluest Eye</h1>
+      <p class="book-author-main">Toni Morrison · 1970</p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">United States</span>
+        <span class="meta-pill">African-American Literature</span>
+        <span class="meta-pill">224 pages</span>
+        <span class="meta-pill mood">haunting</span>
+      </div>
+
+      <p class="opening-line">
+        A girl who wanted blue eyes to be loved — and a world that made her believe she was right to want them.
+      </p>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('review', this)">Review</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Themes</button>
+      <button class="tab-btn" onclick="switchTab('quotes', this)">Quotes</button>
+      <button class="tab-btn" onclick="switchTab('characters', this)">Characters</button>
+      <button class="tab-btn" onclick="switchTab('connections', this)">Connections</button>
+      <button class="tab-btn" onclick="switchTab('easter', this)">Hidden depths</button>
+    </div>
+
+    <!-- TAB 1: Review -->
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-prose reveal">
+
+        <p>
+          What do we do when childhood, rather than a sanctuary, is a field of shame, violence, and silence? Toni Morrison's <em>The Bluest Eye</em> makes us confront that question head-on. I hadn't read this novel in years, but rereading it not long ago, it broke my heart all over again. This is not a book you curl up with. It is a book that sits across from you and holds your gaze until you look away first.
+        </p>
+
+        <p>
+          At its center is Pecola Breedlove, a young Black girl growing up in Lorain, Ohio, who has come to believe she is ugly, unwanted, and unlovable. While white children move through the world with what feels like a kind of soft armor, Pecola is burdened with things no child should carry. She convinces herself that if only she had blue eyes, things might improve. That beauty could deliver her love, protection, even dignity. The tragedy is not just in her yearning but in the fact that the world itself, through billboards and baby dolls and the casual cruelties of other children, has taught her to believe in this impossible fix.
+        </p>
+
+        <p class="pull-quote">
+          She is not just one character. She is every child who was told they were not enough, and every silence that followed.
+        </p>
+
+        <p>
+          Morrison writes with a precision that is almost unbearable. The prose shifts between lyric and brutal, sometimes within the same paragraph. Pecola's parents are not monsters conjured for effect. They are people trapped inside their own accumulated damage, lashing out at the nearest thing. Her father crosses a line that cannot be uncrossed. Her mother cannot hear her pain. When Pecola becomes pregnant and the baby is born too early and does not survive, it feels less like a plot point and more like a verdict the world has handed down. The marigolds that Claudia and Frieda plant as a kind of private prayer also fail to bloom. Even hope refuses to take root in this soil.
+        </p>
+
+        <p>
+          What stays with me most is what Morrison does with Cholly, Pecola's father. She shows us the wreckage he came from before she shows us what he becomes. It is not an excuse. It is an explanation of how violence travels, how it passes from one generation into the hands of the next almost without anyone choosing it. Morrison humanises everyone in this book without excusing anyone, and that is extraordinarily hard to do.
+        </p>
+
+        <p>
+          By the end, Pecola has retreated into a fractured version of herself, speaking only to an imaginary friend about her new blue eyes. It is one of the most heartbreaking endings I have read. Not because it surprises you, but because it feels inevitable, and that feeling of inevitability is the whole point. Morrison is asking us to see how it happened. Not just to Pecola, but all around us, every day, in smaller and quieter ways.
+        </p>
+
+      </div>
+
+      <div class="who-should-read reveal">
+        <p class="wsr-label">Who should read this</p>
+        <p class="wsr-text">
+          Read this if you have ever felt like the world was measuring you against a standard you had no part in making. Read it if you want to understand how self-hatred is taught rather than born, how beauty standards carry real violence inside them. Do not read this expecting comfort or resolution. This book does not offer either. It offers clarity instead, which is harder and more valuable.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 2: Themes -->
+    <div class="tab-panel" id="tab-themes">
+      <div class="themes-grid reveal">
+
+        <div class="theme-card">
+          <div class="theme-icon">I</div>
+          <div class="theme-name">Internalized Racism</div>
+          <div class="theme-desc">Pecola does not hate herself in isolation. She has been handed that hatred by a culture that places whiteness, and particularly blue eyes, at the top of every hierarchy of value. Morrison shows how this message arrives through toys, film, candy wrappers, and the scorn of other Black children who have absorbed the same lesson and now use it as a weapon.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">II</div>
+          <div class="theme-name">The Myth of Beauty</div>
+          <div class="theme-desc">Beauty in this novel is not neutral. Morrison frames romantic love and physical beauty as, in her own words, probably the most destructive ideas in human history, both born from envy and thriving in insecurity. For Pecola, beauty is not a thing to possess but a code for survival she has been told she will never crack.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">III</div>
+          <div class="theme-name">Cycles of Trauma</div>
+          <div class="theme-desc">Cholly Breedlove was abandoned, humiliated, and never taught how to love. The violence he inflicts on his daughter is not random. Morrison traces it back through generations, showing how harm is inherited when there is no language or support to interrupt it. This is not a comfort. It is a diagnosis.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">IV</div>
+          <div class="theme-name">Childhood and Witness</div>
+          <div class="theme-desc">The story is filtered largely through Claudia MacTeer, who watches what happens to Pecola from close enough to see it clearly but not close enough to stop it. Claudia's guilt and her retrospective understanding give the novel its particular ache. She is the witness who survives, and surviving carries its own weight.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-icon">V</div>
+          <div class="theme-name">Silence and Complicity</div>
+          <div class="theme-desc">The community around Pecola knows. They whisper, they turn away, they clean themselves on her suffering and feel better for the comparison. Morrison implicates everyone, not just abusers but bystanders, not just racists but those who absorb racism and redirect its cruelty at each other.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: Quotes -->
+    <div class="tab-panel" id="tab-quotes">
+      <div class="quotes-list reveal">
+
+        <div class="quote-item">
+          <p class="quote-text">This soil is bad for certain kinds of flowers. Certain seeds it will not nurture, certain fruit it will not bear, and when the land kills of its own volition, we acquiesce and say the victim had no right to live.</p>
+          <p class="quote-note">Why this line: This is the novel's thesis in two sentences. It shifts the question from "what was wrong with Pecola" to "what kind of world did she grow up in." The land is the culture. The seeds are the children. Morrison refuses to let us blame the flower for not blooming in poisoned soil.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">Love is never any better than the lover. Wicked people love wickedly, violent people love violently, weak people love weakly, stupid people love stupidly, but the love of a free man is never safe.</p>
+          <p class="quote-note">Why this line: It reframes Cholly's actions without forgiving them. The love between Pecola's parents is real and also ruinous. Morrison is saying that love does not redeem people who are not yet capable of loving well. It is a devastating observation about how people bring their damage into the things they feel most deeply.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">Her inarticulateness made us believe we were eloquent. Her poverty kept us generous. Even her waking dreams we used to silence our own nightmares. And she let us, and thereby deserved our contempt.</p>
+          <p class="quote-note">Why this line: This is one of the most uncomfortable passages in the book because it implicates the reader too. Morrison describes the psychological mechanism by which communities sacrifice one person to feel better about themselves. The cruelty is not just in what is done to Pecola but in how her suffering serves everyone else.</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote-text">Thrown, in this way, into the binding conviction that only a miracle could save her, she would never know her beauty. She would see only what there was to see: the eyes of other people.</p>
+          <p class="quote-note">Why this line: Morrison gives us Pecola's tragedy in miniature here. Her self-perception is not her own. It has been entirely constructed from the outside. The eyes of other people become the only mirror she has, and every mirror lies to her.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: Characters -->
+    <div class="tab-panel" id="tab-characters">
+      <div class="characters-list reveal">
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Pecola Breedlove</p>
+            <p class="char-role">Protagonist</p>
+          </div>
+          <p class="char-desc">
+            Pecola is not a symbol until she is broken, and then she becomes one whether she wants to or not. What drives her is the most human thing imaginable: she wants to be seen as worthy of love. Her obsession with blue eyes is not vanity. It is a child's attempt to solve the problem of her own pain using the only logic the world has given her. Her tragedy is that she believes the diagnosis. She accepts her ugliness as a fact rather than a lie, and that acceptance is what the world was counting on.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Claudia MacTeer</p>
+            <p class="char-role">Narrator / Witness</p>
+          </div>
+          <p class="char-desc">
+            Claudia is the novel's conscience. Unlike Pecola, she has not yet been broken into self-hatred, and in her childhood she actively dismantles the white baby dolls she is given rather than adoring them. But she grows older and learns compliance, and that arc of gradual capitulation is as important as Pecola's story. She looks back on what happened to Pecola with a guilt she cannot quite name, the guilt of someone who saw it coming and could not find the language to stop it.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Cholly Breedlove</p>
+            <p class="char-role">Pecola's Father</p>
+          </div>
+          <p class="char-desc">
+            Morrison gives Cholly a history before she gives him a verdict. Abandoned as a baby, humiliated by white men as a teenager, deprived of every model for what a father or husband could be, he is a man who has never been loved safely and does not know how to love anyone safely. This does not excuse him. Morrison is careful about that. But it explains the machinery of harm that runs through generations. Cholly is what happens when trauma has nowhere to go.
+          </p>
+        </div>
+
+        <div class="char-row">
+          <div>
+            <p class="char-name">Pauline Breedlove</p>
+            <p class="char-role">Pecola's Mother</p>
+          </div>
+          <p class="char-desc">
+            Pauline is one of Morrison's most complex portraits. She has abandoned her own family in favor of the white household she works for, where she is competent and even valued. At home she is cold and unavailable to her own children. She has transferred her capacity for care to a place where it is recognized, and what remains for Pecola is a mother who loves order more than she loves her daughter. That is not a simple wickedness. It is a quiet devastation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 5: Connections -->
+    <div class="tab-panel" id="tab-connections">
+      <div class="connections-section reveal">
+
+        <p class="conn-label">If you loved this book, watch…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Moonlight</p>
+            <p class="conn-card-sub">Barry Jenkins · 2016</p>
+            <p class="conn-why">A portrait of a Black childhood shaped by violence, tenderness, and the question of who gets to decide who you are. The same ache, different form.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Beasts of the Southern Wild</p>
+            <p class="conn-card-sub">Benh Zeitlin · 2012</p>
+            <p class="conn-why">A child narrator trying to make sense of a world that was not built for her survival. The mythological register shares something with Morrison's elemental prose.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Precious</p>
+            <p class="conn-card-sub">Lee Daniels · 2009</p>
+            <p class="conn-why">A young Black girl surviving abuse and invisibility. Harder to watch, more direct in its violence, but asking the same questions about what children absorb and carry forward.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Read next…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Beloved</p>
+            <p class="conn-card-sub">Toni Morrison</p>
+            <p class="conn-why">Morrison at her most ambitious, tracing how slavery's violence lives inside the body. The natural next step if this book opened something in you.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">Their Eyes Were Watching God</p>
+            <p class="conn-card-sub">Zora Neale Hurston</p>
+            <p class="conn-why">Another Black woman's interiority rendered with lyric precision, this time reaching toward selfhood rather than its destruction.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">I Know Why the Caged Bird Sings</p>
+            <p class="conn-card-sub">Maya Angelou</p>
+            <p class="conn-why">A memoir of Black girlhood, trauma, and the slow reclamation of voice. Shares the same territory as Morrison but from the inside of a life survived.</p>
+          </div>
+        </div>
+
+        <p class="conn-label">Listen while you read…</p>
+        <div class="music-note">
+          <strong>Playlist mood</strong>
+          Something heavy and quiet at the same time. Nina Simone on her most tired days. Late Billie Holiday. The kind of blues that does not ask you to feel better. Try Nina Simone's "Feeling Good" stripped of any triumph, then move into Billie Holiday's "Strange Fruit," then let Alice Coltrane's harp carry you somewhere beyond grief.
+        </div>
+
+        <p class="conn-label">If this book made you think, explore…</p>
+        <div class="conn-grid">
+          <div class="conn-card">
+            <p class="conn-card-title">Frantz Fanon</p>
+            <p class="conn-card-sub">Black Skin, White Masks</p>
+            <p class="conn-why">Fanon's analysis of how colonialism installs self-hatred in the colonized is the theoretical scaffold beneath everything Morrison dramatizes in this novel.</p>
+          </div>
+          <div class="conn-card">
+            <p class="conn-card-title">bell hooks</p>
+            <p class="conn-card-sub">Ain't I a Woman</p>
+            <p class="conn-why">hooks on the intersection of race and gender gives language to what Pecola experiences without words. Reading Morrison and hooks together is to see the same problem from two directions at once.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: Hidden depths -->
+    <div class="tab-panel" id="tab-easter">
+      <p class="egg-intro reveal">
+        Things in this book that most people miss on a first read. Click to reveal.
+      </p>
+      <div class="egg-list reveal">
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Why does the novel open with a Dick and Jane primer, and why does it get progressively stranger?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Morrison opens with the cheerful Dick and Jane basal reader text that was standard in mid-century American schools: "Here is the house. It is green and white. It has a red door." But she reprints it three times. The first is normal. The second removes all punctuation. The third removes all spaces so the words blur into each other. This is not a design quirk. It mirrors Pecola's own disintegration, the way a coherent self dissolves under pressure. The "ideal" white American family of Dick and Jane is the standard against which Pecola measures herself and fails. Morrison is showing you the violence inside something that looked perfectly innocent.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">What does "quiet as it's kept" actually mean, and why does it open the novel?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              In her 1993 afterword, Morrison explains that "quiet as it's kept" is a phrase she remembered from Black women's conversations in her childhood. It signals gossip, something being shared in hushed tones because it should not quite be spoken aloud. Opening the novel this way does something very precise: it positions the reader not as a distant observer but as someone inside the community, being let in on something shameful and terrible that the community would prefer to keep to itself. The narrative is framed as community guilt from the very first words.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">The novel is structured around the seasons. Why, and what does it mean that it begins in autumn?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Morrison organizes the book by season: Autumn, Winter, Spring, Summer. This inverts the conventional narrative arc of growth and renewal. Instead of moving from winter toward bloom, Pecola's story ends in the warmth of summer after the hope of spring has already failed. The marigolds Claudia and Frieda plant in spring do not grow. The baby does not survive. Summer arrives without any of its usual promise. Morrison uses the seasons to make the reader feel the gap between what nature usually promises and what Pecola actually receives.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">Morrison said she wrote this book about someone the world had decided was invisible. What was her original motivation?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              In interviews and essays, Morrison described the seed of the novel as a memory of a Black girl she knew as a child who had prayed for blue eyes. Morrison said she found herself unable to comfort the girl and unable to think of the right response. That moment of wordlessness stayed with her. Writing the novel was partly an attempt to understand the forces that make a child wish herself into a different body. She has also said she wanted to give Pecola the dignity of interiority, to let the reader see the full humanity of a girl the world had written off as ugly and unworthy of notice.
+            </p>
+          </div>
+        </div>
+
+        <div class="egg-item">
+          <button class="egg-trigger" onclick="toggleEgg(this)">
+            <span class="egg-question">What does Soaphead Church reveal that most readers miss about Morrison's targets in this novel?</span>
+            <span class="egg-icon">+</span>
+          </button>
+          <div class="egg-body">
+            <p class="egg-answer">
+              Elihue Whitcomb, known as Soaphead Church, is a mixed-race man who has internalized a hatred of his own Blackness so completely that he preys on young Black girls. He is the one who tells Pecola she has received her blue eyes. Morrison's portrait of him extends her critique beyond white society into the structures within the Black community that absorb and replicate the violence done to them. Soaphead's letter to God near the end of the novel is almost darkly comic in its self-righteousness. He believes he did something kind for Pecola. Morrison is showing how complicity disguises itself as care.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end tabs -->
+
+  <!-- Book nav -->
+  <div class="book-nav">
+    <a href="beloved.html" class="book-nav-link">← Beloved</a>
+    <a href="the-perks-of-being-a-wallflower.html" class="book-nav-link right">The Perks of Being a Wallflower →</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">A Story, A Key</p>
+    <ul class="footer-links">
+      <li><a href="../index.html#feel">Feel Something</a></li>
+      <li><a href="../books.html">Books</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+    <p class="footer-sub">Built with curiosity by Aashima · 2025</p>
+  </footer>
+
+  <script>
+    // Tabs
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
+        el.classList.remove('in-view');
+        setTimeout(() => el.classList.add('in-view'), 60);
+      });
+    }
+
+    // Easter eggs
+    function toggleEgg(btn) {
+      const item = btn.closest('.egg-item');
+      item.classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
